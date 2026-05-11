@@ -1,8 +1,8 @@
 <!--
   WEBFLOW EMBED - paste this entire block into a Webflow Embed element.
-  Minimal premium personal site. System fonts only. Styles are scoped to .rs-pe.
+  Sparse, premium, slightly goofy. System fonts only. Styles scoped to .rs-pe.
 -->
-<div class="rs-pe" id="rs-pe-root" data-theme="light">
+<div class="rs-pe" id="rs-pe-root">
   <style>
     .rs-pe,
     .rs-pe *,
@@ -17,26 +17,15 @@
     }
 
     .rs-pe {
-      --bg: #fbfbfd;
-      --fg: #1d1d1f;
-      --muted: #6e6e73;
-      --muted-2: #8e8e93;
-      --line: #d2d2d7;
-      --line-soft: rgba(0, 0, 0, 0.07);
-      --card: rgba(255, 255, 255, 0.78);
-      --card-solid: #ffffff;
-      --subtle: #f5f5f7;
-      --accent: #0071e3;
-      --good: #34c759;
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.08);
-      --radius-xl: 32px;
-      --radius-lg: 22px;
-      --radius-md: 14px;
+      --bg: #fbfbfa;
+      --fg: #202124;
+      --muted: #6f7377;
+      --link: #4e8797;
+      --line: rgba(32, 33, 36, 0.13);
+      --soft: rgba(32, 33, 36, 0.045);
       width: 100%;
-      min-height: 100%;
-      background:
-        radial-gradient(circle at 50% -10%, rgba(0, 113, 227, 0.08), transparent 34rem),
-        linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, #f5f5f7 100%);
+      min-height: 100vh;
+      background: var(--bg);
       color: var(--fg);
       font-family:
         -apple-system,
@@ -50,28 +39,12 @@
         Arial,
         sans-serif;
       font-size: 17px;
-      line-height: 1.47059;
-      letter-spacing: -0.022em;
+      line-height: 1.42;
+      letter-spacing: -0.024em;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
       font-synthesis: none;
-    }
-
-    .rs-pe[data-theme="dark"] {
-      --bg: #000000;
-      --fg: #f5f5f7;
-      --muted: #a1a1a6;
-      --muted-2: #6e6e73;
-      --line: #424245;
-      --line-soft: rgba(255, 255, 255, 0.1);
-      --card: rgba(28, 28, 30, 0.74);
-      --card-solid: #1c1c1e;
-      --subtle: #111113;
-      --shadow: none;
-      background:
-        radial-gradient(circle at 50% -10%, rgba(0, 113, 227, 0.2), transparent 34rem),
-        linear-gradient(180deg, #050505 0%, #000000 56%, #08080a 100%);
     }
 
     .rs-pe ::selection {
@@ -80,1045 +53,361 @@
     }
 
     .rs-pe a {
-      color: inherit;
-      text-decoration: none;
+      color: var(--link);
+      font-weight: 650;
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+      transition: color 140ms ease, opacity 140ms ease;
+    }
+
+    .rs-pe a:hover {
+      color: var(--fg);
     }
 
     .rs-pe .page {
-      width: min(100%, 980px);
-      margin: 0 auto;
-      padding: 30px 22px 80px;
-    }
-
-    .rs-pe .chrome {
       position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line-soft);
-      border-radius: clamp(24px, 4vw, 44px);
-      background: rgba(255, 255, 255, 0.55);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(24px);
+      width: min(100%, 1180px);
+      min-height: 720px;
+      margin: 0 auto;
+      padding: clamp(22px, 3vw, 38px);
     }
 
-    .rs-pe[data-theme="dark"] .chrome {
-      background: rgba(10, 10, 12, 0.64);
-      border-color: rgba(255, 255, 255, 0.12);
+    .rs-pe .intro {
+      max-width: 1000px;
     }
 
-    .rs-pe .inner {
-      padding: clamp(22px, 5vw, 58px);
-    }
-
-    .rs-pe .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: clamp(78px, 10vw, 132px);
-    }
-
-    .rs-pe .identity {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .rs-pe .monogram {
-      display: grid;
-      width: 38px;
-      height: 38px;
-      place-items: center;
-      flex: 0 0 auto;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: var(--card);
-      color: var(--fg);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-    }
-
-    .rs-pe .name {
-      display: block;
-      font-size: 0.94rem;
-      font-weight: 600;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-    }
-
-    .rs-pe .role {
-      display: block;
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 0.76rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-    }
-
-    .rs-pe .theme-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--card);
-      color: var(--muted);
-      padding: 9px 12px;
-      cursor: pointer;
-      font: inherit;
-      font-size: 0.76rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
-    }
-
-    .rs-pe .theme-toggle:hover {
-      border-color: var(--muted-2);
-      color: var(--fg);
-    }
-
-    .rs-pe .toggle-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--fg);
-      opacity: 0.8;
-    }
-
-    .rs-pe .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(270px, 330px);
-      gap: clamp(36px, 7vw, 86px);
-      align-items: end;
-    }
-
-    .rs-pe .kicker {
-      margin-bottom: 18px;
-      color: var(--muted);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.105em;
-      text-transform: uppercase;
-    }
-
-    .rs-pe h1 {
-      max-width: 9.7ch;
-      font-size: clamp(3.9rem, 10vw, 7.75rem);
-      font-weight: 650;
-      line-height: 0.91;
-      letter-spacing: -0.075em;
-      text-wrap: balance;
-    }
-
-    .rs-pe .lede {
-      max-width: 43rem;
-      margin-top: 26px;
-      color: var(--muted);
-      font-size: clamp(1.08rem, 2vw, 1.34rem);
+    .rs-pe p {
+      max-width: 980px;
+      font-size: clamp(1.08rem, 1.72vw, 1.32rem);
+      font-weight: 640;
       line-height: 1.38;
-      letter-spacing: -0.036em;
-      font-weight: 400;
+      letter-spacing: -0.038em;
     }
 
-    .rs-pe .lede strong {
-      color: var(--fg);
+    .rs-pe p + p {
+      margin-top: 26px;
+    }
+
+    .rs-pe .quiet {
+      color: var(--muted);
       font-weight: 560;
     }
 
-    .rs-pe .lede a,
-    .rs-pe .inline-link {
-      color: var(--fg);
-      border-bottom: 1px solid var(--line);
-      transition: border-color 160ms ease, color 160ms ease;
-    }
-
-    .rs-pe .lede a:hover,
-    .rs-pe .inline-link:hover {
-      border-color: var(--fg);
-    }
-
-    .rs-pe .signal-panel {
-      border: 1px solid var(--line-soft);
-      border-radius: var(--radius-xl);
-      background: var(--card);
-      padding: 20px;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.055);
-      backdrop-filter: blur(18px);
-    }
-
-    .rs-pe[data-theme="dark"] .signal-panel {
-      box-shadow: none;
-    }
-
-    .rs-pe .terminal-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 22px;
+    .rs-pe .tiny {
+      font-size: 0.92rem;
       color: var(--muted);
-      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-      font-size: 0.7rem;
-      letter-spacing: -0.01em;
+      font-weight: 520;
+      letter-spacing: -0.018em;
     }
 
-    .rs-pe .lights {
-      display: flex;
-      gap: 6px;
-    }
-
-    .rs-pe .lights span {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--line);
-    }
-
-    .rs-pe .lights span:nth-child(3) {
-      background: var(--good);
-    }
-
-    .rs-pe .terminal-stat {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 14px;
-      align-items: baseline;
-      padding: 13px 0;
-      border-top: 1px solid var(--line-soft);
-    }
-
-    .rs-pe .terminal-stat:first-of-type {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .rs-pe .terminal-label {
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 500;
-    }
-
-    .rs-pe .terminal-value {
-      font-size: 1.02rem;
-      font-weight: 620;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: -0.03em;
-    }
-
-    .rs-pe .terminal-note {
-      margin-top: 18px;
-      color: var(--muted);
-      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-      font-size: 0.72rem;
-      line-height: 1.55;
-      letter-spacing: -0.01em;
-    }
-
-    .rs-pe .quick-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 34px;
-    }
-
-    .rs-pe .quick-links a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 36px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--card);
-      padding: 8px 13px;
-      color: var(--muted);
-      font-size: 0.84rem;
-      font-weight: 500;
-      transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
-    }
-
-    .rs-pe .quick-links a:hover {
-      border-color: var(--muted-2);
-      color: var(--fg);
-      transform: translateY(-1px);
-    }
-
-    .rs-pe section {
-      margin-top: clamp(70px, 9vw, 112px);
-    }
-
-    .rs-pe .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.5fr);
-      gap: 28px;
-      align-items: end;
-      margin-bottom: 20px;
-    }
-
-    .rs-pe .section-title {
-      font-size: clamp(1.8rem, 4vw, 3.2rem);
-      font-weight: 620;
-      line-height: 0.98;
-      letter-spacing: -0.058em;
-      text-wrap: balance;
-    }
-
-    .rs-pe .section-copy {
-      color: var(--muted);
-      font-size: 0.98rem;
-      line-height: 1.55;
-      letter-spacing: -0.022em;
-      font-weight: 400;
-    }
-
-    .rs-pe .eyelabel {
-      margin-bottom: 11px;
-      color: var(--muted);
-      font-size: 0.7rem;
-      font-weight: 650;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-    }
-
-    .rs-pe .metric-grid {
+    .rs-pe .proof {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      border: 1px solid var(--line-soft);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      background: var(--card);
-      backdrop-filter: blur(16px);
+      gap: 10px;
+      width: min(100%, 780px);
+      margin-top: clamp(62px, 12vw, 150px);
     }
 
-    .rs-pe .metric {
-      min-height: 168px;
-      padding: 22px;
-      border-right: 1px solid var(--line-soft);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 22px;
+    .rs-pe .proof-item {
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
     }
 
-    .rs-pe .metric:last-child {
-      border-right: 0;
-    }
-
-    .rs-pe .metric-label {
-      color: var(--muted);
-      font-size: 0.76rem;
-      font-weight: 520;
-      line-height: 1.35;
-    }
-
-    .rs-pe .metric-value {
-      font-size: clamp(2rem, 4.4vw, 3.4rem);
-      font-weight: 620;
-      line-height: 0.9;
-      letter-spacing: -0.065em;
+    .rs-pe .proof-number {
+      display: block;
+      font-size: clamp(1.6rem, 3.8vw, 3rem);
+      font-weight: 650;
+      line-height: 0.95;
+      letter-spacing: -0.07em;
       font-variant-numeric: tabular-nums;
     }
 
-    .rs-pe .metric-sub {
+    .rs-pe .proof-label {
+      display: block;
       margin-top: 8px;
-      color: var(--muted-2);
-      font-size: 0.75rem;
+      color: var(--muted);
+      font-size: 0.78rem;
       line-height: 1.35;
+      letter-spacing: -0.012em;
     }
 
-    .rs-pe .system-grid {
+    .rs-pe .shelf {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+      margin-top: clamp(84px, 18vw, 210px);
+    }
+
+    .rs-pe .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .rs-pe .links a,
+    .rs-pe .ip-link {
+      font-size: 1rem;
+      letter-spacing: -0.025em;
+    }
+
+    .rs-pe .goof {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--fg);
+      font-size: 0.88rem;
+      font-weight: 650;
+      white-space: nowrap;
+      transform: rotate(-2deg);
+    }
+
+    .rs-pe .goof-face {
+      display: grid;
+      width: 58px;
+      height: 46px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 46% 54% 48% 52%;
+      background:
+        radial-gradient(circle at 36% 38%, #202124 0 2px, transparent 2.5px),
+        radial-gradient(circle at 64% 38%, #202124 0 2px, transparent 2.5px),
+        linear-gradient(180deg, #f1d0a6, #d89b5d);
+      box-shadow: inset 0 -10px 18px rgba(120, 72, 32, 0.12);
+    }
+
+    .rs-pe .goof-face::after {
+      content: "";
+      width: 18px;
+      height: 8px;
+      margin-top: 16px;
+      border-bottom: 2px solid rgba(32, 33, 36, 0.7);
+      border-radius: 50%;
+    }
+
+    .rs-pe .bonk {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      padding: 5px 8px;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .rs-pe .notes {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
+      margin-top: clamp(58px, 10vw, 120px);
+      width: min(100%, 920px);
     }
 
-    .rs-pe .system-card {
-      min-height: 232px;
-      border: 1px solid var(--line-soft);
-      border-radius: var(--radius-lg);
-      background: var(--card);
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 28px;
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    .rs-pe .note {
+      min-height: 132px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.48);
+      padding: 18px;
     }
 
-    .rs-pe .system-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--line);
-      background: var(--card-solid);
-    }
-
-    .rs-pe[data-theme="dark"] .system-card:hover {
-      background: #202024;
-    }
-
-    .rs-pe .card-index {
-      color: var(--muted-2);
+    .rs-pe .note-kicker {
+      color: var(--muted);
       font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
       font-size: 0.72rem;
+      letter-spacing: -0.01em;
     }
 
-    .rs-pe .system-card h3 {
-      font-size: 1.28rem;
-      font-weight: 600;
-      line-height: 1.05;
-      letter-spacing: -0.045em;
-    }
-
-    .rs-pe .system-card p {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.48;
-    }
-
-    .rs-pe .case {
-      display: grid;
-      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-      gap: 14px;
-      align-items: stretch;
-    }
-
-    .rs-pe .case-card {
-      border: 1px solid var(--line-soft);
-      border-radius: var(--radius-xl);
-      background: var(--card);
-      padding: clamp(22px, 3.2vw, 32px);
-    }
-
-    .rs-pe .case-card.dark {
-      background: var(--fg);
-      color: var(--bg);
-    }
-
-    .rs-pe[data-theme="dark"] .case-card.dark {
-      background: #f5f5f7;
-      color: #1d1d1f;
-    }
-
-    .rs-pe .case-card h3 {
-      max-width: 11ch;
-      font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: 620;
-      line-height: 0.93;
-      letter-spacing: -0.07em;
-    }
-
-    .rs-pe .case-card p {
-      max-width: 31rem;
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 0.98rem;
-      line-height: 1.55;
-    }
-
-    .rs-pe .case-card.dark p {
-      color: rgba(251, 251, 253, 0.68);
-    }
-
-    .rs-pe[data-theme="dark"] .case-card.dark p {
-      color: rgba(29, 29, 31, 0.66);
-    }
-
-    .rs-pe .case-list {
-      margin-top: 30px;
-      display: grid;
-      gap: 0;
-    }
-
-    .rs-pe .case-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 13px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
-      color: rgba(251, 251, 253, 0.72);
-      font-size: 0.86rem;
-    }
-
-    .rs-pe[data-theme="dark"] .case-row {
-      border-color: rgba(29, 29, 31, 0.14);
-      color: rgba(29, 29, 31, 0.7);
-    }
-
-    .rs-pe .case-row strong {
-      color: currentColor;
-      font-weight: 600;
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    .rs-pe .ba-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .rs-pe .ba-card {
-      border: 1px solid var(--line-soft);
-      border-radius: var(--radius-lg);
-      background: var(--card-solid);
-      padding: 22px;
-    }
-
-    .rs-pe[data-theme="dark"] .ba-card {
-      background: var(--card-solid);
-    }
-
-    .rs-pe .ba-label {
-      color: var(--muted);
-      font-size: 0.68rem;
-      font-weight: 650;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .rs-pe .ba-title {
-      margin-top: 14px;
-      font-size: 1.55rem;
-      font-weight: 600;
-      line-height: 1.05;
-      letter-spacing: -0.052em;
-    }
-
-    .rs-pe .ba-copy {
-      margin-top: 9px;
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.48;
-    }
-
-    .rs-pe .ba-card.after {
-      border-color: var(--line);
-      box-shadow: inset 0 0 0 1px var(--line-soft);
-    }
-
-    .rs-pe .press-list {
-      border: 1px solid var(--line-soft);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      background: var(--card);
-    }
-
-    .rs-pe .press-item {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 18px;
-      align-items: baseline;
-      padding: 18px 22px;
-      border-top: 1px solid var(--line-soft);
-      transition: background 160ms ease;
-    }
-
-    .rs-pe .press-item:first-child {
-      border-top: 0;
-    }
-
-    .rs-pe a.press-item:hover {
-      background: var(--subtle);
-    }
-
-    .rs-pe[data-theme="dark"] a.press-item:hover {
-      background: #111113;
-    }
-
-    .rs-pe .press-title {
-      font-size: 0.98rem;
-      font-weight: 540;
+    .rs-pe .note-text {
+      margin-top: 26px;
+      font-size: 0.96rem;
+      line-height: 1.42;
+      font-weight: 590;
       letter-spacing: -0.026em;
     }
 
-    .rs-pe .press-meta {
+    .rs-pe .press {
+      max-width: 760px;
+      margin-top: clamp(72px, 12vw, 152px);
+    }
+
+    .rs-pe .press-title {
+      margin-bottom: 12px;
       color: var(--muted);
-      font-size: 0.78rem;
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .rs-pe .timeline {
-      position: relative;
-      display: grid;
-      gap: 24px;
-      padding-left: 20px;
-    }
-
-    .rs-pe .timeline::before {
-      content: "";
-      position: absolute;
-      top: 6px;
-      bottom: 6px;
-      left: 5px;
-      width: 1px;
-      background: var(--line);
-    }
-
-    .rs-pe .timeline-item {
-      position: relative;
-    }
-
-    .rs-pe .timeline-item::before {
-      content: "";
-      position: absolute;
-      top: 7px;
-      left: -20px;
-      width: 11px;
-      height: 11px;
-      border: 2px solid var(--line);
-      border-radius: 999px;
-      background: var(--bg);
-    }
-
-    .rs-pe .timeline-item.now::before {
-      border-color: var(--fg);
-      background: var(--fg);
-    }
-
-    .rs-pe .timeline-kicker {
-      color: var(--muted);
-      font-size: 0.7rem;
-      font-weight: 650;
-      letter-spacing: 0.1em;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.075em;
       text-transform: uppercase;
     }
 
-    .rs-pe .timeline-title {
-      margin-top: 4px;
-      font-size: 1.02rem;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-    }
-
-    .rs-pe .timeline-copy {
-      max-width: 46rem;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.5;
-    }
-
-    .rs-pe .bottom {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 24px;
-      align-items: end;
-      margin-top: clamp(78px, 10vw, 126px);
-      padding-top: 24px;
-      border-top: 1px solid var(--line-soft);
-    }
-
-    .rs-pe .bottom h2 {
-      max-width: 14ch;
-      font-size: clamp(2rem, 5vw, 4.4rem);
-      font-weight: 620;
-      line-height: 0.94;
-      letter-spacing: -0.067em;
-    }
-
-    .rs-pe .contact-links {
+    .rs-pe .press-row {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+      font-size: 0.98rem;
+      letter-spacing: -0.024em;
     }
 
-    .rs-pe .contact-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 40px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--card);
-      padding: 9px 14px;
+    .rs-pe .press-row span:last-child {
       color: var(--muted);
-      font-size: 0.86rem;
-      font-weight: 500;
-      transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
-    }
-
-    .rs-pe .contact-links a:hover {
-      border-color: var(--muted-2);
-      color: var(--fg);
-      background: var(--card-solid);
+      white-space: nowrap;
     }
 
     .rs-pe footer {
       display: flex;
       justify-content: space-between;
       gap: 16px;
-      margin-top: 28px;
+      margin-top: 42px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
       color: var(--muted);
-      font-size: 0.72rem;
-      letter-spacing: -0.005em;
+      font-size: 0.78rem;
+      letter-spacing: -0.012em;
     }
 
-    @media (max-width: 860px) {
-      .rs-pe .hero,
-      .rs-pe .section-head,
-      .rs-pe .case,
-      .rs-pe .bottom {
-        grid-template-columns: 1fr;
+    @media (max-width: 760px) {
+      .rs-pe .page {
+        min-height: auto;
       }
 
-      .rs-pe .metric-grid {
+      .rs-pe .proof,
+      .rs-pe .notes {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .rs-pe .metric:nth-child(2) {
-        border-right: 0;
-      }
-
-      .rs-pe .metric:nth-child(-n + 2) {
-        border-bottom: 1px solid var(--line-soft);
-      }
-
-      .rs-pe .system-grid {
+      .rs-pe .shelf {
         grid-template-columns: 1fr;
       }
 
-      .rs-pe .contact-links {
-        justify-content: flex-start;
+      .rs-pe .goof {
+        justify-self: start;
       }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 520px) {
       .rs-pe .page {
-        padding: 12px 10px 40px;
+        padding: 18px;
       }
 
-      .rs-pe .inner {
-        padding: 20px;
+      .rs-pe p {
+        font-size: 1.04rem;
       }
 
-      .rs-pe .nav {
-        align-items: flex-start;
-        flex-direction: column;
-        margin-bottom: 72px;
-      }
-
-      .rs-pe h1 {
-        font-size: clamp(3.5rem, 18vw, 5.4rem);
-      }
-
-      .rs-pe .signal-panel {
-        border-radius: 24px;
-      }
-
-      .rs-pe .metric-grid,
-      .rs-pe .ba-grid {
+      .rs-pe .proof,
+      .rs-pe .notes {
         grid-template-columns: 1fr;
       }
 
-      .rs-pe .metric {
-        min-height: 142px;
-        border-right: 0;
-        border-bottom: 1px solid var(--line-soft);
+      .rs-pe .links {
+        gap: 14px 18px;
       }
 
-      .rs-pe .metric:last-child {
-        border-bottom: 0;
-      }
-
-      .rs-pe .press-item {
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
-
-      .rs-pe .press-meta {
-        white-space: normal;
-      }
-
+      .rs-pe .press-row,
       .rs-pe footer {
         flex-direction: column;
+        gap: 4px;
       }
     }
   </style>
 
   <main class="page">
-    <div class="chrome">
-      <div class="inner">
-        <header class="nav" aria-label="Site header">
-          <a class="identity" href="mailto:rynsdri@gmail.com" aria-label="Email Rayan Sadri">
-            <span class="monogram">RS</span>
-            <span>
-              <span class="name">Rayan Sadri</span>
-              <span class="role">Product &middot; GTM &middot; health/deep tech</span>
-            </span>
-          </a>
+    <section class="intro" aria-label="Intro">
+      <p>
+        Hi, I am Rayan. I co-founded <a href="https://carezai.com">Carez AI</a>; we built synthetic brain CT/MRI infrastructure so medical AI teams could train, validate, and ship without waiting forever for clean data.
+      </p>
 
-          <button class="theme-toggle" type="button" onclick="rsPeToggleTheme()" aria-label="Toggle color theme">
-            <span class="toggle-dot" aria-hidden="true"></span>
-            <span id="rsPeThemeLabel">Light</span>
-          </button>
-        </header>
+      <p>
+        My actual thing is <a href="https://www.linkedin.com/in/ray-sadri/">GTM engineering</a>: making technical products easier to understand, easier to trust, and easier to buy. Demos, narrative, security reviews, founder-led sales, distribution. The unsexy stuff that makes the sexy stuff move.
+      </p>
 
-        <section class="hero" aria-labelledby="hero-title">
-          <div>
-            <p class="kicker">GTM engineer / product operator</p>
-            <h1 id="hero-title">I make hard things easier to buy.</h1>
-            <p class="lede">
-              I am Rayan Sadri. I build the bridge between technical products and market belief:
-              <strong>product taste, demos, enterprise GTM, narrative, and distribution</strong>.
-              Previously co-founded <a href="https://carezai.com">Carez AI</a>, shipping synthetic
-              brain CT/MRI infrastructure at enterprise scale.
-            </p>
+      <p class="quiet">
+        I have also been mildly loud on the internet, occasionally useful in rooms, and weirdly calm around enterprise buyers.
+      </p>
+    </section>
 
-            <nav class="quick-links" aria-label="Primary links">
-              <a href="mailto:rynsdri@gmail.com">Email</a>
-              <a href="https://twitter.com/rayansadri">X / Twitter</a>
-              <a href="https://www.linkedin.com/in/ray-sadri/">LinkedIn</a>
-              <a href="https://github.com/rayansadri">GitHub</a>
-            </nav>
-          </div>
-
-          <aside class="signal-panel" aria-label="Signal summary">
-            <div class="terminal-top">
-              <div class="lights" aria-hidden="true"><span></span><span></span><span></span></div>
-              <span>signal.json</span>
-            </div>
-            <div class="terminal-stat">
-              <span class="terminal-label">X impressions / 28d</span>
-              <span class="terminal-value">7.2M</span>
-            </div>
-            <div class="terminal-stat">
-              <span class="terminal-label">Likes / 28d</span>
-              <span class="terminal-value">117.4K</span>
-            </div>
-            <div class="terminal-stat">
-              <span class="terminal-label">Carez data scale</span>
-              <span class="terminal-value">4.2M+</span>
-            </div>
-            <div class="terminal-stat">
-              <span class="terminal-label">Security approval</span>
-              <span class="terminal-value">7 days</span>
-            </div>
-            <p class="terminal-note">
-              // technical credibility, packaged clearly enough for buyers, users, and the internet.
-            </p>
-          </aside>
-        </section>
-
-        <section aria-labelledby="proof-title">
-          <div class="section-head">
-            <div>
-              <p class="eyelabel">Proof</p>
-              <h2 class="section-title" id="proof-title">A little signal, without yelling.</h2>
-            </div>
-            <p class="section-copy">
-              The work is product and GTM together: get the thing real, make the story legible,
-              then move the right people toward action.
-            </p>
-          </div>
-
-          <div class="metric-grid" role="list">
-            <article class="metric" role="listitem">
-              <p class="metric-label">Organic X reach</p>
-              <div>
-                <div class="metric-value">7.2M</div>
-                <p class="metric-sub">last 28 days</p>
-              </div>
-            </article>
-            <article class="metric" role="listitem">
-              <p class="metric-label">Public engagement</p>
-              <div>
-                <div class="metric-value">117K</div>
-                <p class="metric-sub">likes in 28 days</p>
-              </div>
-            </article>
-            <article class="metric" role="listitem">
-              <p class="metric-label">Synthetic imaging pool</p>
-              <div>
-                <div class="metric-value">4.2M+</div>
-                <p class="metric-sub">brain CT/MRI slice-equivalents</p>
-              </div>
-            </article>
-            <article class="metric" role="listitem">
-              <p class="metric-label">Account expansion</p>
-              <div>
-                <div class="metric-value">68%</div>
-                <p class="metric-sub">from existing accounts</p>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section aria-labelledby="system-title">
-          <div class="section-head">
-            <div>
-              <p class="eyelabel">Operating system</p>
-              <h2 class="section-title" id="system-title">Taste, trust, traction.</h2>
-            </div>
-            <p class="section-copy">
-              A good technical product still needs a market interface. I care about the interface:
-              the demo, the words, the proof, the follow-up, the buying path.
-            </p>
-          </div>
-
-          <div class="system-grid" role="list">
-            <article class="system-card" role="listitem">
-              <span class="card-index">01</span>
-              <div>
-                <h3>Product clarity</h3>
-                <p>Turn dense technical systems into workflows, demos, and user moments people understand fast.</p>
-              </div>
-            </article>
-            <article class="system-card" role="listitem">
-              <span class="card-index">02</span>
-              <div>
-                <h3>Enterprise GTM</h3>
-                <p>Move from first call to security review to PO with less theater and more proof.</p>
-              </div>
-            </article>
-            <article class="system-card" role="listitem">
-              <span class="card-index">03</span>
-              <div>
-                <h3>Public narrative</h3>
-                <p>Build trust before the meeting through writing, social proof, founder pages, and press.</p>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section aria-labelledby="carez-title">
-          <div class="case">
-            <article class="case-card dark">
-              <p class="eyelabel">Carez AI</p>
-              <h2 class="section-title" id="carez-title">Models, not slides.</h2>
-              <p>
-                Co-founded and helped commercialize synthetic brain CT/MRI infrastructure:
-                ingestion, preprocessing, QA, model loops, demos, security reviews, and expansion.
-              </p>
-              <div class="case-list">
-                <div class="case-row"><span>Backed by</span><strong>ERA / CDL / NEXT36</strong></div>
-                <div class="case-row"><span>Sites represented</span><strong>12+</strong></div>
-                <div class="case-row"><span>Release cadence</span><strong>Weekly</strong></div>
-              </div>
-            </article>
-
-            <div class="case-card">
-              <div class="ba-grid">
-                <article class="ba-card">
-                  <p class="ba-label">Before</p>
-                  <h3 class="ba-title">Fragmented</h3>
-                  <p class="ba-copy">
-                    Single-site dumps, inconsistent labels, slow loops before research-grade brain CT/MRI
-                    could touch a model.
-                  </p>
-                </article>
-                <article class="ba-card after">
-                  <p class="ba-label">After</p>
-                  <h3 class="ba-title">Pipeline</h3>
-                  <p class="ba-copy">
-                    Multi-site ingestion, repeatable preprocessing, QA hooks, and a cleaner path from data
-                    to deployed demos.
-                  </p>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section aria-labelledby="press-title">
-          <div class="section-head">
-            <div>
-              <p class="eyelabel">Press / rooms</p>
-              <h2 class="section-title" id="press-title">Credibility people can verify.</h2>
-            </div>
-            <p class="section-copy">
-              Featured, quoted, invited, and put in rooms where the story has to hold up.
-            </p>
-          </div>
-
-          <div class="press-list">
-            <a class="press-item" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html">
-              <span class="press-title">New York Times</span>
-              <span class="press-meta">2025</span>
-            </a>
-            <a class="press-item" href="https://www.seattletimes.com/business/what-america-might-look-like-with-zero-immigration/">
-              <span class="press-title">Seattle Times</span>
-              <span class="press-meta">2025</span>
-            </a>
-            <a class="press-item" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016">
-              <span class="press-title">United Nations, WIPO</span>
-              <span class="press-meta">Speaking</span>
-            </a>
-            <a class="press-item" href="https://open.spotify.com/episode/39UV1BDoRzHkinn5MfyeBb">
-              <span class="press-title">AI for Pharma Growth</span>
-              <span class="press-meta">Podcast</span>
-            </a>
-            <a class="press-item" href="https://delve.mcgill.ca/">
-              <span class="press-title">McGill Delve</span>
-              <span class="press-meta">Interview</span>
-            </a>
-            <a class="press-item" href="https://www.youtube.com/watch?v=KUCRkVYFK1s">
-              <span class="press-title">ERA NYC Demo Day</span>
-              <span class="press-meta">2024</span>
-            </a>
-          </div>
-        </section>
-
-        <section aria-labelledby="timeline-title">
-          <div class="section-head">
-            <div>
-              <p class="eyelabel">Path</p>
-              <h2 class="section-title" id="timeline-title">Still building.</h2>
-            </div>
-          </div>
-
-          <div class="timeline">
-            <article class="timeline-item">
-              <p class="timeline-kicker">Origin</p>
-              <h3 class="timeline-title">Tehran to Kish Island</h3>
-              <p class="timeline-copy">Raised between contexts; learned to make things work without perfect conditions.</p>
-            </article>
-            <article class="timeline-item">
-              <p class="timeline-kicker">University</p>
-              <h3 class="timeline-title">McGill, Montreal</h3>
-              <p class="timeline-copy">Engineering discipline, then the bridge into health, AI, and commercialization.</p>
-            </article>
-            <article class="timeline-item">
-              <p class="timeline-kicker">NYC</p>
-              <h3 class="timeline-title">Carez AI, ERA NYC</h3>
-              <p class="timeline-copy">Co-founder motion across product, GTM, security reviews, and customer expansion.</p>
-            </article>
-            <article class="timeline-item now">
-              <p class="timeline-kicker">Now</p>
-              <h3 class="timeline-title">Toronto</h3>
-              <p class="timeline-copy">Next build in progress. Still writing, still demoing, still making hard things legible.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="bottom" aria-labelledby="contact-title">
-          <h2 id="contact-title">If the product is hard to explain, I can help.</h2>
-          <nav class="contact-links" aria-label="Contact links">
-            <a href="mailto:rynsdri@gmail.com">Email</a>
-            <a href="https://twitter.com/rayansadri">X</a>
-            <a href="https://www.linkedin.com/in/ray-sadri/">LinkedIn</a>
-            <a href="https://github.com/rayansadri">GitHub</a>
-          </nav>
-        </section>
-
-        <footer>
-          <span>&copy; Rayan Sadri</span>
-          <span>Minimal site, maximum signal.</span>
-        </footer>
+    <section class="proof" aria-label="Proof">
+      <div class="proof-item">
+        <span class="proof-number">7.2M</span>
+        <span class="proof-label">X impressions in 28 days</span>
       </div>
-    </div>
+      <div class="proof-item">
+        <span class="proof-number">117K</span>
+        <span class="proof-label">likes, organic</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-number">4.2M+</span>
+        <span class="proof-label">brain CT/MRI slice-equivalents</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-number">7d</span>
+        <span class="proof-label">enterprise security approval</span>
+      </div>
+    </section>
+
+    <section class="notes" aria-label="What I do">
+      <article class="note">
+        <div class="note-kicker">01 / product</div>
+        <div class="note-text">Turn dense technical work into something a buyer can repeat after one call.</div>
+      </article>
+      <article class="note">
+        <div class="note-kicker">02 / gtm</div>
+        <div class="note-text">Move from demo to security to PO without making everyone suffer through a 42-slide deck.</div>
+      </article>
+      <article class="note">
+        <div class="note-kicker">03 / internet</div>
+        <div class="note-text">Use posts, pages, press, and proof so the market is warm before the meeting starts.</div>
+      </article>
+    </section>
+
+    <section class="shelf" aria-label="Links">
+      <nav class="links" aria-label="Social links">
+        <a href="mailto:rynsdri@gmail.com">Email</a>
+        <a href="https://twitter.com/rayansadri">X</a>
+        <a href="https://www.linkedin.com/in/ray-sadri/">LinkedIn</a>
+        <a href="https://github.com/rayansadri">GitHub</a>
+      </nav>
+
+      <div class="goof" aria-label="Small goofy badge">
+        <span class="goof-face" aria-hidden="true"></span>
+        <span class="bonk">bonk</span>
+      </div>
+    </section>
+
+    <section class="press" aria-label="Press and speaking">
+      <div class="press-title">Receipts</div>
+      <a class="press-row" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html">
+        <span>New York Times</span>
+        <span>2025</span>
+      </a>
+      <a class="press-row" href="https://www.seattletimes.com/business/what-america-might-look-like-with-zero-immigration/">
+        <span>Seattle Times</span>
+        <span>2025</span>
+      </a>
+      <a class="press-row" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016">
+        <span>United Nations, WIPO</span>
+        <span>Speaking</span>
+      </a>
+      <a class="press-row" href="https://open.spotify.com/episode/39UV1BDoRzHkinn5MfyeBb">
+        <span>AI for Pharma Growth</span>
+        <span>Podcast</span>
+      </a>
+      <a class="press-row" href="https://www.youtube.com/watch?v=KUCRkVYFK1s">
+        <span>ERA NYC Demo Day</span>
+        <span>2024</span>
+      </a>
+    </section>
+
+    <footer>
+      <span>Toronto. Still building.</span>
+      <span class="tiny">not a deck. barely a website. spiritually a memo.</span>
+    </footer>
   </main>
-
-  <script>
-    (function () {
-      var root = document.getElementById('rs-pe-root');
-      var label = document.getElementById('rsPeThemeLabel');
-
-      window.rsPeToggleTheme = function () {
-        if (!root) return;
-        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
-        if (label) label.textContent = next === 'dark' ? 'Dark' : 'Light';
-      };
-    })();
-  </script>
 </div>
