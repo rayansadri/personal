@@ -1,31 +1,33 @@
 <!--
-  WEBFLOW EMBED - paste this entire block into a Webflow Embed element.
-  Sparse, premium, slightly goofy. System fonts only. Styles scoped to .rs-pe.
+  WEBFLOW EMBED - paste this whole block into a Webflow Embed element.
+  Compact classic blog. System fonts only. Auto light/dark theme.
 -->
-<div class="rs-pe" id="rs-pe-root">
+<div class="rs-blog">
   <style>
-    .rs-pe,
-    .rs-pe *,
-    .rs-pe *::before,
-    .rs-pe *::after {
+    .rs-blog,
+    .rs-blog *,
+    .rs-blog *::before,
+    .rs-blog *::after {
       box-sizing: border-box;
     }
 
-    .rs-pe * {
+    .rs-blog * {
       margin: 0;
       padding: 0;
     }
 
-    .rs-pe {
+    .rs-blog {
       --bg: #fbfbfa;
-      --fg: #202124;
-      --muted: #6f7377;
-      --link: #4e8797;
-      --line: rgba(32, 33, 36, 0.13);
-      --soft: rgba(32, 33, 36, 0.045);
+      --fg: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(29, 29, 31, 0.16);
+      --soft: rgba(29, 29, 31, 0.045);
+      --link: #3f7f8f;
       width: 100%;
       min-height: 100vh;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 50% 0, rgba(0, 113, 227, 0.055), transparent 320px),
+        var(--bg);
       color: var(--fg);
       font-family:
         -apple-system,
@@ -38,376 +40,319 @@
         Helvetica,
         Arial,
         sans-serif;
-      font-size: 17px;
-      line-height: 1.42;
-      letter-spacing: -0.024em;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: -0.018em;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
-      font-synthesis: none;
     }
 
-    .rs-pe ::selection {
+    @media (prefers-color-scheme: dark) {
+      .rs-blog {
+        --bg: #050505;
+        --fg: #f5f5f7;
+        --muted: #a1a1a6;
+        --line: rgba(245, 245, 247, 0.18);
+        --soft: rgba(245, 245, 247, 0.07);
+        --link: #8bbdcc;
+        background:
+          radial-gradient(circle at 50% 0, rgba(10, 132, 255, 0.16), transparent 320px),
+          var(--bg);
+      }
+    }
+
+    .rs-blog ::selection {
       background: var(--fg);
       color: var(--bg);
     }
 
-    .rs-pe a {
+    .rs-blog a {
       color: var(--link);
       font-weight: 650;
       text-decoration: underline;
-      text-decoration-thickness: 1.5px;
+      text-decoration-thickness: 1px;
       text-underline-offset: 3px;
-      transition: color 140ms ease, opacity 140ms ease;
     }
 
-    .rs-pe a:hover {
+    .rs-blog a:hover {
       color: var(--fg);
     }
 
-    .rs-pe .page {
-      position: relative;
-      width: min(100%, 1180px);
-      min-height: 720px;
+    .rs-blog .wrap {
+      width: min(100%, 720px);
       margin: 0 auto;
-      padding: clamp(22px, 3vw, 38px);
+      padding: 28px 22px 44px;
     }
 
-    .rs-pe .intro {
-      max-width: 1000px;
-    }
-
-    .rs-pe p {
-      max-width: 980px;
-      font-size: clamp(1.08rem, 1.72vw, 1.32rem);
-      font-weight: 640;
-      line-height: 1.38;
-      letter-spacing: -0.038em;
-    }
-
-    .rs-pe p + p {
-      margin-top: 26px;
-    }
-
-    .rs-pe .quiet {
-      color: var(--muted);
-      font-weight: 560;
-    }
-
-    .rs-pe .tiny {
-      font-size: 0.92rem;
-      color: var(--muted);
-      font-weight: 520;
-      letter-spacing: -0.018em;
-    }
-
-    .rs-pe .proof {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      width: min(100%, 780px);
-      margin-top: clamp(62px, 12vw, 150px);
-    }
-
-    .rs-pe .proof-item {
-      border-top: 1px solid var(--line);
-      padding-top: 12px;
-    }
-
-    .rs-pe .proof-number {
-      display: block;
-      font-size: clamp(1.6rem, 3.8vw, 3rem);
-      font-weight: 650;
-      line-height: 0.95;
-      letter-spacing: -0.07em;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .rs-pe .proof-label {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 0.78rem;
-      line-height: 1.35;
-      letter-spacing: -0.012em;
-    }
-
-    .rs-pe .shelf {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 28px;
-      align-items: end;
-      margin-top: clamp(84px, 18vw, 210px);
-    }
-
-    .rs-pe .links {
+    .rs-blog .top {
       display: flex;
-      flex-wrap: wrap;
-      gap: 22px;
-      align-items: center;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .rs-pe .links a,
-    .rs-pe .ip-link {
-      font-size: 1rem;
+    .rs-blog .name {
+      font-size: 15px;
+      font-weight: 680;
       letter-spacing: -0.025em;
     }
 
-    .rs-pe .goof {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--fg);
-      font-size: 0.88rem;
-      font-weight: 650;
-      white-space: nowrap;
-      transform: rotate(-2deg);
-    }
-
-    .rs-pe .goof-face {
-      display: grid;
-      width: 58px;
-      height: 46px;
-      place-items: center;
-      border: 1px solid var(--line);
-      border-radius: 46% 54% 48% 52%;
-      background:
-        radial-gradient(circle at 36% 38%, #202124 0 2px, transparent 2.5px),
-        radial-gradient(circle at 64% 38%, #202124 0 2px, transparent 2.5px),
-        linear-gradient(180deg, #f1d0a6, #d89b5d);
-      box-shadow: inset 0 -10px 18px rgba(120, 72, 32, 0.12);
-    }
-
-    .rs-pe .goof-face::after {
-      content: "";
-      width: 18px;
-      height: 8px;
-      margin-top: 16px;
-      border-bottom: 2px solid rgba(32, 33, 36, 0.7);
-      border-radius: 50%;
-    }
-
-    .rs-pe .bonk {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: #ffffff;
-      padding: 5px 8px;
-      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .rs-pe .notes {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: clamp(58px, 10vw, 120px);
-      width: min(100%, 920px);
-    }
-
-    .rs-pe .note {
-      min-height: 132px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.48);
-      padding: 18px;
-    }
-
-    .rs-pe .note-kicker {
+    .rs-blog .meta {
       color: var(--muted);
       font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-      font-size: 0.72rem;
+      font-size: 11px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .rs-blog .intro {
+      padding-top: 22px;
+    }
+
+    .rs-blog p {
+      max-width: 660px;
+      font-size: clamp(15px, 1.8vw, 17px);
+      font-weight: 560;
+      line-height: 1.48;
+      letter-spacing: -0.027em;
+    }
+
+    .rs-blog p + p {
+      margin-top: 18px;
+    }
+
+    .rs-blog .dim {
+      color: var(--muted);
+      font-weight: 520;
+    }
+
+    .rs-blog .tiny-graph {
+      display: flex;
+      align-items: end;
+      gap: 3px;
+      height: 22px;
+      margin: 20px 0 2px;
+    }
+
+    .rs-blog .tiny-graph i {
+      display: block;
+      width: 5px;
+      border-radius: 99px;
+      background: var(--fg);
+      opacity: 0.22;
+    }
+
+    .rs-blog .tiny-graph i:nth-child(1) { height: 6px; }
+    .rs-blog .tiny-graph i:nth-child(2) { height: 10px; }
+    .rs-blog .tiny-graph i:nth-child(3) { height: 8px; }
+    .rs-blog .tiny-graph i:nth-child(4) { height: 16px; opacity: 0.38; }
+    .rs-blog .tiny-graph i:nth-child(5) { height: 22px; opacity: 0.52; }
+    .rs-blog .tiny-graph i:nth-child(6) { height: 14px; }
+    .rs-blog .tiny-graph i:nth-child(7) { height: 19px; opacity: 0.44; }
+
+    .rs-blog .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      margin-top: 30px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .rs-blog .stat {
+      padding: 13px 12px 14px 0;
+      border-right: 1px solid var(--line);
+    }
+
+    .rs-blog .stat + .stat {
+      padding-left: 12px;
+    }
+
+    .rs-blog .stat:last-child {
+      border-right: 0;
+    }
+
+    .rs-blog .num {
+      display: block;
+      font-size: 21px;
+      font-weight: 650;
+      line-height: 1;
+      letter-spacing: -0.055em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .rs-blog .label {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.25;
+    }
+
+    .rs-blog .section {
+      margin-top: 30px;
+    }
+
+    .rs-blog .section-title {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 11px;
+      font-weight: 520;
       letter-spacing: -0.01em;
     }
 
-    .rs-pe .note-text {
-      margin-top: 26px;
-      font-size: 0.96rem;
-      line-height: 1.42;
-      font-weight: 590;
-      letter-spacing: -0.026em;
-    }
-
-    .rs-pe .press {
-      max-width: 760px;
-      margin-top: clamp(72px, 12vw, 152px);
-    }
-
-    .rs-pe .press-title {
-      margin-bottom: 12px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.075em;
-      text-transform: uppercase;
-    }
-
-    .rs-pe .press-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 12px 0;
+    .rs-blog .list {
       border-top: 1px solid var(--line);
-      font-size: 0.98rem;
-      letter-spacing: -0.024em;
     }
 
-    .rs-pe .press-row span:last-child {
+    .rs-blog .row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      letter-spacing: -0.018em;
+    }
+
+    .rs-blog .row span:last-child {
       color: var(--muted);
       white-space: nowrap;
     }
 
-    .rs-pe footer {
+    .rs-blog .links {
       display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 42px;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 34px;
       padding-top: 16px;
       border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.78rem;
-      letter-spacing: -0.012em;
     }
 
-    @media (max-width: 760px) {
-      .rs-pe .page {
-        min-height: auto;
+    .rs-blog .links a {
+      font-size: 13px;
+    }
+
+    .rs-blog .goof {
+      display: inline-block;
+      margin-left: 4px;
+      padding: 1px 5px 2px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--muted);
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 10px;
+      font-weight: 600;
+      vertical-align: 1px;
+      transform: rotate(-2deg);
+    }
+
+    .rs-blog footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: -0.01em;
+    }
+
+    @media (max-width: 560px) {
+      .rs-blog .wrap {
+        padding: 20px 16px 34px;
       }
 
-      .rs-pe .proof,
-      .rs-pe .notes {
+      .rs-blog .top {
+        display: block;
+      }
+
+      .rs-blog .meta {
+        display: block;
+        margin-top: 4px;
+      }
+
+      .rs-blog .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .rs-pe .shelf {
-        grid-template-columns: 1fr;
+      .rs-blog .stat:nth-child(2) {
+        border-right: 0;
       }
 
-      .rs-pe .goof {
-        justify-self: start;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .rs-pe .page {
-        padding: 18px;
-      }
-
-      .rs-pe p {
-        font-size: 1.04rem;
-      }
-
-      .rs-pe .proof,
-      .rs-pe .notes {
-        grid-template-columns: 1fr;
-      }
-
-      .rs-pe .links {
-        gap: 14px 18px;
-      }
-
-      .rs-pe .press-row,
-      .rs-pe footer {
-        flex-direction: column;
-        gap: 4px;
+      .rs-blog .stat:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--line);
       }
     }
   </style>
 
-  <main class="page">
-    <section class="intro" aria-label="Intro">
+  <main class="wrap">
+    <header class="top">
+      <div class="name">Rayan Sadri</div>
+      <div class="meta">gtm.txt / toronto</div>
+    </header>
+
+    <section class="intro">
       <p>
-        Hi, I am Rayan. I co-founded <a href="https://carezai.com">Carez AI</a>; we built synthetic brain CT/MRI infrastructure so medical AI teams could train, validate, and ship without waiting forever for clean data.
+        Hi, I am Rayan. I co-founded <a href="https://carezai.com">Carez AI</a>; we built synthetic brain CT/MRI infrastructure for medical AI teams that needed clean data yesterday.
       </p>
-
       <p>
-        My actual thing is <a href="https://www.linkedin.com/in/ray-sadri/">GTM engineering</a>: making technical products easier to understand, easier to trust, and easier to buy. Demos, narrative, security reviews, founder-led sales, distribution. The unsexy stuff that makes the sexy stuff move.
+        My thing is <a href="https://www.linkedin.com/in/ray-sadri/">GTM engineering</a>: demos, narrative, security reviews, distribution, and the small details that make technical products easier to buy.
       </p>
-
-      <p class="quiet">
-        I have also been mildly loud on the internet, occasionally useful in rooms, and weirdly calm around enterprise buyers.
+      <p class="dim">
+        Occasionally loud on the internet. Weirdly calm in enterprise calls. Still building. <span class="goof">bonk</span>
       </p>
-    </section>
-
-    <section class="proof" aria-label="Proof">
-      <div class="proof-item">
-        <span class="proof-number">7.2M</span>
-        <span class="proof-label">X impressions in 28 days</span>
-      </div>
-      <div class="proof-item">
-        <span class="proof-number">117K</span>
-        <span class="proof-label">likes, organic</span>
-      </div>
-      <div class="proof-item">
-        <span class="proof-number">4.2M+</span>
-        <span class="proof-label">brain CT/MRI slice-equivalents</span>
-      </div>
-      <div class="proof-item">
-        <span class="proof-number">7d</span>
-        <span class="proof-label">enterprise security approval</span>
+      <div class="tiny-graph" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
       </div>
     </section>
 
-    <section class="notes" aria-label="What I do">
-      <article class="note">
-        <div class="note-kicker">01 / product</div>
-        <div class="note-text">Turn dense technical work into something a buyer can repeat after one call.</div>
-      </article>
-      <article class="note">
-        <div class="note-kicker">02 / gtm</div>
-        <div class="note-text">Move from demo to security to PO without making everyone suffer through a 42-slide deck.</div>
-      </article>
-      <article class="note">
-        <div class="note-kicker">03 / internet</div>
-        <div class="note-text">Use posts, pages, press, and proof so the market is warm before the meeting starts.</div>
-      </article>
-    </section>
-
-    <section class="shelf" aria-label="Links">
-      <nav class="links" aria-label="Social links">
-        <a href="mailto:rynsdri@gmail.com">Email</a>
-        <a href="https://twitter.com/rayansadri">X</a>
-        <a href="https://www.linkedin.com/in/ray-sadri/">LinkedIn</a>
-        <a href="https://github.com/rayansadri">GitHub</a>
-      </nav>
-
-      <div class="goof" aria-label="Small goofy badge">
-        <span class="goof-face" aria-hidden="true"></span>
-        <span class="bonk">bonk</span>
+    <section class="grid" aria-label="Small proof">
+      <div class="stat">
+        <span class="num">7.2M</span>
+        <span class="label">X impressions / 28d</span>
+      </div>
+      <div class="stat">
+        <span class="num">117K</span>
+        <span class="label">organic likes</span>
+      </div>
+      <div class="stat">
+        <span class="num">4.2M+</span>
+        <span class="label">brain slices</span>
+      </div>
+      <div class="stat">
+        <span class="num">7d</span>
+        <span class="label">security approval</span>
       </div>
     </section>
 
-    <section class="press" aria-label="Press and speaking">
-      <div class="press-title">Receipts</div>
-      <a class="press-row" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html">
-        <span>New York Times</span>
-        <span>2025</span>
-      </a>
-      <a class="press-row" href="https://www.seattletimes.com/business/what-america-might-look-like-with-zero-immigration/">
-        <span>Seattle Times</span>
-        <span>2025</span>
-      </a>
-      <a class="press-row" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016">
-        <span>United Nations, WIPO</span>
-        <span>Speaking</span>
-      </a>
-      <a class="press-row" href="https://open.spotify.com/episode/39UV1BDoRzHkinn5MfyeBb">
-        <span>AI for Pharma Growth</span>
-        <span>Podcast</span>
-      </a>
-      <a class="press-row" href="https://www.youtube.com/watch?v=KUCRkVYFK1s">
-        <span>ERA NYC Demo Day</span>
-        <span>2024</span>
-      </a>
+    <section class="section" aria-label="Notes">
+      <div class="section-title">notes</div>
+      <div class="list">
+        <div class="row"><span>Product</span><span>make it legible</span></div>
+        <div class="row"><span>GTM</span><span>demo -> security -> PO</span></div>
+        <div class="row"><span>Internet</span><span>warm the room first</span></div>
+      </div>
     </section>
 
-    <footer>
-      <span>Toronto. Still building.</span>
-      <span class="tiny">not a deck. barely a website. spiritually a memo.</span>
-    </footer>
+    <section class="section" aria-label="Receipts">
+      <div class="section-title">receipts</div>
+      <div class="list">
+        <a class="row" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html"><span>New York Times</span><span>2025</span></a>
+        <a class="row" href="https://www.seattletimes.com/business/what-america-might-look-like-with-zero-immigration/"><span>Seattle Times</span><span>2025</span></a>
+        <a class="row" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016"><span>United Nations, WIPO</span><span>speaking</span></a>
+        <a class="row" href="https://open.spotify.com/episode/39UV1BDoRzHkinn5MfyeBb"><span>AI for Pharma Growth</span><span>podcast</span></a>
+      </div>
+    </section>
+
+    <nav class="links" aria-label="Links">
+      <a href="mailto:rynsdri@gmail.com">Email</a>
+      <a href="https://twitter.com/rayansadri">X</a>
+      <a href="https://www.linkedin.com/in/ray-sadri/">LinkedIn</a>
+      <a href="https://github.com/rayansadri">GitHub</a>
+    </nav>
+
+    <footer>not a deck. just a page.</footer>
   </main>
 </div>
