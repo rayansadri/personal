@@ -1,0 +1,526 @@
+<div class="rs-site" id="rs-site">
+  <style>
+    .rs-site,
+    .rs-site *,
+    .rs-site *::before,
+    .rs-site *::after {
+      box-sizing: border-box;
+    }
+
+    .rs-site * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .rs-site {
+      --bg: #050505;
+      --fg: #f5f5f0;
+      --muted: #9a9a94;
+      --muted-2: #6f6f69;
+      --line: rgba(245, 245, 240, 0.14);
+      --line-soft: rgba(245, 245, 240, 0.08);
+      --accent: #b7c7c9;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--fg);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Text",
+        "SF Pro Display",
+        "Segoe UI",
+        system-ui,
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: -0.022em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-synthesis: none;
+    }
+
+    .rs-site[data-theme="light"] {
+      --bg: #fbfbf8;
+      --fg: #1d1d1f;
+      --muted: #666661;
+      --muted-2: #8a8a84;
+      --line: rgba(29, 29, 31, 0.16);
+      --line-soft: rgba(29, 29, 31, 0.08);
+      --accent: #49666b;
+    }
+
+    .rs-site ::selection {
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    .rs-site a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .rs-site .page {
+      width: min(100%, 940px);
+      margin: 0 auto;
+      padding: clamp(28px, 6vw, 72px) clamp(20px, 4vw, 40px) clamp(40px, 7vw, 88px);
+    }
+
+    .rs-site .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: clamp(72px, 12vw, 132px);
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: -0.006em;
+    }
+
+    .rs-site .topbar strong {
+      color: var(--fg);
+      font-weight: 560;
+    }
+
+    .rs-site .theme-toggle {
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.75rem;
+      letter-spacing: -0.006em;
+      padding: 2px 0 3px;
+      transition: color 160ms ease, border-color 160ms ease;
+    }
+
+    .rs-site .theme-toggle:hover {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+
+    .rs-site .hero {
+      max-width: 720px;
+    }
+
+    .rs-site h1 {
+      font-size: clamp(3.45rem, 8.8vw, 7.1rem);
+      font-weight: 620;
+      line-height: 0.92;
+      letter-spacing: -0.078em;
+      max-width: 9.6ch;
+    }
+
+    .rs-site .positioning {
+      margin-top: 24px;
+      max-width: 11.8ch;
+      font-size: clamp(2rem, 4.8vw, 3.9rem);
+      font-weight: 560;
+      line-height: 1;
+      letter-spacing: -0.062em;
+      color: var(--fg);
+    }
+
+    .rs-site .intro {
+      margin-top: 28px;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 1.9vw, 1.18rem);
+      line-height: 1.55;
+      letter-spacing: -0.028em;
+      font-weight: 390;
+    }
+
+    .rs-site .section {
+      margin-top: clamp(58px, 9vw, 104px);
+    }
+
+    .rs-site .label {
+      color: var(--muted-2);
+      font-size: 0.68rem;
+      font-weight: 560;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .rs-site .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .rs-site .proof-item {
+      min-height: 118px;
+      padding: 18px 22px 18px 0;
+      border-right: 1px solid var(--line-soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .rs-site .proof-item + .proof-item {
+      padding-left: 22px;
+    }
+
+    .rs-site .proof-item:last-child {
+      border-right: 0;
+    }
+
+    .rs-site .metric {
+      display: block;
+      font-size: clamp(1.55rem, 3.2vw, 2.35rem);
+      font-weight: 590;
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .rs-site .metric-label {
+      display: block;
+      max-width: 10rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.35;
+      letter-spacing: -0.014em;
+    }
+
+    .rs-site .capabilities {
+      max-width: 620px;
+      border-top: 1px solid var(--line);
+    }
+
+    .rs-site .capability {
+      display: grid;
+      grid-template-columns: 26px minmax(0, 1fr);
+      gap: 18px;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: clamp(1.03rem, 2vw, 1.28rem);
+      font-weight: 460;
+      letter-spacing: -0.034em;
+    }
+
+    .rs-site .capability span:first-child {
+      color: var(--muted-2);
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.72rem;
+      letter-spacing: -0.01em;
+    }
+
+    .rs-site .case {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+      gap: clamp(28px, 6vw, 72px);
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .rs-site .case-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.7rem);
+      font-weight: 570;
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .rs-site .case-body {
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.1rem);
+      line-height: 1.58;
+      letter-spacing: -0.026em;
+      font-weight: 390;
+    }
+
+    .rs-site .results {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line-soft);
+      color: var(--fg);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      letter-spacing: -0.018em;
+    }
+
+    .rs-site .credibility {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+    }
+
+    .rs-site .credit {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line-soft);
+      color: var(--fg);
+      font-size: 0.95rem;
+      letter-spacing: -0.018em;
+      transition: color 160ms ease;
+    }
+
+    .rs-site .credit:nth-child(odd) {
+      padding-right: 24px;
+      border-right: 1px solid var(--line-soft);
+    }
+
+    .rs-site .credit:nth-child(even) {
+      padding-left: 24px;
+    }
+
+    .rs-site .credit:hover {
+      color: var(--accent);
+    }
+
+    .rs-site .credit span:last-child {
+      color: var(--muted-2);
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    .rs-site .footer {
+      margin-top: clamp(72px, 12vw, 132px);
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .rs-site .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .rs-site .links a {
+      color: var(--muted);
+      transition: color 160ms ease;
+    }
+
+    .rs-site .links a:hover {
+      color: var(--fg);
+    }
+
+    .rs-site .fineprint {
+      white-space: nowrap;
+    }
+
+    .rs-site .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: rsFade 700ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    .rs-site .reveal:nth-child(2) { animation-delay: 70ms; }
+    .rs-site .reveal:nth-child(3) { animation-delay: 140ms; }
+    .rs-site .reveal:nth-child(4) { animation-delay: 210ms; }
+    .rs-site .reveal:nth-child(5) { animation-delay: 280ms; }
+
+    @keyframes rsFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rs-site .reveal {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .rs-site .page {
+        padding-top: 28px;
+      }
+
+      .rs-site .topbar {
+        margin-bottom: 74px;
+      }
+
+      .rs-site .proof-grid,
+      .rs-site .credibility {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .rs-site .proof-item:nth-child(2) {
+        border-right: 0;
+      }
+
+      .rs-site .proof-item:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .rs-site .proof-item:nth-child(3) {
+        padding-left: 0;
+      }
+
+      .rs-site .case {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .rs-site .credit,
+      .rs-site .credit:nth-child(odd),
+      .rs-site .credit:nth-child(even) {
+        padding-left: 0;
+        padding-right: 0;
+        border-right: 0;
+      }
+
+      .rs-site .footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .rs-site .topbar {
+        align-items: flex-start;
+      }
+
+      .rs-site h1 {
+        font-size: clamp(3rem, 18vw, 4.8rem);
+      }
+
+      .rs-site .positioning {
+        max-width: 10.5ch;
+      }
+
+      .rs-site .proof-grid,
+      .rs-site .credibility {
+        grid-template-columns: 1fr;
+      }
+
+      .rs-site .proof-item,
+      .rs-site .proof-item + .proof-item,
+      .rs-site .proof-item:nth-child(3) {
+        min-height: 96px;
+        padding: 16px 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .rs-site .proof-item:last-child {
+        border-bottom: 0;
+      }
+
+      .rs-site .metric-label {
+        max-width: none;
+      }
+
+      .rs-site .fineprint {
+        white-space: normal;
+      }
+    }
+  </style>
+
+  <main class="page">
+    <header class="topbar reveal">
+      <strong>Rayan Sadri</strong>
+      <button class="theme-toggle" type="button" aria-label="Toggle theme" onclick="rsToggleTheme()">dark</button>
+    </header>
+
+    <section class="hero reveal" aria-labelledby="hero-title">
+      <h1 id="hero-title">Rayan Sadri</h1>
+      <div class="positioning">Making technical products easier to buy.</div>
+      <p class="intro">
+        Previously co-founded Carez AI, where we built synthetic brain CT and MRI infrastructure for medical AI teams. I led product and enterprise GTM, from demos and narrative to security reviews and buyer motion.
+      </p>
+    </section>
+
+    <section class="section reveal" aria-labelledby="proof-title">
+      <div class="label" id="proof-title">Proof</div>
+      <div class="proof-grid">
+        <div class="proof-item">
+          <span class="metric">35+</span>
+          <span class="metric-label">enterprise teams engaged</span>
+        </div>
+        <div class="proof-item">
+          <span class="metric">$500K+</span>
+          <span class="metric-label">pipeline built</span>
+        </div>
+        <div class="proof-item">
+          <span class="metric">4.2M+</span>
+          <span class="metric-label">brain slices harmonized</span>
+        </div>
+        <div class="proof-item">
+          <span class="metric">7 days</span>
+          <span class="metric-label">to security approval</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" aria-labelledby="work-title">
+      <div class="label" id="work-title">What I do</div>
+      <div class="capabilities">
+        <div class="capability"><span>01</span><span>Product narrative</span></div>
+        <div class="capability"><span>02</span><span>Enterprise demos</span></div>
+        <div class="capability"><span>03</span><span>Security review motion</span></div>
+        <div class="capability"><span>04</span><span>Founder-led GTM</span></div>
+      </div>
+    </section>
+
+    <section class="section reveal" aria-labelledby="case-title">
+      <div class="label">Case study</div>
+      <div class="case">
+        <h2 class="case-title" id="case-title">Carez AI</h2>
+        <div>
+          <p class="case-body">
+            Built synthetic brain CT and MRI infrastructure for AI teams that needed usable data fast. I led product and GTM across demos, buyer motion, security reviews, and enterprise conversations.
+          </p>
+          <p class="results">12+ sites &middot; weekly cadence &middot; Bayer / NHS conversations &middot; 68% expansion from existing accounts</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" aria-labelledby="credibility-title">
+      <div class="label" id="credibility-title">Selected credibility</div>
+      <div class="credibility">
+        <a class="credit" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html"><span>New York Times</span><span>2025</span></a>
+        <a class="credit" href="https://www.seattletimes.com/business/what-america-might-look-like-with-zero-immigration/"><span>Seattle Times</span><span>2025</span></a>
+        <a class="credit" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016"><span>United Nations / WIPO</span><span>Speaking</span></a>
+        <a class="credit" href="https://www.youtube.com/watch?v=KUCRkVYFK1s"><span>ERA NYC Demo Day</span><span>2024</span></a>
+        <a class="credit" href="https://www.cirse.org/"><span>CIRSE Congress</span><span>2024</span></a>
+      </div>
+    </section>
+
+    <footer class="footer reveal">
+      <nav class="links" aria-label="Contact links">
+        <a href="mailto:rynsdri@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/ray-sadri/">LinkedIn</a>
+        <a href="https://twitter.com/rayansadri">X</a>
+        <a href="https://github.com/rayansadri">GitHub</a>
+      </nav>
+      <span class="fineprint">Product &middot; enterprise GTM &middot; technical products</span>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var root = document.getElementById('rs-site');
+      var button = root ? root.querySelector('.theme-toggle') : null;
+
+      window.rsToggleTheme = function () {
+        if (!root || !button) return;
+        var light = root.getAttribute('data-theme') === 'light';
+        root.setAttribute('data-theme', light ? 'dark' : 'light');
+        button.textContent = light ? 'dark' : 'light';
+      };
+    })();
+  </script>
+</div>
