@@ -1,8 +1,8 @@
 <!--
   WEBFLOW EMBED - paste this entire block into a Webflow Embed element.
-  System fonts only. No external fonts. Styles are scoped to .rs-pe.
+  Minimal premium personal site. System fonts only. Styles are scoped to .rs-pe.
 -->
-<div class="rs-pe" id="rs-pe-root">
+<div class="rs-pe" id="rs-pe-root" data-theme="light">
   <style>
     .rs-pe,
     .rs-pe *,
@@ -17,28 +17,26 @@
     }
 
     .rs-pe {
-      --bg: #f7f5ee;
-      --fg: #0b0b0b;
-      --muted: #68645c;
-      --line: rgba(11, 11, 11, 0.12);
-      --line-strong: rgba(11, 11, 11, 0.22);
-      --card: rgba(255, 255, 255, 0.72);
+      --bg: #fbfbfd;
+      --fg: #1d1d1f;
+      --muted: #6e6e73;
+      --muted-2: #8e8e93;
+      --line: #d2d2d7;
+      --line-soft: rgba(0, 0, 0, 0.07);
+      --card: rgba(255, 255, 255, 0.78);
       --card-solid: #ffffff;
-      --ink-soft: rgba(11, 11, 11, 0.72);
-      --accent: #d7ff3f;
-      --accent-2: #ff5c1a;
-      --accent-3: #2557ff;
-      --shadow: 0 24px 70px rgba(20, 16, 8, 0.12);
-      --radius-lg: 34px;
-      --radius-md: 22px;
-      --radius-sm: 14px;
+      --subtle: #f5f5f7;
+      --accent: #0071e3;
+      --good: #34c759;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.08);
+      --radius-xl: 32px;
+      --radius-lg: 22px;
+      --radius-md: 14px;
       width: 100%;
       min-height: 100%;
-      overflow: hidden;
       background:
-        radial-gradient(circle at 20% 0%, rgba(215, 255, 63, 0.38), transparent 32rem),
-        radial-gradient(circle at 95% 14%, rgba(37, 87, 255, 0.13), transparent 28rem),
-        linear-gradient(180deg, #fbfaf6 0%, var(--bg) 48%, #efebe1 100%);
+        radial-gradient(circle at 50% -10%, rgba(0, 113, 227, 0.08), transparent 34rem),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, #f5f5f7 100%);
       color: var(--fg);
       font-family:
         -apple-system,
@@ -51,18 +49,34 @@
         Helvetica,
         Arial,
         sans-serif;
-      font-size: 16px;
-      line-height: 1.45;
-      letter-spacing: -0.025em;
+      font-size: 17px;
+      line-height: 1.47059;
+      letter-spacing: -0.022em;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
       font-synthesis: none;
     }
 
+    .rs-pe[data-theme="dark"] {
+      --bg: #000000;
+      --fg: #f5f5f7;
+      --muted: #a1a1a6;
+      --muted-2: #6e6e73;
+      --line: #424245;
+      --line-soft: rgba(255, 255, 255, 0.1);
+      --card: rgba(28, 28, 30, 0.74);
+      --card-solid: #1c1c1e;
+      --subtle: #111113;
+      --shadow: none;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(0, 113, 227, 0.2), transparent 34rem),
+        linear-gradient(180deg, #050505 0%, #000000 56%, #08080a 100%);
+    }
+
     .rs-pe ::selection {
       background: var(--fg);
-      color: var(--accent);
+      color: var(--bg);
     }
 
     .rs-pe a {
@@ -70,389 +84,318 @@
       text-decoration: none;
     }
 
-    .rs-pe main {
-      width: min(100%, 1180px);
+    .rs-pe .page {
+      width: min(100%, 980px);
       margin: 0 auto;
-      padding: 34px 18px 54px;
+      padding: 30px 22px 80px;
     }
 
-    .rs-pe .shell {
+    .rs-pe .chrome {
       position: relative;
-      border: 1px solid var(--line);
-      border-radius: clamp(26px, 4vw, 52px);
       overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.58)),
-        repeating-linear-gradient(90deg, rgba(11, 11, 11, 0.035) 0 1px, transparent 1px 76px);
+      border: 1px solid var(--line-soft);
+      border-radius: clamp(24px, 4vw, 44px);
+      background: rgba(255, 255, 255, 0.55);
       box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
     }
 
-    .rs-pe .shell::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.82), transparent 22%),
-        radial-gradient(circle at 72% 4%, rgba(255, 92, 26, 0.22), transparent 18rem);
-      mix-blend-mode: multiply;
+    .rs-pe[data-theme="dark"] .chrome {
+      background: rgba(10, 10, 12, 0.64);
+      border-color: rgba(255, 255, 255, 0.12);
     }
 
-    .rs-pe .shell-inner {
-      position: relative;
-      z-index: 1;
-      padding: clamp(22px, 4vw, 54px);
+    .rs-pe .inner {
+      padding: clamp(22px, 5vw, 58px);
     }
 
-    .rs-pe .topbar {
+    .rs-pe .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      padding-bottom: clamp(54px, 8vw, 98px);
+      gap: 18px;
+      margin-bottom: clamp(78px, 10vw, 132px);
     }
 
-    .rs-pe .brand-lockup {
+    .rs-pe .identity {
       display: flex;
       align-items: center;
       gap: 12px;
       min-width: 0;
     }
 
-    .rs-pe .brand-mark {
+    .rs-pe .monogram {
       display: grid;
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       place-items: center;
       flex: 0 0 auto;
-      border: 1px solid var(--fg);
+      border: 1px solid var(--line);
       border-radius: 50%;
-      background: var(--fg);
-      color: var(--accent);
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: -0.06em;
+      background: var(--card);
+      color: var(--fg);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
     }
 
-    .rs-pe .brand-name {
+    .rs-pe .name {
       display: block;
       font-size: 0.94rem;
-      font-weight: 720;
-      line-height: 1.05;
-      letter-spacing: -0.035em;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
     }
 
-    .rs-pe .brand-sub {
+    .rs-pe .role {
       display: block;
-      margin-top: 3px;
+      margin-top: 2px;
       color: var(--muted);
       font-size: 0.76rem;
-      font-weight: 560;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: -0.01em;
     }
 
-    .rs-pe .status-pill {
+    .rs-pe .theme-toggle {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid var(--line-strong);
+      border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.7);
-      padding: 9px 13px;
-      color: var(--ink-soft);
-      font-size: 0.78rem;
-      font-weight: 650;
-      white-space: nowrap;
+      background: var(--card);
+      color: var(--muted);
+      padding: 9px 12px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
     }
 
-    .rs-pe .status-dot {
+    .rs-pe .theme-toggle:hover {
+      border-color: var(--muted-2);
+      color: var(--fg);
+    }
+
+    .rs-pe .toggle-dot {
       width: 8px;
       height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 5px rgba(215, 255, 63, 0.35);
+      border-radius: 999px;
+      background: var(--fg);
+      opacity: 0.8;
     }
 
     .rs-pe .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.18fr) minmax(290px, 0.82fr);
-      gap: clamp(28px, 5vw, 70px);
+      grid-template-columns: minmax(0, 1fr) minmax(270px, 330px);
+      gap: clamp(36px, 7vw, 86px);
       align-items: end;
     }
 
-    .rs-pe .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
+    .rs-pe .kicker {
       margin-bottom: 18px;
       color: var(--muted);
-      font-size: 0.8rem;
-      font-weight: 760;
-      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.105em;
       text-transform: uppercase;
     }
 
-    .rs-pe .eyebrow::before {
-      content: "";
-      width: 34px;
-      height: 2px;
-      background: var(--fg);
-    }
-
     .rs-pe h1 {
-      max-width: 10.8ch;
-      font-size: clamp(4.6rem, 13.5vw, 10.8rem);
-      font-weight: 860;
-      line-height: 0.83;
-      letter-spacing: -0.092em;
+      max-width: 9.7ch;
+      font-size: clamp(3.9rem, 10vw, 7.75rem);
+      font-weight: 650;
+      line-height: 0.91;
+      letter-spacing: -0.075em;
       text-wrap: balance;
     }
 
-    .rs-pe .hero-word {
-      position: relative;
-      display: inline-block;
-    }
-
-    .rs-pe .hero-word::after {
-      content: "";
-      position: absolute;
-      right: -0.04em;
-      bottom: 0.04em;
-      left: 0.06em;
-      height: 0.18em;
-      z-index: -1;
-      border-radius: 999px;
-      background: var(--accent);
-      transform: rotate(-1.4deg);
-    }
-
     .rs-pe .lede {
-      max-width: 44rem;
-      margin-top: clamp(22px, 3vw, 34px);
-      color: var(--ink-soft);
-      font-size: clamp(1.05rem, 2vw, 1.45rem);
-      line-height: 1.22;
-      letter-spacing: -0.045em;
-      font-weight: 610;
+      max-width: 43rem;
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2vw, 1.34rem);
+      line-height: 1.38;
+      letter-spacing: -0.036em;
+      font-weight: 400;
+    }
+
+    .rs-pe .lede strong {
+      color: var(--fg);
+      font-weight: 560;
     }
 
     .rs-pe .lede a,
-    .rs-pe .body-link {
-      border-bottom: 1px solid var(--line-strong);
+    .rs-pe .inline-link {
+      color: var(--fg);
+      border-bottom: 1px solid var(--line);
       transition: border-color 160ms ease, color 160ms ease;
     }
 
     .rs-pe .lede a:hover,
-    .rs-pe .body-link:hover {
+    .rs-pe .inline-link:hover {
       border-color: var(--fg);
-      color: var(--fg);
     }
 
-    .rs-pe .hero-card {
-      position: relative;
-      min-height: 408px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(11, 11, 11, 0.94), rgba(11, 11, 11, 0.84)),
-        radial-gradient(circle at 20% 20%, rgba(215, 255, 63, 0.55), transparent 18rem);
-      color: #f9f7ee;
-      box-shadow: 0 26px 60px rgba(11, 11, 11, 0.2);
+    .rs-pe .signal-panel {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      padding: 20px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.055);
+      backdrop-filter: blur(18px);
     }
 
-    .rs-pe .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(110deg, transparent 0 42%, rgba(255, 255, 255, 0.08) 42% 44%, transparent 44%),
-        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 18px);
-      opacity: 0.75;
-      pointer-events: none;
+    .rs-pe[data-theme="dark"] .signal-panel {
+      box-shadow: none;
     }
 
-    .rs-pe .signal-stack {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 12px;
-    }
-
-    .rs-pe .signal-card {
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.075);
-      padding: 18px;
-      backdrop-filter: blur(16px);
-    }
-
-    .rs-pe .signal-label {
+    .rs-pe .terminal-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      color: rgba(249, 247, 238, 0.68);
-      font-size: 0.76rem;
-      font-weight: 720;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.7rem;
+      letter-spacing: -0.01em;
     }
 
-    .rs-pe .signal-value {
-      margin-top: 18px;
-      font-size: clamp(2.35rem, 6vw, 4rem);
-      font-weight: 830;
-      line-height: 0.86;
-      letter-spacing: -0.075em;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .rs-pe .signal-note {
-      margin-top: 9px;
-      color: rgba(249, 247, 238, 0.66);
-      font-size: 0.88rem;
-      font-weight: 550;
-      letter-spacing: -0.02em;
-    }
-
-    .rs-pe .signal-chip {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      background: var(--accent);
-      color: var(--fg);
-      padding: 4px 8px;
-      font-size: 0.68rem;
-      font-weight: 850;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-    }
-
-    .rs-pe .card-footer {
-      position: absolute;
-      right: 22px;
-      bottom: 22px;
-      left: 22px;
-      z-index: 1;
+    .rs-pe .lights {
       display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 20px;
-      color: rgba(249, 247, 238, 0.68);
-      font-size: 0.76rem;
-      font-weight: 650;
-      letter-spacing: 0.02em;
+      gap: 6px;
     }
 
-    .rs-pe .mini-bars {
-      display: flex;
-      align-items: end;
-      gap: 5px;
-      height: 52px;
-    }
-
-    .rs-pe .mini-bars span {
+    .rs-pe .lights span {
       width: 8px;
+      height: 8px;
       border-radius: 999px;
-      background: var(--accent);
-      opacity: 0.92;
+      background: var(--line);
     }
 
-    .rs-pe .mini-bars span:nth-child(1) { height: 28%; }
-    .rs-pe .mini-bars span:nth-child(2) { height: 46%; }
-    .rs-pe .mini-bars span:nth-child(3) { height: 66%; }
-    .rs-pe .mini-bars span:nth-child(4) { height: 42%; }
-    .rs-pe .mini-bars span:nth-child(5) { height: 86%; }
-    .rs-pe .mini-bars span:nth-child(6) { height: 100%; }
+    .rs-pe .lights span:nth-child(3) {
+      background: var(--good);
+    }
 
-    .rs-pe .marquee {
+    .rs-pe .terminal-stat {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: baseline;
+      padding: 13px 0;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .rs-pe .terminal-stat:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .rs-pe .terminal-label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .rs-pe .terminal-value {
+      font-size: 1.02rem;
+      font-weight: 620;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.03em;
+    }
+
+    .rs-pe .terminal-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.72rem;
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+    }
+
+    .rs-pe .quick-links {
       display: flex;
-      gap: 12px;
-      margin-top: clamp(28px, 4vw, 48px);
-      overflow: hidden;
-      mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 34px;
     }
 
-    .rs-pe .marquee-track {
-      display: flex;
-      flex: 0 0 auto;
-      gap: 12px;
-      min-width: max-content;
-      animation: rsPeMarquee 28s linear infinite;
-    }
-
-    .rs-pe .marquee span {
+    .rs-pe .quick-links a {
       display: inline-flex;
       align-items: center;
+      min-height: 36px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.62);
-      padding: 10px 14px;
-      color: var(--ink-soft);
+      background: var(--card);
+      padding: 8px 13px;
+      color: var(--muted);
       font-size: 0.84rem;
-      font-weight: 720;
-      white-space: nowrap;
+      font-weight: 500;
+      transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .rs-pe .quick-links a:hover {
+      border-color: var(--muted-2);
+      color: var(--fg);
+      transform: translateY(-1px);
     }
 
     .rs-pe section {
-      margin-top: clamp(52px, 7vw, 92px);
+      margin-top: clamp(70px, 9vw, 112px);
     }
 
     .rs-pe .section-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 18px;
-    }
-
-    .rs-pe .section-kicker {
-      color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 780;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.5fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 20px;
     }
 
     .rs-pe .section-title {
-      margin-top: 6px;
-      max-width: 12ch;
-      font-size: clamp(2.1rem, 5vw, 5.2rem);
-      font-weight: 840;
-      line-height: 0.9;
-      letter-spacing: -0.075em;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 620;
+      line-height: 0.98;
+      letter-spacing: -0.058em;
+      text-wrap: balance;
     }
 
     .rs-pe .section-copy {
-      max-width: 30rem;
       color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.5;
-      font-weight: 560;
-      letter-spacing: -0.025em;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      letter-spacing: -0.022em;
+      font-weight: 400;
+    }
+
+    .rs-pe .eyelabel {
+      margin-bottom: 11px;
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 650;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
     }
 
     .rs-pe .metric-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-xl);
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.62);
+      background: var(--card);
+      backdrop-filter: blur(16px);
     }
 
     .rs-pe .metric {
-      min-height: 190px;
-      padding: clamp(18px, 2.8vw, 28px);
-      border-right: 1px solid var(--line);
+      min-height: 168px;
+      padding: 22px;
+      border-right: 1px solid var(--line-soft);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 24px;
+      gap: 22px;
     }
 
     .rs-pe .metric:last-child {
@@ -461,491 +404,428 @@
 
     .rs-pe .metric-label {
       color: var(--muted);
-      font-size: 0.75rem;
-      font-weight: 760;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-size: 0.76rem;
+      font-weight: 520;
+      line-height: 1.35;
     }
 
     .rs-pe .metric-value {
-      font-size: clamp(2rem, 4.6vw, 4.55rem);
-      font-weight: 850;
-      line-height: 0.86;
-      letter-spacing: -0.08em;
+      font-size: clamp(2rem, 4.4vw, 3.4rem);
+      font-weight: 620;
+      line-height: 0.9;
+      letter-spacing: -0.065em;
       font-variant-numeric: tabular-nums;
     }
 
     .rs-pe .metric-sub {
-      margin-top: 9px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 580;
-      line-height: 1.25;
-      letter-spacing: -0.025em;
+      margin-top: 8px;
+      color: var(--muted-2);
+      font-size: 0.75rem;
+      line-height: 1.35;
     }
 
-    .rs-pe .channel-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 16px;
-    }
-
-    .rs-pe .channel-card {
-      position: relative;
-      min-height: 330px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: var(--card-solid);
-      padding: clamp(22px, 3vw, 32px);
-    }
-
-    .rs-pe .channel-card.dark {
-      background: #0b0b0b;
-      color: #fbfaf6;
-    }
-
-    .rs-pe .channel-card.dark .channel-label,
-    .rs-pe .channel-card.dark .channel-copy {
-      color: rgba(251, 250, 246, 0.65);
-    }
-
-    .rs-pe .channel-card.dark .channel-line {
-      background: rgba(251, 250, 246, 0.16);
-    }
-
-    .rs-pe .channel-label {
-      color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-    }
-
-    .rs-pe .channel-title {
-      margin-top: 18px;
-      max-width: 9.6ch;
-      font-size: clamp(2.45rem, 5.5vw, 5.8rem);
-      font-weight: 860;
-      line-height: 0.84;
-      letter-spacing: -0.086em;
-    }
-
-    .rs-pe .channel-copy {
-      max-width: 27rem;
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.42;
-      font-weight: 560;
-      letter-spacing: -0.026em;
-    }
-
-    .rs-pe .channel-line {
-      height: 1px;
-      margin: 24px 0;
-      background: var(--line);
-    }
-
-    .rs-pe .channel-list {
-      display: grid;
-      gap: 12px;
-      list-style: none;
-    }
-
-    .rs-pe .channel-list li {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      color: inherit;
-      font-size: 0.95rem;
-      font-weight: 650;
-      letter-spacing: -0.025em;
-    }
-
-    .rs-pe .channel-list span:last-child {
-      color: currentColor;
-      opacity: 0.58;
-      text-align: right;
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .rs-pe .impact-grid {
+    .rs-pe .system-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
+      gap: 12px;
     }
 
-    .rs-pe .impact-card {
-      min-height: 300px;
-      border: 1px solid var(--line);
+    .rs-pe .system-card {
+      min-height: 232px;
+      border: 1px solid var(--line-soft);
       border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.7);
-      padding: clamp(22px, 3vw, 30px);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-    }
-
-    .rs-pe .impact-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--line-strong);
-      box-shadow: 0 22px 44px rgba(20, 16, 8, 0.1);
-    }
-
-    .rs-pe .impact-number {
-      font-size: clamp(2.8rem, 6vw, 6.6rem);
-      font-weight: 860;
-      line-height: 0.8;
-      letter-spacing: -0.09em;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .rs-pe .impact-label {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 0.88rem;
-      font-weight: 720;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .rs-pe .impact-copy {
-      margin-top: 28px;
-      color: var(--ink-soft);
-      font-size: 1.05rem;
-      line-height: 1.34;
-      font-weight: 620;
-      letter-spacing: -0.034em;
-    }
-
-    .rs-pe .work-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .rs-pe .work-panel {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: #0b0b0b;
-      color: #fbfaf6;
-      padding: clamp(24px, 4vw, 42px);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .rs-pe .work-panel::after {
-      content: "";
-      position: absolute;
-      right: -90px;
-      bottom: -120px;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.88;
-      filter: blur(2px);
-    }
-
-    .rs-pe .work-panel > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .rs-pe .work-panel h3 {
-      max-width: 10ch;
-      font-size: clamp(2.5rem, 5vw, 5.4rem);
-      line-height: 0.86;
-      font-weight: 860;
-      letter-spacing: -0.084em;
-    }
-
-    .rs-pe .work-panel p {
-      max-width: 25rem;
-      margin-top: 20px;
-      color: rgba(251, 250, 246, 0.72);
-      font-size: 1.02rem;
-      line-height: 1.48;
-      font-weight: 560;
-    }
-
-    .rs-pe .proof-list {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.66);
-    }
-
-    .rs-pe .proof-item {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 18px;
-      align-items: center;
-      padding: clamp(18px, 2.7vw, 28px);
-      border-bottom: 1px solid var(--line);
-      transition: background 160ms ease;
-    }
-
-    .rs-pe .proof-item:last-child {
-      border-bottom: 0;
-    }
-
-    .rs-pe a.proof-item:hover {
-      background: rgba(215, 255, 63, 0.28);
-    }
-
-    .rs-pe .proof-title {
-      font-size: clamp(1.2rem, 2.4vw, 2rem);
-      font-weight: 780;
-      line-height: 1.02;
-      letter-spacing: -0.052em;
-    }
-
-    .rs-pe .proof-desc {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.34;
-      font-weight: 560;
-      letter-spacing: -0.022em;
-    }
-
-    .rs-pe .proof-meta {
-      color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 780;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .rs-pe .timeline {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.62);
-    }
-
-    .rs-pe .timeline-item {
-      min-height: 230px;
-      padding: clamp(20px, 3vw, 28px);
-      border-right: 1px solid var(--line);
+      background: var(--card);
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       gap: 28px;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
     }
 
-    .rs-pe .timeline-item:last-child {
-      border-right: 0;
+    .rs-pe .system-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--line);
+      background: var(--card-solid);
+    }
+
+    .rs-pe[data-theme="dark"] .system-card:hover {
+      background: #202024;
+    }
+
+    .rs-pe .card-index {
+      color: var(--muted-2);
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.72rem;
+    }
+
+    .rs-pe .system-card h3 {
+      font-size: 1.28rem;
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+    }
+
+    .rs-pe .system-card p {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.48;
+    }
+
+    .rs-pe .case {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .rs-pe .case-card {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      padding: clamp(22px, 3.2vw, 32px);
+    }
+
+    .rs-pe .case-card.dark {
       background: var(--fg);
-      color: #fbfaf6;
+      color: var(--bg);
+    }
+
+    .rs-pe[data-theme="dark"] .case-card.dark {
+      background: #f5f5f7;
+      color: #1d1d1f;
+    }
+
+    .rs-pe .case-card h3 {
+      max-width: 11ch;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 620;
+      line-height: 0.93;
+      letter-spacing: -0.07em;
+    }
+
+    .rs-pe .case-card p {
+      max-width: 31rem;
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .rs-pe .case-card.dark p {
+      color: rgba(251, 251, 253, 0.68);
+    }
+
+    .rs-pe[data-theme="dark"] .case-card.dark p {
+      color: rgba(29, 29, 31, 0.66);
+    }
+
+    .rs-pe .case-list {
+      margin-top: 30px;
+      display: grid;
+      gap: 0;
+    }
+
+    .rs-pe .case-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(251, 251, 253, 0.72);
+      font-size: 0.86rem;
+    }
+
+    .rs-pe[data-theme="dark"] .case-row {
+      border-color: rgba(29, 29, 31, 0.14);
+      color: rgba(29, 29, 31, 0.7);
+    }
+
+    .rs-pe .case-row strong {
+      color: currentColor;
+      font-weight: 600;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .rs-pe .ba-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .rs-pe .ba-card {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      background: var(--card-solid);
+      padding: 22px;
+    }
+
+    .rs-pe[data-theme="dark"] .ba-card {
+      background: var(--card-solid);
+    }
+
+    .rs-pe .ba-label {
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 650;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .rs-pe .ba-title {
+      margin-top: 14px;
+      font-size: 1.55rem;
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.052em;
+    }
+
+    .rs-pe .ba-copy {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.48;
+    }
+
+    .rs-pe .ba-card.after {
+      border-color: var(--line);
+      box-shadow: inset 0 0 0 1px var(--line-soft);
+    }
+
+    .rs-pe .press-list {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--card);
+    }
+
+    .rs-pe .press-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: baseline;
+      padding: 18px 22px;
+      border-top: 1px solid var(--line-soft);
+      transition: background 160ms ease;
+    }
+
+    .rs-pe .press-item:first-child {
+      border-top: 0;
+    }
+
+    .rs-pe a.press-item:hover {
+      background: var(--subtle);
+    }
+
+    .rs-pe[data-theme="dark"] a.press-item:hover {
+      background: #111113;
+    }
+
+    .rs-pe .press-title {
+      font-size: 0.98rem;
+      font-weight: 540;
+      letter-spacing: -0.026em;
+    }
+
+    .rs-pe .press-meta {
+      color: var(--muted);
+      font-size: 0.78rem;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .rs-pe .timeline {
+      position: relative;
+      display: grid;
+      gap: 24px;
+      padding-left: 20px;
+    }
+
+    .rs-pe .timeline::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      left: 5px;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .rs-pe .timeline-item {
+      position: relative;
+    }
+
+    .rs-pe .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: -20px;
+      width: 11px;
+      height: 11px;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      background: var(--bg);
+    }
+
+    .rs-pe .timeline-item.now::before {
+      border-color: var(--fg);
+      background: var(--fg);
     }
 
     .rs-pe .timeline-kicker {
       color: var(--muted);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
+      font-size: 0.7rem;
+      font-weight: 650;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
-    .rs-pe .timeline-item:last-child .timeline-kicker,
-    .rs-pe .timeline-item:last-child .timeline-copy {
-      color: rgba(251, 250, 246, 0.66);
-    }
-
     .rs-pe .timeline-title {
-      font-size: clamp(1.25rem, 2.5vw, 2rem);
-      font-weight: 780;
-      line-height: 0.98;
-      letter-spacing: -0.055em;
+      margin-top: 4px;
+      font-size: 1.02rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
     }
 
     .rs-pe .timeline-copy {
-      margin-top: 9px;
+      max-width: 46rem;
+      margin-top: 4px;
       color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.36;
-      font-weight: 560;
+      font-size: 0.88rem;
+      line-height: 1.5;
     }
 
-    .rs-pe .link-strip {
+    .rs-pe .bottom {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 22px;
-      align-items: center;
-      margin-top: clamp(52px, 7vw, 92px);
-      border: 1px solid var(--fg);
-      border-radius: var(--radius-lg);
-      background: var(--accent);
-      padding: clamp(22px, 4vw, 38px);
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      margin-top: clamp(78px, 10vw, 126px);
+      padding-top: 24px;
+      border-top: 1px solid var(--line-soft);
     }
 
-    .rs-pe .link-strip h2 {
-      max-width: 12ch;
-      font-size: clamp(2.1rem, 5vw, 5rem);
-      font-weight: 860;
-      line-height: 0.88;
-      letter-spacing: -0.08em;
+    .rs-pe .bottom h2 {
+      max-width: 14ch;
+      font-size: clamp(2rem, 5vw, 4.4rem);
+      font-weight: 620;
+      line-height: 0.94;
+      letter-spacing: -0.067em;
     }
 
-    .rs-pe .links {
+    .rs-pe .contact-links {
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
       gap: 10px;
     }
 
-    .rs-pe .links a {
+    .rs-pe .contact-links a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
-      border: 1px solid rgba(11, 11, 11, 0.28);
+      min-height: 40px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.4);
-      padding: 10px 15px;
-      font-size: 0.9rem;
-      font-weight: 760;
-      transition: transform 160ms ease, background 160ms ease;
+      background: var(--card);
+      padding: 9px 14px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 500;
+      transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
     }
 
-    .rs-pe .links a:hover {
-      transform: translateY(-2px);
-      background: #ffffff;
+    .rs-pe .contact-links a:hover {
+      border-color: var(--muted-2);
+      color: var(--fg);
+      background: var(--card-solid);
     }
 
     .rs-pe footer {
       display: flex;
       justify-content: space-between;
       gap: 16px;
-      margin-top: 24px;
+      margin-top: 28px;
       color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 620;
-      letter-spacing: -0.01em;
+      font-size: 0.72rem;
+      letter-spacing: -0.005em;
     }
 
-    @keyframes rsPeMarquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(calc(-100% - 12px)); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .rs-pe *,
-      .rs-pe *::before,
-      .rs-pe *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.001ms !important;
-      }
-    }
-
-    @media (max-width: 940px) {
-      .rs-pe .topbar {
-        padding-bottom: 48px;
-      }
-
+    @media (max-width: 860px) {
       .rs-pe .hero,
-      .rs-pe .channel-grid,
-      .rs-pe .work-grid,
-      .rs-pe .link-strip {
+      .rs-pe .section-head,
+      .rs-pe .case,
+      .rs-pe .bottom {
         grid-template-columns: 1fr;
       }
 
-      .rs-pe .hero-card {
-        min-height: 360px;
-      }
-
-      .rs-pe .metric-grid,
-      .rs-pe .timeline {
+      .rs-pe .metric-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .rs-pe .metric:nth-child(2),
-      .rs-pe .timeline-item:nth-child(2) {
+      .rs-pe .metric:nth-child(2) {
         border-right: 0;
       }
 
-      .rs-pe .metric:nth-child(-n + 2),
-      .rs-pe .timeline-item:nth-child(-n + 2) {
-        border-bottom: 1px solid var(--line);
+      .rs-pe .metric:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--line-soft);
       }
 
-      .rs-pe .impact-grid {
+      .rs-pe .system-grid {
         grid-template-columns: 1fr;
       }
 
-      .rs-pe .impact-card {
-        min-height: 220px;
-      }
-
-      .rs-pe .section-head {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .rs-pe .links {
+      .rs-pe .contact-links {
         justify-content: flex-start;
       }
     }
 
-    @media (max-width: 620px) {
-      .rs-pe main {
-        padding: 12px 10px 32px;
+    @media (max-width: 560px) {
+      .rs-pe .page {
+        padding: 12px 10px 40px;
       }
 
-      .rs-pe .shell {
-        border-radius: 28px;
+      .rs-pe .inner {
+        padding: 20px;
       }
 
-      .rs-pe .shell-inner {
-        padding: 18px;
-      }
-
-      .rs-pe .topbar {
+      .rs-pe .nav {
         align-items: flex-start;
         flex-direction: column;
+        margin-bottom: 72px;
       }
 
       .rs-pe h1 {
-        font-size: clamp(4rem, 22vw, 7rem);
+        font-size: clamp(3.5rem, 18vw, 5.4rem);
       }
 
-      .rs-pe .status-pill {
-        white-space: normal;
+      .rs-pe .signal-panel {
+        border-radius: 24px;
       }
 
       .rs-pe .metric-grid,
-      .rs-pe .timeline {
+      .rs-pe .ba-grid {
         grid-template-columns: 1fr;
       }
 
-      .rs-pe .metric,
-      .rs-pe .timeline-item {
-        min-height: 176px;
+      .rs-pe .metric {
+        min-height: 142px;
         border-right: 0;
-        border-bottom: 1px solid var(--line);
+        border-bottom: 1px solid var(--line-soft);
       }
 
-      .rs-pe .metric:last-child,
-      .rs-pe .timeline-item:last-child {
+      .rs-pe .metric:last-child {
         border-bottom: 0;
       }
 
-      .rs-pe .proof-item {
+      .rs-pe .press-item {
         grid-template-columns: 1fr;
+        gap: 6px;
       }
 
-      .rs-pe .proof-meta {
+      .rs-pe .press-meta {
         white-space: normal;
       }
 
@@ -955,297 +835,264 @@
     }
   </style>
 
-  <main>
-    <div class="shell">
-      <div class="shell-inner">
-        <header class="topbar" aria-label="Intro">
-          <a class="brand-lockup" href="mailto:rynsdri@gmail.com" aria-label="Email Rayan Sadri">
-            <span class="brand-mark">RS</span>
+  <main class="page">
+    <div class="chrome">
+      <div class="inner">
+        <header class="nav" aria-label="Site header">
+          <a class="identity" href="mailto:rynsdri@gmail.com" aria-label="Email Rayan Sadri">
+            <span class="monogram">RS</span>
             <span>
-              <span class="brand-name">Rayan Sadri</span>
-              <span class="brand-sub">GTM engineer &middot; builder</span>
+              <span class="name">Rayan Sadri</span>
+              <span class="role">Product &middot; GTM &middot; health/deep tech</span>
             </span>
           </a>
-          <span class="status-pill"><span class="status-dot"></span> Toronto now &middot; building in public</span>
+
+          <button class="theme-toggle" type="button" onclick="rsPeToggleTheme()" aria-label="Toggle color theme">
+            <span class="toggle-dot" aria-hidden="true"></span>
+            <span id="rsPeThemeLabel">Light</span>
+          </button>
         </header>
 
         <section class="hero" aria-labelledby="hero-title">
           <div>
-            <p class="eyebrow">Product taste x distribution</p>
-            <h1 id="hero-title">I make technical things feel <span class="hero-word">obvious.</span></h1>
+            <p class="kicker">GTM engineer / product operator</p>
+            <h1 id="hero-title">I make hard things easier to buy.</h1>
             <p class="lede">
-              I am Rayan Sadri: a product/GTM operator for health and deep tech. Co-founded
-              <a href="https://carezai.com">Carez AI</a>, shipped synthetic brain CT/MRI infrastructure, sold through enterprise friction,
-              and turned complex work into demos, narrative, and demand.
+              I am Rayan Sadri. I build the bridge between technical products and market belief:
+              <strong>product taste, demos, enterprise GTM, narrative, and distribution</strong>.
+              Previously co-founded <a href="https://carezai.com">Carez AI</a>, shipping synthetic
+              brain CT/MRI infrastructure at enterprise scale.
             </p>
+
+            <nav class="quick-links" aria-label="Primary links">
+              <a href="mailto:rynsdri@gmail.com">Email</a>
+              <a href="https://twitter.com/rayansadri">X / Twitter</a>
+              <a href="https://www.linkedin.com/in/ray-sadri/">LinkedIn</a>
+              <a href="https://github.com/rayansadri">GitHub</a>
+            </nav>
           </div>
 
-          <aside class="hero-card" aria-label="Social reach snapshot">
-            <div class="signal-stack">
-              <div class="signal-card">
-                <div class="signal-label"><span>Organic attention</span><span class="signal-chip">28 days</span></div>
-                <div class="signal-value">7.2M</div>
-                <p class="signal-note">X impressions from technical storytelling, not paid traffic.</p>
-              </div>
-              <div class="signal-card">
-                <div class="signal-label"><span>Market pull</span><span class="signal-chip">+11K%</span></div>
-                <div class="signal-value">117.4K</div>
-                <p class="signal-note">Likes across founder, product, AI, and immigration narratives.</p>
-              </div>
+          <aside class="signal-panel" aria-label="Signal summary">
+            <div class="terminal-top">
+              <div class="lights" aria-hidden="true"><span></span><span></span><span></span></div>
+              <span>signal.json</span>
             </div>
-            <div class="card-footer">
-              <span>Signal compounds when the story is sharp.</span>
-              <div class="mini-bars" aria-hidden="true">
-                <span></span><span></span><span></span><span></span><span></span><span></span>
-              </div>
+            <div class="terminal-stat">
+              <span class="terminal-label">X impressions / 28d</span>
+              <span class="terminal-value">7.2M</span>
             </div>
+            <div class="terminal-stat">
+              <span class="terminal-label">Likes / 28d</span>
+              <span class="terminal-value">117.4K</span>
+            </div>
+            <div class="terminal-stat">
+              <span class="terminal-label">Carez data scale</span>
+              <span class="terminal-value">4.2M+</span>
+            </div>
+            <div class="terminal-stat">
+              <span class="terminal-label">Security approval</span>
+              <span class="terminal-value">7 days</span>
+            </div>
+            <p class="terminal-note">
+              // technical credibility, packaged clearly enough for buyers, users, and the internet.
+            </p>
           </aside>
         </section>
 
-        <div class="marquee" aria-label="Credibility highlights">
-          <div class="marquee-track">
-            <span>Carez AI co-founder</span>
-            <span>ERA NYC</span>
-            <span>CDL</span>
-            <span>NEXT36</span>
-            <span>New York Times</span>
-            <span>United Nations &middot; WIPO</span>
-            <span>McGill</span>
-            <span>7-day security approval</span>
-          </div>
-          <div class="marquee-track" aria-hidden="true">
-            <span>Carez AI co-founder</span>
-            <span>ERA NYC</span>
-            <span>CDL</span>
-            <span>NEXT36</span>
-            <span>New York Times</span>
-            <span>United Nations &middot; WIPO</span>
-            <span>McGill</span>
-            <span>7-day security approval</span>
-          </div>
-        </div>
-
-        <section aria-labelledby="metrics-title">
+        <section aria-labelledby="proof-title">
           <div class="section-head">
             <div>
-              <p class="section-kicker">Proof, not vibes</p>
-              <h2 class="section-title" id="metrics-title">Numbers that travel.</h2>
+              <p class="eyelabel">Proof</p>
+              <h2 class="section-title" id="proof-title">A little signal, without yelling.</h2>
             </div>
             <p class="section-copy">
-              The job is not just building. It is making the market understand why the thing matters,
-              then moving users, buyers, and partners toward action.
+              The work is product and GTM together: get the thing real, make the story legible,
+              then move the right people toward action.
             </p>
           </div>
 
           <div class="metric-grid" role="list">
             <article class="metric" role="listitem">
-              <p class="metric-label">X impressions</p>
+              <p class="metric-label">Organic X reach</p>
               <div>
                 <div class="metric-value">7.2M</div>
-                <p class="metric-sub">Organic reach in 28 days</p>
+                <p class="metric-sub">last 28 days</p>
               </div>
             </article>
             <article class="metric" role="listitem">
-              <p class="metric-label">Social engagement</p>
+              <p class="metric-label">Public engagement</p>
               <div>
                 <div class="metric-value">117K</div>
-                <p class="metric-sub">Likes on public narrative</p>
+                <p class="metric-sub">likes in 28 days</p>
               </div>
             </article>
             <article class="metric" role="listitem">
-              <p class="metric-label">Medical data scale</p>
+              <p class="metric-label">Synthetic imaging pool</p>
               <div>
                 <div class="metric-value">4.2M+</div>
-                <p class="metric-sub">Brain CT/MRI slice-equivalents</p>
+                <p class="metric-sub">brain CT/MRI slice-equivalents</p>
               </div>
             </article>
             <article class="metric" role="listitem">
-              <p class="metric-label">Enterprise motion</p>
+              <p class="metric-label">Account expansion</p>
               <div>
                 <div class="metric-value">68%</div>
-                <p class="metric-sub">Expansion from existing accounts</p>
+                <p class="metric-sub">from existing accounts</p>
               </div>
             </article>
           </div>
         </section>
 
-        <section aria-labelledby="channels-title">
+        <section aria-labelledby="system-title">
           <div class="section-head">
             <div>
-              <p class="section-kicker">Distribution system</p>
-              <h2 class="section-title" id="channels-title">Pages. LinkedIn. X. Rooms.</h2>
+              <p class="eyelabel">Operating system</p>
+              <h2 class="section-title" id="system-title">Taste, trust, traction.</h2>
             </div>
             <p class="section-copy">
-              I treat GTM like engineering: instrument the message, ship the demo, compress the objection,
-              and make every touchpoint feel inevitable.
+              A good technical product still needs a market interface. I care about the interface:
+              the demo, the words, the proof, the follow-up, the buying path.
             </p>
           </div>
 
-          <div class="channel-grid">
-            <article class="channel-card dark">
-              <p class="channel-label">Public narrative</p>
-              <h3 class="channel-title">Build the room before you enter it.</h3>
-              <p class="channel-copy">
-                Short posts, founder pages, LinkedIn proof, conference clips, press links, and demos all point at the same thesis:
-                technical credibility with commercial force.
-              </p>
-              <div class="channel-line"></div>
-              <ul class="channel-list">
-                <li><span>X / Twitter</span><span><a href="https://twitter.com/rayansadri">@rayansadri</a></span></li>
-                <li><span>LinkedIn</span><span><a href="https://www.linkedin.com/in/ray-sadri/">Founder profile</a></span></li>
-                <li><span>GitHub</span><span><a href="https://github.com/rayansadri">Public cadence</a></span></li>
-              </ul>
+          <div class="system-grid" role="list">
+            <article class="system-card" role="listitem">
+              <span class="card-index">01</span>
+              <div>
+                <h3>Product clarity</h3>
+                <p>Turn dense technical systems into workflows, demos, and user moments people understand fast.</p>
+              </div>
             </article>
-
-            <article class="channel-card">
-              <p class="channel-label">GTM engineering</p>
-              <h3 class="channel-title">From demo to deal.</h3>
-              <p class="channel-copy">
-                Healthcare buyers do not move because a deck is pretty. They move when the product is clear,
-                the risk is handled, and the next step is obvious.
-              </p>
-              <div class="channel-line"></div>
-              <ul class="channel-list">
-                <li><span>Security approval</span><span>7 days</span></li>
-                <li><span>Carez backing</span><span>ERA &middot; CDL &middot; NEXT36</span></li>
-                <li><span>Release cadence</span><span>Weekly</span></li>
-              </ul>
+            <article class="system-card" role="listitem">
+              <span class="card-index">02</span>
+              <div>
+                <h3>Enterprise GTM</h3>
+                <p>Move from first call to security review to PO with less theater and more proof.</p>
+              </div>
+            </article>
+            <article class="system-card" role="listitem">
+              <span class="card-index">03</span>
+              <div>
+                <h3>Public narrative</h3>
+                <p>Build trust before the meeting through writing, social proof, founder pages, and press.</p>
+              </div>
             </article>
           </div>
         </section>
 
-        <section aria-labelledby="impact-title">
-          <div class="section-head">
-            <div>
-              <p class="section-kicker">Carez AI</p>
-              <h2 class="section-title" id="impact-title">Complex product. Simple story.</h2>
-            </div>
-            <p class="section-copy">
-              We built the plumbing for synthetic medical imaging: multi-site ingestion, preprocessing,
-              QA, model loops, and enterprise deployment in a market allergic to hand-waving.
-            </p>
-          </div>
+        <section aria-labelledby="carez-title">
+          <div class="case">
+            <article class="case-card dark">
+              <p class="eyelabel">Carez AI</p>
+              <h2 class="section-title" id="carez-title">Models, not slides.</h2>
+              <p>
+                Co-founded and helped commercialize synthetic brain CT/MRI infrastructure:
+                ingestion, preprocessing, QA, model loops, demos, security reviews, and expansion.
+              </p>
+              <div class="case-list">
+                <div class="case-row"><span>Backed by</span><strong>ERA / CDL / NEXT36</strong></div>
+                <div class="case-row"><span>Sites represented</span><strong>12+</strong></div>
+                <div class="case-row"><span>Release cadence</span><strong>Weekly</strong></div>
+              </div>
+            </article>
 
-          <div class="impact-grid" role="list">
-            <article class="impact-card" role="listitem">
-              <div>
-                <div class="impact-number">12+</div>
-                <p class="impact-label">Sites represented</p>
+            <div class="case-card">
+              <div class="ba-grid">
+                <article class="ba-card">
+                  <p class="ba-label">Before</p>
+                  <h3 class="ba-title">Fragmented</h3>
+                  <p class="ba-copy">
+                    Single-site dumps, inconsistent labels, slow loops before research-grade brain CT/MRI
+                    could touch a model.
+                  </p>
+                </article>
+                <article class="ba-card after">
+                  <p class="ba-label">After</p>
+                  <h3 class="ba-title">Pipeline</h3>
+                  <p class="ba-copy">
+                    Multi-site ingestion, repeatable preprocessing, QA hooks, and a cleaner path from data
+                    to deployed demos.
+                  </p>
+                </article>
               </div>
-              <p class="impact-copy">Turned fragmented brain CT/MRI data into a repeatable training and validation pipeline.</p>
-            </article>
-            <article class="impact-card" role="listitem">
-              <div>
-                <div class="impact-number">4.2M+</div>
-                <p class="impact-label">Slice-equivalents</p>
-              </div>
-              <p class="impact-copy">Built enough data gravity for credible demos, validation work, and buyer conversations.</p>
-            </article>
-            <article class="impact-card" role="listitem">
-              <div>
-                <div class="impact-number">7</div>
-                <p class="impact-label">Days to security</p>
-              </div>
-              <p class="impact-copy">Compressed enterprise trust-building into a motion that moved at startup speed.</p>
-            </article>
+            </div>
           </div>
         </section>
 
         <section aria-labelledby="press-title">
           <div class="section-head">
             <div>
-              <p class="section-kicker">Press & rooms</p>
-              <h2 class="section-title" id="press-title">Featured, quoted, invited.</h2>
+              <p class="eyelabel">Press / rooms</p>
+              <h2 class="section-title" id="press-title">Credibility people can verify.</h2>
             </div>
             <p class="section-copy">
-              Credibility is a stack: shipped product, public proof, recognizable rooms, and a point of view people can repeat.
+              Featured, quoted, invited, and put in rooms where the story has to hold up.
             </p>
           </div>
 
-          <div class="work-grid">
-            <article class="work-panel">
-              <h3>I can sell the work because I know the work.</h3>
-              <p>
-                Product, GTM, demos, narrative, security reviews, buyer psychology, and enough technical depth to keep the story honest.
-              </p>
-            </article>
-
-            <div class="proof-list" aria-label="Press and speaking links">
-              <a class="proof-item" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html">
-                <span>
-                  <span class="proof-title">New York Times</span>
-                  <span class="proof-desc">Quoted in national coverage on immigration and economic history.</span>
-                </span>
-                <span class="proof-meta">2025</span>
-              </a>
-              <a class="proof-item" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016">
-                <span>
-                  <span class="proof-title">United Nations &middot; WIPO</span>
-                  <span class="proof-desc">Talked AI, IP, and the direction of technical systems.</span>
-                </span>
-                <span class="proof-meta">Speaking</span>
-              </a>
-              <a class="proof-item" href="https://open.spotify.com/episode/39UV1BDoRzHkinn5MfyeBb">
-                <span>
-                  <span class="proof-title">AI for Pharma Growth</span>
-                  <span class="proof-desc">Discussed synthetic medical imaging and commercialization.</span>
-                </span>
-                <span class="proof-meta">Podcast</span>
-              </a>
-              <a class="proof-item" href="https://www.youtube.com/watch?v=KUCRkVYFK1s">
-                <span>
-                  <span class="proof-title">ERA NYC Demo Day</span>
-                  <span class="proof-desc">Founder demo in front of investors, operators, and buyers.</span>
-                </span>
-                <span class="proof-meta">2024</span>
-              </a>
-            </div>
+          <div class="press-list">
+            <a class="press-item" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html">
+              <span class="press-title">New York Times</span>
+              <span class="press-meta">2025</span>
+            </a>
+            <a class="press-item" href="https://www.seattletimes.com/business/what-america-might-look-like-with-zero-immigration/">
+              <span class="press-title">Seattle Times</span>
+              <span class="press-meta">2025</span>
+            </a>
+            <a class="press-item" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016">
+              <span class="press-title">United Nations, WIPO</span>
+              <span class="press-meta">Speaking</span>
+            </a>
+            <a class="press-item" href="https://open.spotify.com/episode/39UV1BDoRzHkinn5MfyeBb">
+              <span class="press-title">AI for Pharma Growth</span>
+              <span class="press-meta">Podcast</span>
+            </a>
+            <a class="press-item" href="https://delve.mcgill.ca/">
+              <span class="press-title">McGill Delve</span>
+              <span class="press-meta">Interview</span>
+            </a>
+            <a class="press-item" href="https://www.youtube.com/watch?v=KUCRkVYFK1s">
+              <span class="press-title">ERA NYC Demo Day</span>
+              <span class="press-meta">2024</span>
+            </a>
           </div>
         </section>
 
         <section aria-labelledby="timeline-title">
           <div class="section-head">
             <div>
-              <p class="section-kicker">Path</p>
-              <h2 class="section-title" id="timeline-title">Built across contexts.</h2>
+              <p class="eyelabel">Path</p>
+              <h2 class="section-title" id="timeline-title">Still building.</h2>
             </div>
           </div>
 
-          <div class="timeline" role="list">
-            <article class="timeline-item" role="listitem">
-              <div>
-                <p class="timeline-kicker">Origin</p>
-                <h3 class="timeline-title">Tehran to Kish Island</h3>
-              </div>
-              <p class="timeline-copy">Early bias toward building with constraints and finding leverage fast.</p>
+          <div class="timeline">
+            <article class="timeline-item">
+              <p class="timeline-kicker">Origin</p>
+              <h3 class="timeline-title">Tehran to Kish Island</h3>
+              <p class="timeline-copy">Raised between contexts; learned to make things work without perfect conditions.</p>
             </article>
-            <article class="timeline-item" role="listitem">
-              <div>
-                <p class="timeline-kicker">University</p>
-                <h3 class="timeline-title">McGill &middot; Montreal</h3>
-              </div>
-              <p class="timeline-copy">Engineering discipline that became the bridge into health, AI, and enterprise software.</p>
+            <article class="timeline-item">
+              <p class="timeline-kicker">University</p>
+              <h3 class="timeline-title">McGill, Montreal</h3>
+              <p class="timeline-copy">Engineering discipline, then the bridge into health, AI, and commercialization.</p>
             </article>
-            <article class="timeline-item" role="listitem">
-              <div>
-                <p class="timeline-kicker">NYC</p>
-                <h3 class="timeline-title">Carez AI &middot; ERA</h3>
-              </div>
-              <p class="timeline-copy">Co-founder motion across product, GTM, security, and customer expansion.</p>
+            <article class="timeline-item">
+              <p class="timeline-kicker">NYC</p>
+              <h3 class="timeline-title">Carez AI, ERA NYC</h3>
+              <p class="timeline-copy">Co-founder motion across product, GTM, security reviews, and customer expansion.</p>
             </article>
-            <article class="timeline-item" role="listitem">
-              <div>
-                <p class="timeline-kicker">Now</p>
-                <h3 class="timeline-title">Toronto &middot; next build</h3>
-              </div>
-              <p class="timeline-copy">Still shipping, still writing, still turning hard technical ideas into market pull.</p>
+            <article class="timeline-item now">
+              <p class="timeline-kicker">Now</p>
+              <h3 class="timeline-title">Toronto</h3>
+              <p class="timeline-copy">Next build in progress. Still writing, still demoing, still making hard things legible.</p>
             </article>
           </div>
         </section>
 
-        <section class="link-strip" aria-labelledby="contact-title">
-          <h2 id="contact-title">If it needs taste and traction, talk to me.</h2>
-          <nav class="links" aria-label="Contact links">
+        <section class="bottom" aria-labelledby="contact-title">
+          <h2 id="contact-title">If the product is hard to explain, I can help.</h2>
+          <nav class="contact-links" aria-label="Contact links">
             <a href="mailto:rynsdri@gmail.com">Email</a>
             <a href="https://twitter.com/rayansadri">X</a>
             <a href="https://www.linkedin.com/in/ray-sadri/">LinkedIn</a>
@@ -1255,9 +1102,23 @@
 
         <footer>
           <span>&copy; Rayan Sadri</span>
-          <span>Product &middot; GTM &middot; health/deep tech</span>
+          <span>Minimal site, maximum signal.</span>
         </footer>
       </div>
     </div>
   </main>
+
+  <script>
+    (function () {
+      var root = document.getElementById('rs-pe-root');
+      var label = document.getElementById('rsPeThemeLabel');
+
+      window.rsPeToggleTheme = function () {
+        if (!root) return;
+        var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        if (label) label.textContent = next === 'dark' ? 'Dark' : 'Light';
+      };
+    })();
+  </script>
 </div>
