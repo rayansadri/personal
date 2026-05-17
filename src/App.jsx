@@ -425,7 +425,7 @@ function PortfolioCard({ item }) {
         <img
           src={item.image}
           alt={`${item.title} placeholder`}
-          className="h-full w-full object-cover opacity-88 grayscale-[18%] saturate-[0.82] transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+          className="h-full w-full object-cover opacity-[0.88] grayscale-[18%] saturate-[0.82] transition duration-700 group-hover:scale-105 group-hover:opacity-100"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/18 to-transparent" />
         <div className="absolute left-4 top-4 rounded-full border border-[#f4eee5]/14 bg-black/35 px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#f4eee5]/82 backdrop-blur">
@@ -674,7 +674,7 @@ function FinalCTA() {
           // Replace with a moody healed-tattoo or studio-light background image.
           src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=1800&q=88"
           alt="Abstract tattoo studio background placeholder"
-          className="absolute inset-0 h-full w-full object-cover opacity-22 grayscale"
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.22] grayscale"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(216,183,143,0.16),transparent_30%),linear-gradient(180deg,rgba(7,6,5,0.62),rgba(7,6,5,0.92))]" />
         <FadeIn className="relative mx-auto max-w-4xl">
