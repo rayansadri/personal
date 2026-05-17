@@ -9,16 +9,16 @@ const artist = {
   email: "booking@artiststudio.com",
 };
 
-// Replace these image URLs with the artist's real tattoo photography and studio archive images.
+// Replace these image URLs with real tattoo photography, healed work, flash sheets, and studio details.
 const images = {
   heroBody:
-    "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1400&q=88",
+    "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1500&q=90",
   heroFlash:
-    "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=900&q=86",
+    "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=900&q=88",
   heroStudio:
-    "https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=700&q=84",
+    "https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=800&q=88",
   artistNote:
-    "https://images.unsplash.com/photo-1590246815117-be2a82e6d085?auto=format&fit=crop&w=1100&q=86",
+    "https://images.unsplash.com/photo-1590246815117-be2a82e6d085?auto=format&fit=crop&w=1200&q=88",
 };
 
 const filters = ["All", "Fine line", "Floral", "Blackwork", "Script", "Symbols"];
@@ -32,7 +32,7 @@ const portfolio = [
     placement: "Ribs",
     caption: "A stem drawn to move with breath.",
     image:
-      "https://images.unsplash.com/photo-1590246814883-9a273a3d5c34?auto=format&fit=crop&w=1100&q=86",
+      "https://images.unsplash.com/photo-1590246814883-9a273a3d5c34?auto=format&fit=crop&w=1200&q=88",
     layout: "md:col-span-2 md:row-span-2",
     media: "aspect-[4/5] md:h-full",
   },
@@ -44,7 +44,7 @@ const portfolio = [
     placement: "Wrist",
     caption: "Small, sharp, personal.",
     image:
-      "https://images.unsplash.com/photo-1601848714157-d845bb5c11ff?auto=format&fit=crop&w=900&q=86",
+      "https://images.unsplash.com/photo-1601848714157-d845bb5c11ff?auto=format&fit=crop&w=900&q=88",
     layout: "md:col-span-1",
     media: "aspect-square",
   },
@@ -56,7 +56,7 @@ const portfolio = [
     placement: "Collarbone",
     caption: "Words placed like a secret.",
     image:
-      "https://images.unsplash.com/photo-1541121514895-0f36e7d38d14?auto=format&fit=crop&w=900&q=86",
+      "https://images.unsplash.com/photo-1541121514895-0f36e7d38d14?auto=format&fit=crop&w=900&q=88",
     layout: "md:col-span-1 md:row-span-2",
     media: "aspect-[3/5] md:h-full",
   },
@@ -68,7 +68,7 @@ const portfolio = [
     placement: "Upper arm",
     caption: "Heavy wings, quiet center.",
     image:
-      "https://images.unsplash.com/photo-1612454376902-577cd469d008?auto=format&fit=crop&w=900&q=86",
+      "https://images.unsplash.com/photo-1612454376902-577cd469d008?auto=format&fit=crop&w=900&q=88",
     layout: "md:col-span-1",
     media: "aspect-[4/5]",
   },
@@ -80,7 +80,7 @@ const portfolio = [
     placement: "Shoulder",
     caption: "Restraint, skin, negative space.",
     image:
-      "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1000&q=88",
+      "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1200&q=90",
     layout: "md:col-span-2",
     media: "aspect-[16/9]",
   },
@@ -92,7 +92,7 @@ const portfolio = [
     placement: "Ankle",
     caption: "Drawn like a found mark.",
     image:
-      "https://images.unsplash.com/photo-1607278204950-bd9aa08d1d52?auto=format&fit=crop&w=900&q=86",
+      "https://images.unsplash.com/photo-1607278204950-bd9aa08d1d52?auto=format&fit=crop&w=900&q=88",
     layout: "md:col-span-1",
     media: "aspect-square",
   },
@@ -104,7 +104,7 @@ const portfolio = [
     placement: "Forearm",
     caption: "Leaves built around the arm, not pasted onto it.",
     image:
-      "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1000&q=86",
+      "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1100&q=88",
     layout: "md:col-span-1 md:row-span-2",
     media: "aspect-[3/5] md:h-full",
   },
@@ -116,7 +116,7 @@ const portfolio = [
     placement: "Back",
     caption: "Texture made from pressure and pause.",
     image:
-      "https://images.unsplash.com/photo-1590246815117-be2a82e6d085?auto=format&fit=crop&w=1000&q=86",
+      "https://images.unsplash.com/photo-1590246815117-be2a82e6d085?auto=format&fit=crop&w=1200&q=88",
     layout: "md:col-span-2",
     media: "aspect-[16/10]",
   },
@@ -128,7 +128,7 @@ const portfolio = [
     placement: "Inner arm",
     caption: "Lettering with room to breathe.",
     image:
-      "https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=900&q=86",
+      "https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=900&q=88",
     layout: "md:col-span-1",
     media: "aspect-[4/5]",
   },
@@ -140,7 +140,7 @@ const portfolio = [
     placement: "Hip",
     caption: "Barely there until it matters.",
     image:
-      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=1000&q=86",
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=1100&q=88",
     layout: "md:col-span-1",
     media: "aspect-square",
   },
@@ -152,7 +152,7 @@ const portfolio = [
     placement: "Thigh",
     caption: "A flower that knows its weight.",
     image:
-      "https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=1000&q=86",
+      "https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=1100&q=88",
     layout: "md:col-span-2",
     media: "aspect-[16/9]",
   },
@@ -164,7 +164,7 @@ const portfolio = [
     placement: "Sternum",
     caption: "Unreadable to strangers. Exact to you.",
     image:
-      "https://images.unsplash.com/photo-1601848714157-d845bb5c11ff?auto=format&fit=crop&w=900&q=86",
+      "https://images.unsplash.com/photo-1601848714157-d845bb5c11ff?auto=format&fit=crop&w=900&q=88",
     layout: "md:col-span-1",
     media: "aspect-[4/5]",
   },
@@ -234,9 +234,9 @@ function App() {
   }
 
   return (
-    <main className="site-grain min-h-screen overflow-x-hidden bg-[#080807] text-[#eee6d8]">
-      <div className="fixed inset-0 -z-20 bg-[radial-gradient(circle_at_18%_18%,rgba(113,22,18,0.34),transparent_28%),radial-gradient(circle_at_86%_4%,rgba(154,125,72,0.18),transparent_22%),linear-gradient(180deg,#080807_0%,#16120f_48%,#080807_100%)]" />
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(90deg,rgba(238,230,216,0.04)_1px,transparent_1px),linear-gradient(180deg,rgba(238,230,216,0.035)_1px,transparent_1px)] bg-[size:76px_76px]" />
+    <main className="paper-site min-h-screen overflow-x-hidden bg-[#f5efe4] text-[#191512]">
+      <div className="fixed inset-0 -z-20 bg-[radial-gradient(circle_at_12%_10%,rgba(159,44,30,0.13),transparent_26%),radial-gradient(circle_at_88%_4%,rgba(168,128,70,0.16),transparent_24%),linear-gradient(180deg,#fbf7ef_0%,#f1e7d8_54%,#f8f2e8_100%)]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(90deg,rgba(25,21,18,0.055)_1px,transparent_1px),linear-gradient(180deg,rgba(25,21,18,0.045)_1px,transparent_1px)] bg-[size:92px_92px]" />
 
       <SideNav />
       <StickyBooking />
@@ -261,18 +261,18 @@ function App() {
 
 function SideNav() {
   return (
-    <nav className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-5 text-[0.62rem] font-black uppercase tracking-[0.28em] text-[#eee6d8]/45 lg:flex">
-      <span className="h-16 w-px bg-[#eee6d8]/25" />
-      <a className="vertical-label transition hover:text-[#d6402d]" href="#archive">
+    <nav className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-5 text-[0.62rem] font-black uppercase tracking-[0.28em] text-[#191512]/42 lg:flex">
+      <span className="h-16 w-px bg-[#191512]/25" />
+      <a className="vertical-label transition hover:text-[#9f2c1e]" href="#archive">
         Archive
       </a>
-      <a className="vertical-label transition hover:text-[#d6402d]" href="#flash">
+      <a className="vertical-label transition hover:text-[#9f2c1e]" href="#flash">
         Flash
       </a>
-      <a className="vertical-label transition hover:text-[#d6402d]" href="#request">
+      <a className="vertical-label transition hover:text-[#9f2c1e]" href="#request">
         Request
       </a>
-      <span className="h-16 w-px bg-[#eee6d8]/25" />
+      <span className="h-16 w-px bg-[#191512]/25" />
     </nav>
   );
 }
@@ -281,7 +281,7 @@ function StickyBooking() {
   return (
     <a
       href="#request"
-      className="fixed bottom-4 right-4 z-50 rotate-[-2deg] border border-[#080807] bg-[#d6402d] px-5 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#080807] shadow-[8px_8px_0_rgba(0,0,0,0.55)] transition hover:rotate-0 hover:bg-[#eee6d8] sm:bottom-6 sm:right-6"
+      className="fixed bottom-4 right-4 z-50 rotate-[-1.5deg] border border-[#191512] bg-[#9f2c1e] px-5 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#fffaf1] shadow-[7px_7px_0_rgba(25,21,18,0.2)] transition hover:rotate-0 hover:bg-[#191512] sm:bottom-6 sm:right-6"
     >
       Start a request
     </a>
@@ -290,7 +290,7 @@ function StickyBooking() {
 
 function FloatingArchiveLabels() {
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 hidden overflow-hidden text-[0.62rem] font-black uppercase tracking-[0.3em] text-[#eee6d8]/10 md:block">
+    <div className="pointer-events-none fixed inset-0 z-0 hidden overflow-hidden text-[0.62rem] font-black uppercase tracking-[0.3em] text-[#191512]/10 md:block">
       <span className="absolute left-[8%] top-[24%] rotate-[-18deg]">archive 009</span>
       <span className="absolute right-[8%] top-[36%] rotate-[12deg]">custom only</span>
       <span className="absolute bottom-[22%] left-[18%] rotate-[8deg]">no copy paste</span>
@@ -300,71 +300,73 @@ function FloatingArchiveLabels() {
 
 function HeroPoster() {
   return (
-    <section id="top" className="relative min-h-screen px-4 py-5 sm:px-6 lg:px-10">
-      <div className="relative mx-auto grid min-h-[calc(100vh-2.5rem)] max-w-7xl grid-cols-6 grid-rows-[auto_1fr_auto] overflow-hidden border border-[#eee6d8]/18 bg-[#0d0c0b]/80 p-4 shadow-[0_40px_140px_rgba(0,0,0,0.5)] sm:p-6 lg:grid-cols-12 lg:p-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(214,64,45,0.18),transparent_22%),linear-gradient(135deg,rgba(238,230,216,0.05)_0_1px,transparent_1px_18px)]" />
-        <InkLine className="absolute right-5 top-16 z-20 h-32 w-32 text-[#d6402d]/70" />
+    <section id="top" className="relative px-4 py-5 sm:px-6 lg:px-10">
+      <div className="premium-frame relative mx-auto grid min-h-[calc(100vh-2.5rem)] max-w-7xl grid-cols-6 grid-rows-[auto_1fr_auto] overflow-hidden bg-[#fbf7ef]/90 p-4 shadow-[0_30px_90px_rgba(55,43,31,0.16)] sm:p-6 lg:grid-cols-12 lg:p-8">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_18%,rgba(159,44,30,0.12),transparent_22%),linear-gradient(135deg,rgba(25,21,18,0.035)_0_1px,transparent_1px_18px)]" />
+        <InkLine className="absolute right-5 top-16 z-20 h-32 w-32 text-[#9f2c1e]/65" />
 
         <div className="relative z-20 col-span-6 flex items-start justify-between lg:col-span-12">
-          <a href="#top" className="stamp rotate-[-2deg]">
+          <a href="#top" className="stamp rotate-[-1deg]">
             {artist.name} / {artist.city}
           </a>
-          <div className="hidden text-right text-[0.62rem] font-black uppercase tracking-[0.28em] text-[#eee6d8]/55 sm:block">
+          <div className="hidden text-right text-[0.62rem] font-black uppercase tracking-[0.28em] text-[#191512]/55 sm:block">
             custom tattoo work
             <br />
-            archive no. 01
+            private archive
           </div>
         </div>
 
-        <div className="relative z-10 col-span-6 row-start-2 mt-8 grid grid-cols-6 gap-3 lg:col-span-12 lg:grid-cols-12 lg:gap-5">
+        <div className="relative z-10 col-span-6 row-start-2 mt-8 grid grid-cols-6 gap-4 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
           <motion.div
-            initial={{ opacity: 0, rotate: -3, y: 20 }}
-            animate={{ opacity: 1, rotate: -2, y: 0 }}
+            initial={{ opacity: 0, rotate: -2, y: 20 }}
+            animate={{ opacity: 1, rotate: -1.2, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="paper-edge relative col-span-6 h-[58vh] min-h-[420px] overflow-hidden border border-[#eee6d8]/20 bg-[#14110e] p-2 shadow-[18px_18px_0_rgba(0,0,0,0.34)] lg:col-span-7"
+            className="image-mat relative col-span-6 h-[58vh] min-h-[420px] overflow-hidden bg-[#faf4e9] p-3 shadow-[20px_24px_50px_rgba(55,43,31,0.16)] lg:col-span-7"
           >
             <img
               src={images.heroBody}
               alt="Large cropped tattoo body closeup placeholder"
-              className="h-full w-full object-cover grayscale contrast-125 saturate-[0.7]"
+              className="h-full w-full object-cover grayscale contrast-110 saturate-[0.8]"
             />
-            <div className="absolute inset-2 bg-gradient-to-t from-black/78 via-black/8 to-transparent" />
-            <span className="stamp absolute left-5 top-5 rotate-[-4deg]">CUSTOM ONLY</span>
-            <span className="absolute bottom-5 right-5 bg-[#eee6d8] px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.22em] text-[#080807]">
+            <div className="absolute inset-3 bg-gradient-to-t from-[#191512]/58 via-transparent to-transparent" />
+            <span className="stamp absolute left-6 top-6 rotate-[-3deg] bg-[#fbf7ef]/90">
+              CUSTOM ONLY
+            </span>
+            <span className="absolute bottom-6 right-6 bg-[#fbf7ef] px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.22em] text-[#191512]">
               fine line / blackwork
             </span>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, rotate: 5, y: 34 }}
-            animate={{ opacity: 1, rotate: 3, y: 0 }}
+            initial={{ opacity: 0, rotate: 4, y: 34 }}
+            animate={{ opacity: 1, rotate: 2.2, y: 0 }}
             transition={{ duration: 0.75, delay: 0.16, ease: "easeOut" }}
-            className="relative col-span-4 col-start-2 -mt-12 border border-[#080807] bg-[#d8c7aa] p-2 shadow-[10px_10px_0_rgba(0,0,0,0.42)] sm:col-span-3 lg:col-span-3 lg:col-start-8 lg:mt-24"
+            className="relative col-span-4 col-start-2 -mt-12 border border-[#191512]/18 bg-[#efe1cb] p-3 shadow-[12px_16px_34px_rgba(55,43,31,0.16)] sm:col-span-3 lg:col-span-3 lg:col-start-8 lg:mt-24"
           >
             <Tape className="left-1/2 top-[-16px] -translate-x-1/2 rotate-[2deg]" />
             <img
               src={images.heroFlash}
               alt="Scanned flash sheet placeholder"
-              className="aspect-[4/5] w-full object-cover grayscale contrast-125 mix-blend-multiply"
+              className="aspect-[4/5] w-full object-cover grayscale contrast-110 mix-blend-multiply"
             />
-            <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#17120f]">
+            <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#191512]/70">
               flash sheet / scanned copy
             </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, rotate: -8, y: -10 }}
-            animate={{ opacity: 1, rotate: -6, y: 0 }}
+            initial={{ opacity: 0, rotate: -6, y: -10 }}
+            animate={{ opacity: 1, rotate: -4, y: 0 }}
             transition={{ duration: 0.7, delay: 0.24, ease: "easeOut" }}
-            className="relative col-span-3 col-start-4 -mt-6 border border-[#eee6d8]/20 bg-[#111] p-2 shadow-[12px_12px_0_rgba(0,0,0,0.45)] lg:col-span-2 lg:col-start-11 lg:mt-8"
+            className="relative col-span-3 col-start-4 -mt-6 border border-[#191512]/16 bg-[#fbf7ef] p-3 shadow-[12px_16px_30px_rgba(55,43,31,0.18)] lg:col-span-2 lg:col-start-11 lg:mt-8"
           >
             <Tape className="right-4 top-[-14px] rotate-[-9deg]" />
             <img
               src={images.heroStudio}
               alt="Tiny studio detail placeholder"
-              className="aspect-square w-full object-cover grayscale contrast-125"
+              className="aspect-square w-full object-cover grayscale contrast-110"
             />
-            <span className="absolute -bottom-4 left-4 border border-[#eee6d8]/25 bg-[#080807] px-2 py-1 text-[0.58rem] font-black uppercase tracking-[0.18em] text-[#d6402d]">
+            <span className="absolute -bottom-4 left-4 border border-[#191512]/18 bg-[#fbf7ef] px-2 py-1 text-[0.58rem] font-black uppercase tracking-[0.18em] text-[#9f2c1e]">
               by appointment
             </span>
           </motion.div>
@@ -373,28 +375,28 @@ function HeroPoster() {
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            className="relative z-30 col-span-6 -mt-10 lg:absolute lg:bottom-4 lg:left-[42%] lg:w-[56%]"
+            className="relative z-30 col-span-6 -mt-8 lg:absolute lg:bottom-4 lg:left-[42%] lg:w-[56%]"
           >
-            <h1 className="font-editorial text-[22vw] font-black uppercase leading-[0.72] tracking-[-0.09em] text-[#eee6d8] mix-blend-screen sm:text-[17vw] lg:text-[11rem]">
+            <h1 className="font-editorial text-[22vw] font-black uppercase leading-[0.72] tracking-[-0.09em] text-[#191512] sm:text-[17vw] lg:text-[11rem]">
               Skin remembers.
             </h1>
-            <p className="mt-5 max-w-xl bg-[#080807]/78 p-3 text-base leading-7 text-[#eee6d8]/80 backdrop-blur-sm sm:text-lg">
+            <p className="mt-5 max-w-xl bg-[#fbf7ef]/88 p-3 text-base leading-7 text-[#191512]/78 shadow-[0_12px_35px_rgba(55,43,31,0.1)] backdrop-blur-sm sm:text-lg">
               Custom tattoo work shaped through conversation, placement, restraint, and
               instinct.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <a className="raw-button bg-[#d6402d] text-[#080807]" href="#request">
+              <a className="raw-button bg-[#9f2c1e] text-[#fffaf1]" href="#request">
                 Start a request
               </a>
-              <a className="raw-button border-[#eee6d8]/40 text-[#eee6d8]" href="#archive">
+              <a className="raw-button bg-[#fbf7ef] text-[#191512]" href="#archive">
                 Enter the archive
               </a>
             </div>
           </motion.div>
         </div>
 
-        <div className="relative z-20 col-span-6 row-start-3 mt-8 flex flex-col gap-4 border-t border-[#eee6d8]/16 pt-4 text-[0.68rem] font-black uppercase tracking-[0.25em] text-[#eee6d8]/55 sm:flex-row sm:items-end sm:justify-between lg:col-span-12">
-          <p className="max-w-sm rotate-[-1deg] bg-[#d8c7aa] px-3 py-2 text-[#191411]">
+        <div className="relative z-20 col-span-6 row-start-3 mt-8 flex flex-col gap-4 border-t border-[#191512]/12 pt-4 text-[0.68rem] font-black uppercase tracking-[0.25em] text-[#191512]/54 sm:flex-row sm:items-end sm:justify-between lg:col-span-12">
+          <p className="max-w-sm rotate-[-1deg] bg-[#efe1cb] px-3 py-2 text-[#191512] shadow-[0_8px_20px_rgba(55,43,31,0.08)]">
             custom only / by appointment / no copy paste work
           </p>
           <p className="sm:text-right">Fine line, blackwork, symbols, florals, and strange little things.</p>
@@ -410,11 +412,11 @@ function WorkArchive({ activeFilter, filteredPortfolio, setActiveFilter }) {
       <div className="mx-auto max-w-7xl">
         <SectionKicker label="work archive" number="012 marks" />
         <div className="mb-8 grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
-          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl lg:text-9xl">
+          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#191512] sm:text-8xl lg:text-9xl">
             Archive of marks
           </h2>
           <div className="lg:pt-6">
-            <p className="max-w-2xl text-lg leading-8 text-[#cfc4b4]/76">
+            <p className="max-w-2xl text-lg leading-8 text-[#191512]/68">
               Cropped skin, healed lines, flash fragments, and the small decisions that
               make a piece feel inevitable.
             </p>
@@ -426,8 +428,8 @@ function WorkArchive({ activeFilter, filteredPortfolio, setActiveFilter }) {
                   onClick={() => setActiveFilter(filter)}
                   className={`archive-filter ${
                     activeFilter === filter
-                      ? "border-[#d6402d] bg-[#d6402d] text-[#080807]"
-                      : "border-[#eee6d8]/30 bg-transparent text-[#eee6d8]/68 hover:border-[#d6402d] hover:text-[#d6402d]"
+                      ? "border-[#9f2c1e] bg-[#9f2c1e] text-[#fffaf1]"
+                      : "border-[#191512]/24 bg-[#fbf7ef]/60 text-[#191512]/68 hover:border-[#9f2c1e] hover:text-[#9f2c1e]"
                   }`}
                 >
                   {filter}
@@ -437,7 +439,7 @@ function WorkArchive({ activeFilter, filteredPortfolio, setActiveFilter }) {
           </div>
         </div>
 
-        <motion.div layout className="grid auto-rows-[210px] grid-cols-1 gap-3 md:grid-cols-4 md:gap-4">
+        <motion.div layout className="grid auto-rows-[210px] grid-cols-1 gap-4 md:grid-cols-4 md:gap-5">
           <AnimatePresence mode="popLayout">
             {filteredPortfolio.map((item) => (
               <ArchivePiece key={item.number} item={item} />
@@ -459,32 +461,29 @@ function ArchivePiece({ item }) {
       exit={{ opacity: 0, scale: 0.96 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className={`group relative cursor-crosshair overflow-hidden border border-[#eee6d8]/16 bg-[#11100e] ${item.layout}`}
+      className={`group image-mat relative cursor-crosshair overflow-hidden bg-[#fbf7ef] p-2 shadow-[0_18px_45px_rgba(55,43,31,0.12)] ${item.layout}`}
     >
       <img
         src={item.image}
         alt={`${item.title} tattoo placeholder`}
-        className={`h-full w-full object-cover grayscale contrast-125 saturate-[0.7] transition duration-700 group-hover:scale-105 group-hover:grayscale-0 ${item.media}`}
+        className={`h-full w-full object-cover grayscale contrast-110 saturate-[0.78] transition duration-700 group-hover:scale-105 group-hover:grayscale-0 ${item.media}`}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/10 to-transparent" />
-      <div className="absolute left-3 top-3 flex gap-2">
-        <span className="bg-[#eee6d8] px-2 py-1 font-mono text-[0.58rem] font-black text-[#080807]">
+      <div className="absolute inset-2 bg-gradient-to-t from-[#191512]/82 via-transparent to-transparent opacity-75" />
+      <div className="absolute left-4 top-4 flex gap-2">
+        <span className="bg-[#fbf7ef] px-2 py-1 font-mono text-[0.58rem] font-black text-[#191512]">
           {item.number}
         </span>
-        <span className="border border-[#eee6d8]/30 bg-[#080807]/70 px-2 py-1 text-[0.58rem] font-black uppercase tracking-[0.18em] text-[#eee6d8]">
+        <span className="border border-[#fbf7ef]/70 bg-[#191512]/58 px-2 py-1 text-[0.58rem] font-black uppercase tracking-[0.18em] text-[#fbf7ef]">
           {item.tag}
         </span>
       </div>
-      <div className="absolute inset-x-3 bottom-3 translate-y-4 border border-[#eee6d8]/18 bg-[#080807]/78 p-3 opacity-0 backdrop-blur-sm transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-        <p className="font-editorial text-2xl font-black leading-none text-[#eee6d8]">{item.title}</p>
-        <p className="mt-2 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[#d6402d]">
+      <div className="absolute inset-x-4 bottom-4 translate-y-4 border border-[#fbf7ef]/28 bg-[#fbf7ef]/92 p-3 opacity-0 shadow-[0_12px_30px_rgba(25,21,18,0.12)] backdrop-blur-sm transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        <p className="font-editorial text-2xl font-black leading-none text-[#191512]">{item.title}</p>
+        <p className="mt-2 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[#9f2c1e]">
           {item.placement}
         </p>
-        <p className="mt-2 text-sm leading-6 text-[#d8c7aa]/80">{item.caption}</p>
+        <p className="mt-2 text-sm leading-6 text-[#191512]/68">{item.caption}</p>
       </div>
-      <span className="absolute right-3 top-1/2 hidden -translate-y-1/2 rotate-90 text-[0.6rem] font-black uppercase tracking-[0.24em] text-[#eee6d8]/0 transition group-hover:text-[#eee6d8]/35 md:block">
-        archived mark
-      </span>
     </motion.article>
   );
 }
@@ -495,16 +494,16 @@ function AvailableFlash() {
       <div className="mx-auto max-w-7xl">
         <SectionKicker label="sketchbook" number="available concepts" />
         <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl">
+          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#191512] sm:text-8xl">
             Available flash
           </h2>
-          <p className="max-w-md text-sm leading-7 text-[#cfc4b4]/72">
+          <p className="max-w-md text-sm leading-7 text-[#191512]/62">
             Scanned placeholders for now. Swap these with real flash sheets, line art, or
             photographed sketchbook pages.
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {flash.map((item, index) => (
             <FlashCard key={item.name} item={item} index={index} />
           ))}
@@ -519,36 +518,36 @@ function FlashCard({ item, index }) {
 
   return (
     <FadeIn delay={index * 0.05}>
-      <article className="paper-edge group relative min-h-[360px] rotate-[0.6deg] border border-[#080807] bg-[#d8c7aa] p-5 text-[#15110f] shadow-[12px_12px_0_rgba(0,0,0,0.42)] transition hover:rotate-0 hover:-translate-y-1">
+      <article className="paper-card group relative min-h-[360px] rotate-[0.3deg] bg-[#fbf7ef] p-5 text-[#191512] shadow-[0_18px_45px_rgba(55,43,31,0.12)] transition hover:rotate-0 hover:-translate-y-1">
         <Tape className="left-8 top-[-14px] rotate-[-8deg]" />
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="font-mono text-[0.62rem] font-black uppercase tracking-[0.22em]">
+            <p className="font-mono text-[0.62rem] font-black uppercase tracking-[0.22em] text-[#191512]/56">
               concept {String(index + 1).padStart(2, "0")}
             </p>
             <h3 className="mt-2 font-editorial text-4xl font-black leading-none">{item.name}</h3>
           </div>
           <span
-            className={`stamp border-[#15110f]/40 ${
-              claimed ? "text-[#15110f]/45 line-through" : "text-[#d6402d]"
+            className={`stamp border-[#191512]/30 bg-transparent ${
+              claimed ? "text-[#191512]/38 line-through" : "text-[#9f2c1e]"
             }`}
           >
             {item.status}
           </span>
         </div>
         <div className="my-8 grid place-items-center">
-          <FlashDrawing shape={item.shape} className="h-36 w-36 text-[#15110f]" />
+          <FlashDrawing shape={item.shape} className="h-36 w-36 text-[#191512]" />
         </div>
-        <div className="mt-auto flex items-end justify-between border-t border-[#15110f]/25 pt-4">
-          <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em]">
+        <div className="mt-auto flex items-end justify-between border-t border-[#191512]/18 pt-4">
+          <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-[#191512]/68">
             size suggestion
             <br />
-            <span className="text-base font-black">{item.size}</span>
+            <span className="text-base font-black text-[#191512]">{item.size}</span>
           </p>
           <button
             type="button"
             disabled={claimed}
-            className="border border-[#15110f] px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.18em] transition enabled:hover:bg-[#15110f] enabled:hover:text-[#d8c7aa] disabled:cursor-not-allowed disabled:opacity-40"
+            className="border border-[#191512] px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.18em] transition enabled:hover:bg-[#191512] enabled:hover:text-[#fbf7ef] disabled:cursor-not-allowed disabled:opacity-40"
           >
             Claim this
           </button>
@@ -561,26 +560,26 @@ function FlashCard({ item, index }) {
 function ArtistNote() {
   return (
     <section className="px-4 py-24 sm:px-6 lg:px-10">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.92fr_1.08fr]">
         <FadeIn className="relative order-2 lg:order-1">
-          <div className="absolute -left-4 top-8 z-10 rotate-[-8deg] bg-[#d6402d] px-3 py-2 text-[0.62rem] font-black uppercase tracking-[0.2em] text-[#080807]">
+          <div className="absolute -left-4 top-8 z-10 rotate-[-5deg] bg-[#9f2c1e] px-3 py-2 text-[0.62rem] font-black uppercase tracking-[0.2em] text-[#fffaf1]">
             studio mirror / placeholder
           </div>
-          <div className="relative border border-[#eee6d8]/18 bg-[#11100e] p-3 shadow-[18px_18px_0_rgba(0,0,0,0.35)]">
+          <div className="image-mat relative bg-[#fbf7ef] p-3 shadow-[0_22px_60px_rgba(55,43,31,0.14)]">
             <img
               src={images.artistNote}
               alt="Candid studio process placeholder"
-              className="aspect-[4/5] w-full object-cover grayscale contrast-125 saturate-[0.75]"
+              className="aspect-[4/5] w-full object-cover grayscale contrast-110 saturate-[0.78]"
             />
           </div>
         </FadeIn>
 
         <FadeIn className="order-1 lg:order-2">
           <SectionKicker label="artist note" number="not a bio" />
-          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl">
+          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#191512] sm:text-8xl">
             Artist note
           </h2>
-          <p className="mt-8 max-w-2xl text-2xl leading-10 text-[#eee6d8]/86">
+          <p className="mt-8 max-w-2xl text-2xl leading-10 text-[#191512]/82">
             I care about tattoos that feel quiet, strange, personal, and properly placed.
             The goal is not to decorate skin. The goal is to make something that feels like
             it already belonged there.
@@ -589,9 +588,9 @@ function ArtistNote() {
             {["No copy paste work", "Placement matters", "Small details age loudly"].map((principle) => (
               <div
                 key={principle}
-                className="min-h-32 border border-[#eee6d8]/18 bg-[#eee6d8]/5 p-4 text-[0.78rem] font-black uppercase leading-6 tracking-[0.2em] text-[#eee6d8]/72"
+                className="min-h-32 border border-[#191512]/14 bg-[#fbf7ef]/62 p-4 text-[0.78rem] font-black uppercase leading-6 tracking-[0.2em] text-[#191512]/66 shadow-[0_14px_35px_rgba(55,43,31,0.08)]"
               >
-                <span className="mb-5 block h-px w-12 bg-[#d6402d]" />
+                <span className="mb-5 block h-px w-12 bg-[#9f2c1e]" />
                 {principle}
               </div>
             ))}
@@ -607,20 +606,20 @@ function BookingRitual() {
     <section className="px-4 py-20 sm:px-6 lg:px-10">
       <div className="mx-auto max-w-5xl">
         <SectionKicker label="process" number="printed instruction sheet" />
-        <div className="paper-edge relative rotate-[-0.5deg] border border-[#080807] bg-[#d8c7aa] p-5 text-[#15110f] shadow-[16px_16px_0_rgba(0,0,0,0.42)] sm:p-8">
+        <div className="paper-card relative rotate-[-0.3deg] bg-[#fffaf1] p-5 text-[#191512] shadow-[0_24px_70px_rgba(55,43,31,0.13)] sm:p-8">
           <Tape className="right-12 top-[-14px] rotate-[4deg]" />
           <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] sm:text-8xl">
             The ritual
           </h2>
-          <div className="mt-10 divide-y divide-[#15110f]/22 border-y border-[#15110f]/30">
+          <div className="mt-10 divide-y divide-[#191512]/16 border-y border-[#191512]/22">
             {ritual.map((step) => (
               <div key={step.number} className="grid gap-5 py-6 sm:grid-cols-[6rem_1fr]">
-                <p className="font-editorial text-5xl font-black text-[#d6402d]">{step.number}</p>
+                <p className="font-editorial text-5xl font-black text-[#9f2c1e]">{step.number}</p>
                 <div>
                   <h3 className="font-editorial text-3xl font-black uppercase leading-none">
                     {step.title}
                   </h3>
-                  <p className="mt-3 max-w-2xl text-base leading-7 text-[#15110f]/75">{step.text}</p>
+                  <p className="mt-3 max-w-2xl text-base leading-7 text-[#191512]/68">{step.text}</p>
                 </div>
               </div>
             ))}
@@ -634,16 +633,16 @@ function BookingRitual() {
 function BookingForm({ onSubmit, submitted }) {
   return (
     <section id="request" className="px-4 py-24 sm:px-6 lg:px-10">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.72fr_1.28fr]">
         <FadeIn>
           <SectionKicker label="intake card" number="booking" />
-          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl">
+          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#191512] sm:text-8xl">
             Request a piece
           </h2>
-          <p className="mt-7 max-w-md text-lg leading-8 text-[#cfc4b4]/78">
+          <p className="mt-7 max-w-md text-lg leading-8 text-[#191512]/70">
             Send the messy version. The idea does not need to be perfect yet.
           </p>
-          <p className="mt-8 rotate-[-2deg] border border-[#eee6d8]/20 bg-[#eee6d8]/7 p-4 font-mono text-xs uppercase leading-6 tracking-[0.18em] text-[#eee6d8]/58">
+          <p className="mt-8 rotate-[-1.2deg] border border-[#191512]/14 bg-[#fbf7ef]/72 p-4 font-mono text-xs uppercase leading-6 tracking-[0.18em] text-[#191512]/55 shadow-[0_14px_35px_rgba(55,43,31,0.08)]">
             Requests are reviewed for fit, placement, scale, and timing. Custom tattoo
             work by appointment only.
           </p>
@@ -652,7 +651,7 @@ function BookingForm({ onSubmit, submitted }) {
         <FadeIn delay={0.08}>
           <form
             onSubmit={onSubmit}
-            className="paper-edge border border-[#eee6d8]/18 bg-[#11100e] p-4 shadow-[18px_18px_0_rgba(0,0,0,0.36)] sm:p-6"
+            className="paper-card bg-[#fffaf1] p-4 shadow-[0_24px_70px_rgba(55,43,31,0.12)] sm:p-6"
           >
             <div className="grid gap-x-5 gap-y-6 md:grid-cols-2">
               <RawInput label="Name" name="name" required />
@@ -679,7 +678,7 @@ function BookingForm({ onSubmit, submitted }) {
               <div className="md:col-span-2">
                 <button
                   type="button"
-                  className="w-full border border-dashed border-[#eee6d8]/28 bg-transparent px-3 py-4 text-left font-mono text-xs uppercase tracking-[0.18em] text-[#eee6d8]/60 transition hover:border-[#d6402d] hover:text-[#d6402d]"
+                  className="w-full border border-dashed border-[#191512]/24 bg-transparent px-3 py-4 text-left font-mono text-xs uppercase tracking-[0.18em] text-[#191512]/50 transition hover:border-[#9f2c1e] hover:text-[#9f2c1e]"
                 >
                   Reference upload placeholder / attach images later
                 </button>
@@ -687,7 +686,7 @@ function BookingForm({ onSubmit, submitted }) {
             </div>
             <button
               type="submit"
-              className="mt-7 w-full border border-[#d6402d] bg-[#d6402d] px-5 py-4 text-sm font-black uppercase tracking-[0.24em] text-[#080807] shadow-[8px_8px_0_rgba(0,0,0,0.42)] transition hover:bg-[#eee6d8]"
+              className="mt-7 w-full border border-[#9f2c1e] bg-[#9f2c1e] px-5 py-4 text-sm font-black uppercase tracking-[0.24em] text-[#fffaf1] shadow-[8px_8px_0_rgba(25,21,18,0.13)] transition hover:bg-[#191512]"
             >
               Send the request
             </button>
@@ -697,7 +696,7 @@ function BookingForm({ onSubmit, submitted }) {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 12 }}
-                  className="mt-5 border border-[#d6402d]/70 bg-[#d6402d]/10 p-4 text-sm leading-7 text-[#eee6d8]"
+                  className="mt-5 border border-[#9f2c1e]/45 bg-[#9f2c1e]/8 p-4 text-sm leading-7 text-[#191512]"
                 >
                   Received. I'll review the idea and respond if it feels aligned.
                 </motion.p>
@@ -715,17 +714,17 @@ function StudioRules() {
     <section className="px-4 py-20 sm:px-6 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
-          <FadeIn className="border border-[#eee6d8]/18 bg-[#eee6d8]/5 p-5 sm:p-8">
+          <FadeIn className="premium-frame bg-[#fbf7ef]/72 p-5 shadow-[0_18px_45px_rgba(55,43,31,0.1)] sm:p-8">
             <SectionKicker label="studio wall" number="read first" />
-            <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl">
+            <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#191512] sm:text-8xl">
               Before you write
             </h2>
           </FadeIn>
-          <FadeIn delay={0.08} className="paper-edge border border-[#080807] bg-[#d8c7aa] p-5 text-[#15110f] shadow-[12px_12px_0_rgba(0,0,0,0.38)]">
-            <ul className="divide-y divide-[#15110f]/22">
+          <FadeIn delay={0.08} className="paper-card bg-[#efe1cb] p-5 text-[#191512] shadow-[0_18px_45px_rgba(55,43,31,0.12)]">
+            <ul className="divide-y divide-[#191512]/18">
               {rules.map((rule, index) => (
                 <li key={rule} className="flex gap-4 py-4">
-                  <span className="font-mono text-xs font-black text-[#d6402d]">
+                  <span className="font-mono text-xs font-black text-[#9f2c1e]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <span className="text-lg font-black uppercase leading-6 tracking-[-0.02em]">
@@ -744,16 +743,16 @@ function StudioRules() {
 function FinalPoster() {
   return (
     <section className="px-4 py-24 sm:px-6 lg:px-10">
-      <div className="relative mx-auto min-h-[520px] max-w-7xl overflow-hidden border border-[#eee6d8]/18 bg-[#0d0c0b] p-6 shadow-[0_40px_140px_rgba(0,0,0,0.45)] sm:p-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_22%,rgba(214,64,45,0.26),transparent_22%),linear-gradient(120deg,rgba(238,230,216,0.06)_0_1px,transparent_1px_20px)]" />
-        <InkLine className="absolute bottom-10 right-8 h-56 w-56 text-[#d6402d]/55" />
+      <div className="relative mx-auto min-h-[520px] max-w-7xl overflow-hidden bg-[#191512] p-6 text-[#fffaf1] shadow-[0_34px_100px_rgba(55,43,31,0.24)] sm:p-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_22%,rgba(159,44,30,0.38),transparent_22%),linear-gradient(120deg,rgba(255,250,241,0.08)_0_1px,transparent_1px_20px)]" />
+        <InkLine className="absolute bottom-10 right-8 h-56 w-56 text-[#c79a54]/65" />
         <div className="relative z-10 flex min-h-[440px] flex-col justify-between">
-          <span className="stamp w-fit rotate-[-3deg]">final note</span>
+          <span className="stamp w-fit rotate-[-3deg] border-[#fffaf1]/28 text-[#fffaf1]">final note</span>
           <div>
-            <h2 className="font-editorial max-w-5xl text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl lg:text-[9rem]">
+            <h2 className="font-editorial max-w-5xl text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] sm:text-8xl lg:text-[9rem]">
               Bring the idea. I'll shape the mark.
             </h2>
-            <a className="raw-button mt-10 inline-flex bg-[#d6402d] text-[#080807]" href="#request">
+            <a className="raw-button mt-10 inline-flex bg-[#fffaf1] text-[#191512]" href="#request">
               Start a request
             </a>
           </div>
@@ -766,28 +765,28 @@ function FinalPoster() {
 function Footer() {
   return (
     <footer className="px-4 pb-10 sm:px-6 lg:px-10">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 border-t border-[#eee6d8]/16 pt-8 md:flex-row md:items-end md:justify-between">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 border-t border-[#191512]/16 pt-8 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="font-editorial text-4xl font-black uppercase text-[#eee6d8]">{artist.name}</p>
-          <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-[#eee6d8]/46">
+          <p className="font-editorial text-4xl font-black uppercase text-[#191512]">{artist.name}</p>
+          <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-[#191512]/46">
             {artist.city} / custom tattoo work
           </p>
         </div>
-        <div className="flex flex-col gap-3 font-mono text-xs uppercase tracking-[0.18em] text-[#eee6d8]/56 md:items-end">
+        <div className="flex flex-col gap-3 font-mono text-xs uppercase tracking-[0.18em] text-[#191512]/56 md:items-end">
           <div className="flex flex-wrap gap-4">
-            <a className="hover:text-[#d6402d]" href="https://instagram.com">
+            <a className="hover:text-[#9f2c1e]" href="https://instagram.com">
               Instagram {artist.instagram}
             </a>
-            <a className="hover:text-[#d6402d]" href={`mailto:${artist.email}`}>
+            <a className="hover:text-[#9f2c1e]" href={`mailto:${artist.email}`}>
               {artist.email}
             </a>
-            <a className="hover:text-[#d6402d]" href="#request">
+            <a className="hover:text-[#9f2c1e]" href="#request">
               Booking
             </a>
           </div>
           <p>Copyright {new Date().getFullYear()} / custom tattoo work</p>
         </div>
-        <p className="vertical-label hidden text-[0.62rem] font-black uppercase tracking-[0.28em] text-[#eee6d8]/35 lg:block">
+        <p className="vertical-label hidden text-[0.62rem] font-black uppercase tracking-[0.28em] text-[#191512]/35 lg:block">
           custom tattoo work
         </p>
       </div>
@@ -797,9 +796,9 @@ function Footer() {
 
 function SectionKicker({ label, number }) {
   return (
-    <div className="mb-5 flex flex-wrap items-center gap-3 font-mono text-[0.62rem] font-black uppercase tracking-[0.24em] text-[#eee6d8]/48">
-      <span className="text-[#d6402d]">{label}</span>
-      <span className="h-px w-10 bg-[#eee6d8]/24" />
+    <div className="mb-5 flex flex-wrap items-center gap-3 font-mono text-[0.62rem] font-black uppercase tracking-[0.24em] text-[#191512]/46">
+      <span className="text-[#9f2c1e]">{label}</span>
+      <span className="h-px w-10 bg-[#191512]/24" />
       <span>{number}</span>
     </div>
   );
@@ -839,7 +838,7 @@ function RawSelect({ label, name, options }) {
   return (
     <label className="block">
       <span className="form-label">{label}</span>
-      <select name={name} defaultValue="" className="raw-field bg-[#11100e]">
+      <select name={name} defaultValue="" className="raw-field">
         <option value="" disabled>
           Select one
         </option>
@@ -863,7 +862,7 @@ function RawTextarea({ label, name, placeholder }) {
 }
 
 function Tape({ className = "" }) {
-  return <span className={`absolute z-20 h-7 w-24 bg-[#eee6d8]/55 opacity-70 mix-blend-screen ${className}`} />;
+  return <span className={`absolute z-20 h-7 w-24 bg-[#fffaf1]/76 opacity-80 mix-blend-screen ${className}`} />;
 }
 
 function InkLine({ className = "" }) {
