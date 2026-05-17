@@ -1,613 +1,706 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-// Replace these placeholders with the real artist details before launch.
+// Replace these placeholders with the real artist name, city, Instagram, and booking email.
 const artist = {
   name: "Artist Name",
   city: "Your City",
-  email: "booking@artiststudio.com",
   instagram: "@artistname",
-  tiktok: "@artistname",
+  email: "booking@artiststudio.com",
 };
 
-// Replace image URLs with real tattoo portfolio photography when available.
-const portfolioItems = [
+// Replace these image URLs with the artist's real tattoo photography and studio archive images.
+const images = {
+  heroBody:
+    "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1400&q=88",
+  heroFlash:
+    "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=900&q=86",
+  heroStudio:
+    "https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=700&q=84",
+  artistNote:
+    "https://images.unsplash.com/photo-1590246815117-be2a82e6d085?auto=format&fit=crop&w=1100&q=86",
+};
+
+const filters = ["All", "Fine line", "Floral", "Blackwork", "Script", "Symbols"];
+
+const portfolio = [
   {
-    title: "Botanical collarbone piece",
-    category: "Fine Line",
-    tag: "Fine Line",
-    caption: "Soft movement designed around the natural line of the shoulder.",
-    image:
-      "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=900&q=85",
-    aspect: "aspect-[4/5]",
-  },
-  {
-    title: "Wildflower forearm study",
+    number: "001",
+    title: "Rib flower study",
     category: "Floral",
     tag: "Floral",
-    caption: "Layered stems and negative space for a light, organic composition.",
+    placement: "Ribs",
+    caption: "A stem drawn to move with breath.",
     image:
-      "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=900&q=85",
-    aspect: "aspect-[3/4]",
+      "https://images.unsplash.com/photo-1590246814883-9a273a3d5c34?auto=format&fit=crop&w=1100&q=86",
+    layout: "md:col-span-2 md:row-span-2",
+    media: "aspect-[4/5] md:h-full",
   },
   {
-    title: "Handwritten keepsake",
+    number: "002",
+    title: "Tiny omen",
+    category: "Symbols",
+    tag: "Symbol",
+    placement: "Wrist",
+    caption: "Small, sharp, personal.",
+    image:
+      "https://images.unsplash.com/photo-1601848714157-d845bb5c11ff?auto=format&fit=crop&w=900&q=86",
+    layout: "md:col-span-1",
+    media: "aspect-square",
+  },
+  {
+    number: "003",
+    title: "Script fragment",
     category: "Script",
     tag: "Script",
-    caption: "Personal lettering refined for flow, scale, and placement.",
+    placement: "Collarbone",
+    caption: "Words placed like a secret.",
     image:
-      "https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=900&q=85",
-    aspect: "aspect-[5/6]",
+      "https://images.unsplash.com/photo-1541121514895-0f36e7d38d14?auto=format&fit=crop&w=900&q=86",
+    layout: "md:col-span-1 md:row-span-2",
+    media: "aspect-[3/5] md:h-full",
   },
   {
-    title: "Moonlit figure",
-    category: "Illustrative",
-    tag: "Illustrative",
-    caption: "An intimate black ink piece with quiet narrative detail.",
-    image:
-      "https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=900&q=85",
-    aspect: "aspect-[4/5]",
-  },
-  {
-    title: "Negative space moth",
+    number: "004",
+    title: "Black moth",
     category: "Blackwork",
     tag: "Blackwork",
-    caption: "Graphic contrast balanced with delicate interior texture.",
+    placement: "Upper arm",
+    caption: "Heavy wings, quiet center.",
     image:
-      "https://images.unsplash.com/photo-1612454376902-577cd469d008?auto=format&fit=crop&w=900&q=85",
-    aspect: "aspect-[3/5]",
+      "https://images.unsplash.com/photo-1612454376902-577cd469d008?auto=format&fit=crop&w=900&q=86",
+    layout: "md:col-span-1",
+    media: "aspect-[4/5]",
   },
   {
-    title: "Tiny heirloom symbol",
-    category: "Fine Line",
-    tag: "Micro Realism",
-    caption: "Small scale work with clear detail and careful restraint.",
+    number: "005",
+    title: "Fine line shoulder",
+    category: "Fine line",
+    tag: "Fine line",
+    placement: "Shoulder",
+    caption: "Restraint, skin, negative space.",
     image:
-      "https://images.unsplash.com/photo-1601848714157-d845bb5c11ff?auto=format&fit=crop&w=900&q=85",
-    aspect: "aspect-[1/1]",
+      "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1000&q=88",
+    layout: "md:col-span-2",
+    media: "aspect-[16/9]",
   },
   {
-    title: "Peony rib composition",
+    number: "006",
+    title: "Strange little thing",
+    category: "Symbols",
+    tag: "Symbol",
+    placement: "Ankle",
+    caption: "Drawn like a found mark.",
+    image:
+      "https://images.unsplash.com/photo-1607278204950-bd9aa08d1d52?auto=format&fit=crop&w=900&q=86",
+    layout: "md:col-span-1",
+    media: "aspect-square",
+  },
+  {
+    number: "007",
+    title: "Botanical wrap",
     category: "Floral",
     tag: "Floral",
-    caption: "A body-led floral design with softness, depth, and air.",
+    placement: "Forearm",
+    caption: "Leaves built around the arm, not pasted onto it.",
     image:
-      "https://images.unsplash.com/photo-1590246814883-9a273a3d5c34?auto=format&fit=crop&w=900&q=85",
-    aspect: "aspect-[4/5]",
+      "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1000&q=86",
+    layout: "md:col-span-1 md:row-span-2",
+    media: "aspect-[3/5] md:h-full",
   },
   {
-    title: "Quiet mantra",
-    category: "Script",
-    tag: "Lettering",
-    caption: "A minimal phrase placed to feel private and intentional.",
-    image:
-      "https://images.unsplash.com/photo-1541121514895-0f36e7d38d14?auto=format&fit=crop&w=900&q=85",
-    aspect: "aspect-[5/7]",
-  },
-  {
-    title: "Ink study sleeve detail",
+    number: "008",
+    title: "Ink field",
     category: "Blackwork",
     tag: "Blackwork",
-    caption: "Bold texture and contrast without overpowering the body.",
+    placement: "Back",
+    caption: "Texture made from pressure and pause.",
     image:
-      "https://images.unsplash.com/photo-1590246815117-be2a82e6d085?auto=format&fit=crop&w=900&q=85",
-    aspect: "aspect-[3/4]",
+      "https://images.unsplash.com/photo-1590246815117-be2a82e6d085?auto=format&fit=crop&w=1000&q=86",
+    layout: "md:col-span-2",
+    media: "aspect-[16/10]",
   },
   {
-    title: "Mythic line illustration",
-    category: "Illustrative",
-    tag: "Illustrative",
-    caption: "Story, symbolism, and placement brought into one composition.",
+    number: "009",
+    title: "Name as artifact",
+    category: "Script",
+    tag: "Script",
+    placement: "Inner arm",
+    caption: "Lettering with room to breathe.",
     image:
-      "https://images.unsplash.com/photo-1607278204950-bd9aa08d1d52?auto=format&fit=crop&w=900&q=85",
-    aspect: "aspect-[4/5]",
+      "https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=900&q=86",
+    layout: "md:col-span-1",
+    media: "aspect-[4/5]",
+  },
+  {
+    number: "010",
+    title: "Soft black line",
+    category: "Fine line",
+    tag: "Fine line",
+    placement: "Hip",
+    caption: "Barely there until it matters.",
+    image:
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=1000&q=86",
+    layout: "md:col-span-1",
+    media: "aspect-square",
+  },
+  {
+    number: "011",
+    title: "Palm sized bloom",
+    category: "Floral",
+    tag: "Floral",
+    placement: "Thigh",
+    caption: "A flower that knows its weight.",
+    image:
+      "https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=1000&q=86",
+    layout: "md:col-span-2",
+    media: "aspect-[16/9]",
+  },
+  {
+    number: "012",
+    title: "Private symbol",
+    category: "Symbols",
+    tag: "Symbol",
+    placement: "Sternum",
+    caption: "Unreadable to strangers. Exact to you.",
+    image:
+      "https://images.unsplash.com/photo-1601848714157-d845bb5c11ff?auto=format&fit=crop&w=900&q=86",
+    layout: "md:col-span-1",
+    media: "aspect-[4/5]",
   },
 ];
 
-const filters = ["All", "Fine Line", "Floral", "Script", "Illustrative", "Blackwork"];
-
-const values = [
-  {
-    title: "Intentional design",
-    text: "Every detail is shaped around your references, story, and anatomy.",
-  },
-  {
-    title: "Clean linework",
-    text: "Delicate marks, steady contrast, and a disciplined visual finish.",
-  },
-  {
-    title: "Calm private experience",
-    text: "A quiet studio appointment with space to ask, adjust, and breathe.",
-  },
+const flash = [
+  { name: "Wilted lily", size: "3-5 in", status: "Available", shape: "flower" },
+  { name: "Watching eye", size: "2-4 in", status: "Available", shape: "eye" },
+  { name: "Soft snake", size: "5-7 in", status: "Claimed", shape: "snake" },
+  { name: "Eight point star", size: "2 in", status: "Available", shape: "star" },
+  { name: "Open hand", size: "4-6 in", status: "Available", shape: "hand" },
+  { name: "Little signal", size: "2-3 in", status: "Available", shape: "symbol" },
 ];
 
-const styles = [
-  {
-    title: "Fine Line",
-    text: "Delicate, precise, minimal pieces with soft visual weight.",
-  },
-  {
-    title: "Floral and Botanical",
-    text: "Organic compositions inspired by movement, balance, and nature.",
-  },
-  {
-    title: "Script and Lettering",
-    text: "Personal words, names, and phrases designed with flow and placement in mind.",
-  },
-  {
-    title: "Illustrative Blackwork",
-    text: "Bold visual storytelling using contrast, texture, and shape.",
-  },
-];
-
-const processSteps = [
+const ritual = [
   {
     number: "01",
-    title: "Send your idea",
-    text: "Share your concept, placement, size, references, and preferred dates.",
+    title: "Send the idea",
+    text: "Your references, words, placement, size, and the feeling behind it.",
   },
   {
     number: "02",
-    title: "Design direction",
-    text: "We refine the style, composition, and placement so it fits your body naturally.",
+    title: "Shape the mark",
+    text: "I sketch around the body, not just the image.",
   },
   {
     number: "03",
-    title: "Appointment day",
-    text: "You arrive prepared, we review the stencil, and make final adjustments together.",
+    title: "Sit for it",
+    text: "We place, adjust, breathe, and make the final call together.",
   },
   {
     number: "04",
-    title: "Aftercare",
-    text: "You leave with clear healing instructions and support if you have questions.",
+    title: "Heal it right",
+    text: "You leave with aftercare, expectations, and support.",
   },
 ];
 
-const testimonials = [
-  {
-    quote:
-      "She made the whole process feel calm and collaborative. The final piece felt exactly like me.",
-    name: "Mara K.",
-  },
-  {
-    quote: "The linework is so clean, and the design fit my body better than I imagined.",
-    name: "J. Rivera",
-  },
-  {
-    quote: "I came in with a rough idea and left with something deeply personal.",
-    name: "A. Chen",
-  },
+const rules = [
+  "Custom work only",
+  "No direct copies of another artist's tattoo",
+  "Deposits hold the appointment",
+  "Come fed, rested, and hydrated",
+  "Touch ups are discussed after healing",
+  "Respect the time, the skin, and the process",
 ];
 
-const faqs = [
-  {
-    question: "How do I book?",
-    answer:
-      "Fill out the request form with your idea, placement, size, and references. You will receive a follow-up with next steps.",
-  },
-  {
-    question: "Do you take custom designs?",
-    answer:
-      "Yes. Most work is custom and designed around your story, body, and preferred aesthetic.",
-  },
-  {
-    question: "Do you do cover ups?",
-    answer:
-      "Some cover ups are possible. Clear photos and an honest description help determine if the project is a fit.",
-  },
-  {
-    question: "How should I prepare for my appointment?",
-    answer:
-      "Arrive rested, hydrated, and fed. Avoid alcohol beforehand and wear clothing that gives easy access to the placement.",
-  },
-  {
-    question: "How much does a tattoo cost?",
-    answer:
-      "Pricing depends on size, detail, placement, and session length. You will receive guidance after your request is reviewed.",
-  },
-  {
-    question: "Can I bring references?",
-    answer:
-      "Absolutely. References are encouraged and help clarify mood, style, composition, and details you want to avoid.",
-  },
-  {
-    question: "What is your cancellation policy?",
-    answer:
-      "Please give as much notice as possible. Deposits and rescheduling policies are shared before an appointment is confirmed.",
-  },
-];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+const fade = {
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 },
 };
 
 function App() {
   const [activeFilter, setActiveFilter] = useState("All");
-  const [openFaq, setOpenFaq] = useState(0);
   const [submitted, setSubmitted] = useState(false);
 
   const filteredPortfolio = useMemo(() => {
     if (activeFilter === "All") {
-      return portfolioItems;
+      return portfolio;
     }
 
-    return portfolioItems.filter((item) => item.category === activeFilter);
+    return portfolio.filter((item) => item.category === activeFilter);
   }, [activeFilter]);
 
-  function handleBookingSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
     setSubmitted(true);
   }
 
   return (
-    <main className="grain min-h-screen overflow-hidden bg-[#070605] text-[#f4eee5]">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(124,46,38,0.28),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(216,183,143,0.16),transparent_28%),linear-gradient(180deg,#070605_0%,#11100e_48%,#070605_100%)]" />
+    <main className="site-grain min-h-screen overflow-x-hidden bg-[#080807] text-[#eee6d8]">
+      <div className="fixed inset-0 -z-20 bg-[radial-gradient(circle_at_18%_18%,rgba(113,22,18,0.34),transparent_28%),radial-gradient(circle_at_86%_4%,rgba(154,125,72,0.18),transparent_22%),linear-gradient(180deg,#080807_0%,#16120f_48%,#080807_100%)]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(90deg,rgba(238,230,216,0.04)_1px,transparent_1px),linear-gradient(180deg,rgba(238,230,216,0.035)_1px,transparent_1px)] bg-[size:76px_76px]" />
 
-      <Header />
-      <Hero />
-      <Portfolio
+      <SideNav />
+      <StickyBooking />
+      <FloatingArchiveLabels />
+
+      <HeroPoster />
+      <WorkArchive
         activeFilter={activeFilter}
         filteredPortfolio={filteredPortfolio}
         setActiveFilter={setActiveFilter}
       />
-      <ArtistStory />
-      <SignatureStyles />
-      <Process />
-      <Booking onSubmit={handleBookingSubmit} submitted={submitted} />
-      <Testimonials />
-      <FAQ openFaq={openFaq} setOpenFaq={setOpenFaq} />
-      <FinalCTA />
+      <AvailableFlash />
+      <ArtistNote />
+      <BookingRitual />
+      <BookingForm onSubmit={handleSubmit} submitted={submitted} />
+      <StudioRules />
+      <FinalPoster />
       <Footer />
     </main>
   );
 }
 
-function Header() {
+function SideNav() {
   return (
-    <header className="absolute left-0 right-0 top-0 z-40">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-6 sm:px-8 lg:px-10">
-        <a href="#top" className="group inline-flex items-center gap-3">
-          <span className="h-8 w-8 rounded-full border border-[#d8b78f]/40 bg-[#f4eee5]/5 shadow-[0_0_35px_rgba(216,183,143,0.16)]" />
-          <span className="text-xs font-semibold uppercase tracking-[0.34em] text-[#f4eee5]/80">
-            {artist.name}
-          </span>
-        </a>
-        <div className="hidden items-center gap-8 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#f4eee5]/58 md:flex">
-          <a className="transition hover:text-[#f4eee5]" href="#work">
-            Work
-          </a>
-          <a className="transition hover:text-[#f4eee5]" href="#artist">
-            Artist
-          </a>
-          <a className="transition hover:text-[#f4eee5]" href="#process">
-            Process
-          </a>
-          <a className="transition hover:text-[#f4eee5]" href="#booking">
-            Booking
-          </a>
-        </div>
-        <a
-          href="#booking"
-          className="rounded-full border border-[#d8b78f]/35 bg-[#d8b78f]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#f4eee5] transition hover:border-[#d8b78f] hover:bg-[#d8b78f] hover:text-[#100d0b]"
-        >
-          Inquire
-        </a>
-      </nav>
-    </header>
+    <nav className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-5 text-[0.62rem] font-black uppercase tracking-[0.28em] text-[#eee6d8]/45 lg:flex">
+      <span className="h-16 w-px bg-[#eee6d8]/25" />
+      <a className="vertical-label transition hover:text-[#d6402d]" href="#archive">
+        Archive
+      </a>
+      <a className="vertical-label transition hover:text-[#d6402d]" href="#flash">
+        Flash
+      </a>
+      <a className="vertical-label transition hover:text-[#d6402d]" href="#request">
+        Request
+      </a>
+      <span className="h-16 w-px bg-[#eee6d8]/25" />
+    </nav>
   );
 }
 
-function Hero() {
+function StickyBooking() {
   return (
-    <section id="top" className="relative min-h-screen px-5 pb-20 pt-28 sm:px-8 lg:px-10">
-      <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/75 to-transparent" />
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.02fr_0.98fr]">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 pt-10 lg:pt-20"
-        >
-          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.42em] text-[#d8b78f]">
-            Private tattoo studio / {artist.city}
-          </p>
-          <h1 className="font-editorial max-w-4xl text-6xl font-semibold leading-[0.88] tracking-[-0.06em] text-[#f7efe5] sm:text-7xl md:text-8xl lg:text-[8.6rem]">
-            Custom tattoos with intention, detail, and soul.
-          </h1>
-          <p className="mt-8 max-w-2xl text-base leading-8 text-[#d8d0c5]/76 sm:text-lg">
-            Fine line, illustrative, and meaningful tattoo work designed around your story,
-            your body, and your aesthetic.
-          </p>
+    <a
+      href="#request"
+      className="fixed bottom-4 right-4 z-50 rotate-[-2deg] border border-[#080807] bg-[#d6402d] px-5 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#080807] shadow-[8px_8px_0_rgba(0,0,0,0.55)] transition hover:rotate-0 hover:bg-[#eee6d8] sm:bottom-6 sm:right-6"
+    >
+      Start a request
+    </a>
+  );
+}
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <PrimaryButton href="#booking">Book a consultation</PrimaryButton>
-            <SecondaryButton href="#work">View work</SecondaryButton>
-          </div>
+function FloatingArchiveLabels() {
+  return (
+    <div className="pointer-events-none fixed inset-0 z-0 hidden overflow-hidden text-[0.62rem] font-black uppercase tracking-[0.3em] text-[#eee6d8]/10 md:block">
+      <span className="absolute left-[8%] top-[24%] rotate-[-18deg]">archive 009</span>
+      <span className="absolute right-[8%] top-[36%] rotate-[12deg]">custom only</span>
+      <span className="absolute bottom-[22%] left-[18%] rotate-[8deg]">no copy paste</span>
+    </div>
+  );
+}
 
-          <div className="mt-12 grid max-w-xl grid-cols-3 border-y border-[#f4eee5]/10 py-5 text-center sm:text-left">
-            {["Fine line", "Custom only", "By appointment"].map((item) => (
-              <div key={item} className="border-r border-[#f4eee5]/10 last:border-r-0 sm:px-5">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#f4eee5]/42">
-                  Studio note
-                </p>
-                <p className="mt-2 text-sm text-[#f4eee5]/82">{item}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+function HeroPoster() {
+  return (
+    <section id="top" className="relative min-h-screen px-4 py-5 sm:px-6 lg:px-10">
+      <div className="relative mx-auto grid min-h-[calc(100vh-2.5rem)] max-w-7xl grid-cols-6 grid-rows-[auto_1fr_auto] overflow-hidden border border-[#eee6d8]/18 bg-[#0d0c0b]/80 p-4 shadow-[0_40px_140px_rgba(0,0,0,0.5)] sm:p-6 lg:grid-cols-12 lg:p-8">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(214,64,45,0.18),transparent_22%),linear-gradient(135deg,rgba(238,230,216,0.05)_0_1px,transparent_1px_18px)]" />
+        <InkLine className="absolute right-5 top-16 z-20 h-32 w-32 text-[#d6402d]/70" />
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 24 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.18, ease: "easeOut" }}
-          className="relative z-10 mx-auto w-full max-w-[560px] lg:mr-0 lg:pt-14"
-        >
-          <div className="absolute -left-6 top-1/3 z-20 hidden rounded-full border border-[#f4eee5]/12 bg-[#0f0d0b]/80 px-4 py-3 text-xs uppercase tracking-[0.2em] text-[#f4eee5]/78 shadow-2xl backdrop-blur md:block">
-            Custom designs
+        <div className="relative z-20 col-span-6 flex items-start justify-between lg:col-span-12">
+          <a href="#top" className="stamp rotate-[-2deg]">
+            {artist.name} / {artist.city}
+          </a>
+          <div className="hidden text-right text-[0.62rem] font-black uppercase tracking-[0.28em] text-[#eee6d8]/55 sm:block">
+            custom tattoo work
+            <br />
+            archive no. 01
           </div>
-          <div className="absolute -right-3 top-16 z-20 rounded-full border border-[#d8b78f]/25 bg-[#d8b78f]/12 px-4 py-3 text-xs uppercase tracking-[0.2em] text-[#f4eee5]/78 shadow-2xl backdrop-blur">
-            Private studio
-          </div>
-          <div className="absolute bottom-16 left-5 z-20 rounded-full border border-[#f4eee5]/12 bg-black/45 px-4 py-3 text-xs uppercase tracking-[0.2em] text-[#f4eee5]/78 shadow-2xl backdrop-blur">
-            {artist.city} based
-          </div>
+        </div>
 
-          <div className="relative overflow-hidden rounded-[2.2rem] border border-[#f4eee5]/12 bg-[#15110f] p-3 shadow-[0_35px_120px_rgba(0,0,0,0.55)]">
-            <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_18%_10%,rgba(255,255,255,0.22),transparent_22%),linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.7))]" />
+        <div className="relative z-10 col-span-6 row-start-2 mt-8 grid grid-cols-6 gap-3 lg:col-span-12 lg:grid-cols-12 lg:gap-5">
+          <motion.div
+            initial={{ opacity: 0, rotate: -3, y: 20 }}
+            animate={{ opacity: 1, rotate: -2, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="paper-edge relative col-span-6 h-[58vh] min-h-[420px] overflow-hidden border border-[#eee6d8]/20 bg-[#14110e] p-2 shadow-[18px_18px_0_rgba(0,0,0,0.34)] lg:col-span-7"
+          >
             <img
-              // Replace with a vertical hero photo of the artist's tattoo work.
-              src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1200&q=90"
-              alt="Close-up placeholder of fine line tattoo work"
-              className="h-[620px] w-full rounded-[1.65rem] object-cover grayscale-[20%] saturate-[0.8]"
+              src={images.heroBody}
+              alt="Large cropped tattoo body closeup placeholder"
+              className="h-full w-full object-cover grayscale contrast-125 saturate-[0.7]"
             />
-          </div>
+            <div className="absolute inset-2 bg-gradient-to-t from-black/78 via-black/8 to-transparent" />
+            <span className="stamp absolute left-5 top-5 rotate-[-4deg]">CUSTOM ONLY</span>
+            <span className="absolute bottom-5 right-5 bg-[#eee6d8] px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.22em] text-[#080807]">
+              fine line / blackwork
+            </span>
+          </motion.div>
 
-          <div className="absolute -bottom-8 -right-8 -z-10 h-52 w-52 rounded-full bg-[#8d2f2b]/30 blur-3xl" />
-          <div className="absolute -left-10 top-16 -z-10 h-72 w-72 rounded-full bg-[#d8b78f]/10 blur-3xl" />
+          <motion.div
+            initial={{ opacity: 0, rotate: 5, y: 34 }}
+            animate={{ opacity: 1, rotate: 3, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.16, ease: "easeOut" }}
+            className="relative col-span-4 col-start-2 -mt-12 border border-[#080807] bg-[#d8c7aa] p-2 shadow-[10px_10px_0_rgba(0,0,0,0.42)] sm:col-span-3 lg:col-span-3 lg:col-start-8 lg:mt-24"
+          >
+            <Tape className="left-1/2 top-[-16px] -translate-x-1/2 rotate-[2deg]" />
+            <img
+              src={images.heroFlash}
+              alt="Scanned flash sheet placeholder"
+              className="aspect-[4/5] w-full object-cover grayscale contrast-125 mix-blend-multiply"
+            />
+            <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#17120f]">
+              flash sheet / scanned copy
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, rotate: -8, y: -10 }}
+            animate={{ opacity: 1, rotate: -6, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.24, ease: "easeOut" }}
+            className="relative col-span-3 col-start-4 -mt-6 border border-[#eee6d8]/20 bg-[#111] p-2 shadow-[12px_12px_0_rgba(0,0,0,0.45)] lg:col-span-2 lg:col-start-11 lg:mt-8"
+          >
+            <Tape className="right-4 top-[-14px] rotate-[-9deg]" />
+            <img
+              src={images.heroStudio}
+              alt="Tiny studio detail placeholder"
+              className="aspect-square w-full object-cover grayscale contrast-125"
+            />
+            <span className="absolute -bottom-4 left-4 border border-[#eee6d8]/25 bg-[#080807] px-2 py-1 text-[0.58rem] font-black uppercase tracking-[0.18em] text-[#d6402d]">
+              by appointment
+            </span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 36 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            className="relative z-30 col-span-6 -mt-10 lg:absolute lg:bottom-4 lg:left-[42%] lg:w-[56%]"
+          >
+            <h1 className="font-editorial text-[22vw] font-black uppercase leading-[0.72] tracking-[-0.09em] text-[#eee6d8] mix-blend-screen sm:text-[17vw] lg:text-[11rem]">
+              Skin remembers.
+            </h1>
+            <p className="mt-5 max-w-xl bg-[#080807]/78 p-3 text-base leading-7 text-[#eee6d8]/80 backdrop-blur-sm sm:text-lg">
+              Custom tattoo work shaped through conversation, placement, restraint, and
+              instinct.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <a className="raw-button bg-[#d6402d] text-[#080807]" href="#request">
+                Start a request
+              </a>
+              <a className="raw-button border-[#eee6d8]/40 text-[#eee6d8]" href="#archive">
+                Enter the archive
+              </a>
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="relative z-20 col-span-6 row-start-3 mt-8 flex flex-col gap-4 border-t border-[#eee6d8]/16 pt-4 text-[0.68rem] font-black uppercase tracking-[0.25em] text-[#eee6d8]/55 sm:flex-row sm:items-end sm:justify-between lg:col-span-12">
+          <p className="max-w-sm rotate-[-1deg] bg-[#d8c7aa] px-3 py-2 text-[#191411]">
+            custom only / by appointment / no copy paste work
+          </p>
+          <p className="sm:text-right">Fine line, blackwork, symbols, florals, and strange little things.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WorkArchive({ activeFilter, filteredPortfolio, setActiveFilter }) {
+  return (
+    <section id="archive" className="relative px-4 py-24 sm:px-6 lg:px-10">
+      <div className="mx-auto max-w-7xl">
+        <SectionKicker label="work archive" number="012 marks" />
+        <div className="mb-8 grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl lg:text-9xl">
+            Archive of marks
+          </h2>
+          <div className="lg:pt-6">
+            <p className="max-w-2xl text-lg leading-8 text-[#cfc4b4]/76">
+              Cropped skin, healed lines, flash fragments, and the small decisions that
+              make a piece feel inevitable.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-2">
+              {filters.map((filter) => (
+                <button
+                  key={filter}
+                  type="button"
+                  onClick={() => setActiveFilter(filter)}
+                  className={`archive-filter ${
+                    activeFilter === filter
+                      ? "border-[#d6402d] bg-[#d6402d] text-[#080807]"
+                      : "border-[#eee6d8]/30 bg-transparent text-[#eee6d8]/68 hover:border-[#d6402d] hover:text-[#d6402d]"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <motion.div layout className="grid auto-rows-[210px] grid-cols-1 gap-3 md:grid-cols-4 md:gap-4">
+          <AnimatePresence mode="popLayout">
+            {filteredPortfolio.map((item) => (
+              <ArchivePiece key={item.number} item={item} />
+            ))}
+          </AnimatePresence>
         </motion.div>
       </div>
     </section>
   );
 }
 
-function Portfolio({ activeFilter, filteredPortfolio, setActiveFilter }) {
-  return (
-    <Section id="work" className="pt-12">
-      <SectionHeader eyebrow="Portfolio" title="Selected Work" align="between">
-        <p className="max-w-xl text-sm leading-7 text-[#d8d0c5]/68">
-          A quiet collection of custom pieces, composed for skin, scale, and personal meaning.
-        </p>
-      </SectionHeader>
-
-      <div className="mb-10 flex flex-wrap gap-3">
-        {filters.map((filter) => (
-          <button
-            key={filter}
-            type="button"
-            onClick={() => setActiveFilter(filter)}
-            className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition ${
-              activeFilter === filter
-                ? "border-[#d8b78f] bg-[#d8b78f] text-[#0d0a08]"
-                : "border-[#f4eee5]/12 bg-[#f4eee5]/5 text-[#f4eee5]/58 hover:border-[#f4eee5]/35 hover:text-[#f4eee5]"
-            }`}
-          >
-            {filter}
-          </button>
-        ))}
-      </div>
-
-      <motion.div layout className="columns-1 gap-5 sm:columns-2 lg:columns-3">
-        <AnimatePresence mode="popLayout">
-          {filteredPortfolio.map((item) => (
-            <PortfolioCard key={item.title} item={item} />
-          ))}
-        </AnimatePresence>
-      </motion.div>
-    </Section>
-  );
-}
-
-function PortfolioCard({ item }) {
+function ArchivePiece({ item }) {
   return (
     <motion.article
       layout
-      variants={fadeUp}
+      variants={fade}
       initial="hidden"
       whileInView="visible"
-      exit={{ opacity: 0, y: 18 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="group mb-5 break-inside-avoid overflow-hidden rounded-[1.7rem] border border-[#f4eee5]/10 bg-[#f4eee5]/[0.035] p-2 shadow-[0_20px_70px_rgba(0,0,0,0.26)]"
+      exit={{ opacity: 0, scale: 0.96 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+      className={`group relative cursor-crosshair overflow-hidden border border-[#eee6d8]/16 bg-[#11100e] ${item.layout}`}
     >
-      <div className={`relative overflow-hidden rounded-[1.25rem] ${item.aspect}`}>
-        <img
-          src={item.image}
-          alt={`${item.title} placeholder`}
-          className="h-full w-full object-cover opacity-[0.88] grayscale-[18%] saturate-[0.82] transition duration-700 group-hover:scale-105 group-hover:opacity-100"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/18 to-transparent" />
-        <div className="absolute left-4 top-4 rounded-full border border-[#f4eee5]/14 bg-black/35 px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#f4eee5]/82 backdrop-blur">
+      <img
+        src={item.image}
+        alt={`${item.title} tattoo placeholder`}
+        className={`h-full w-full object-cover grayscale contrast-125 saturate-[0.7] transition duration-700 group-hover:scale-105 group-hover:grayscale-0 ${item.media}`}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/10 to-transparent" />
+      <div className="absolute left-3 top-3 flex gap-2">
+        <span className="bg-[#eee6d8] px-2 py-1 font-mono text-[0.58rem] font-black text-[#080807]">
+          {item.number}
+        </span>
+        <span className="border border-[#eee6d8]/30 bg-[#080807]/70 px-2 py-1 text-[0.58rem] font-black uppercase tracking-[0.18em] text-[#eee6d8]">
           {item.tag}
-        </div>
-        <div className="absolute inset-x-0 bottom-0 translate-y-3 p-5 opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-          <p className="font-editorial text-2xl font-semibold text-[#fff8ef]">{item.title}</p>
-          <p className="mt-2 text-sm leading-6 text-[#e6dcd0]/74">{item.caption}</p>
-        </div>
+        </span>
       </div>
+      <div className="absolute inset-x-3 bottom-3 translate-y-4 border border-[#eee6d8]/18 bg-[#080807]/78 p-3 opacity-0 backdrop-blur-sm transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        <p className="font-editorial text-2xl font-black leading-none text-[#eee6d8]">{item.title}</p>
+        <p className="mt-2 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[#d6402d]">
+          {item.placement}
+        </p>
+        <p className="mt-2 text-sm leading-6 text-[#d8c7aa]/80">{item.caption}</p>
+      </div>
+      <span className="absolute right-3 top-1/2 hidden -translate-y-1/2 rotate-90 text-[0.6rem] font-black uppercase tracking-[0.24em] text-[#eee6d8]/0 transition group-hover:text-[#eee6d8]/35 md:block">
+        archived mark
+      </span>
     </motion.article>
   );
 }
 
-function ArtistStory() {
+function AvailableFlash() {
   return (
-    <Section id="artist" className="py-24">
-      <div className="grid items-center gap-12 lg:grid-cols-[0.88fr_1.12fr]">
-        <FadeIn className="relative">
-          <div className="absolute -left-8 -top-8 h-44 w-44 rounded-full bg-[#d8b78f]/10 blur-3xl" />
-          <div className="relative overflow-hidden rounded-[2rem] border border-[#f4eee5]/10 bg-[#15110f] p-3">
+    <section id="flash" className="px-4 py-20 sm:px-6 lg:px-10">
+      <div className="mx-auto max-w-7xl">
+        <SectionKicker label="sketchbook" number="available concepts" />
+        <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl">
+            Available flash
+          </h2>
+          <p className="max-w-md text-sm leading-7 text-[#cfc4b4]/72">
+            Scanned placeholders for now. Swap these with real flash sheets, line art, or
+            photographed sketchbook pages.
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {flash.map((item, index) => (
+            <FlashCard key={item.name} item={item} index={index} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FlashCard({ item, index }) {
+  const claimed = item.status === "Claimed";
+
+  return (
+    <FadeIn delay={index * 0.05}>
+      <article className="paper-edge group relative min-h-[360px] rotate-[0.6deg] border border-[#080807] bg-[#d8c7aa] p-5 text-[#15110f] shadow-[12px_12px_0_rgba(0,0,0,0.42)] transition hover:rotate-0 hover:-translate-y-1">
+        <Tape className="left-8 top-[-14px] rotate-[-8deg]" />
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="font-mono text-[0.62rem] font-black uppercase tracking-[0.22em]">
+              concept {String(index + 1).padStart(2, "0")}
+            </p>
+            <h3 className="mt-2 font-editorial text-4xl font-black leading-none">{item.name}</h3>
+          </div>
+          <span
+            className={`stamp border-[#15110f]/40 ${
+              claimed ? "text-[#15110f]/45 line-through" : "text-[#d6402d]"
+            }`}
+          >
+            {item.status}
+          </span>
+        </div>
+        <div className="my-8 grid place-items-center">
+          <FlashDrawing shape={item.shape} className="h-36 w-36 text-[#15110f]" />
+        </div>
+        <div className="mt-auto flex items-end justify-between border-t border-[#15110f]/25 pt-4">
+          <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em]">
+            size suggestion
+            <br />
+            <span className="text-base font-black">{item.size}</span>
+          </p>
+          <button
+            type="button"
+            disabled={claimed}
+            className="border border-[#15110f] px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.18em] transition enabled:hover:bg-[#15110f] enabled:hover:text-[#d8c7aa] disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Claim this
+          </button>
+        </div>
+      </article>
+    </FadeIn>
+  );
+}
+
+function ArtistNote() {
+  return (
+    <section className="px-4 py-24 sm:px-6 lg:px-10">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+        <FadeIn className="relative order-2 lg:order-1">
+          <div className="absolute -left-4 top-8 z-10 rotate-[-8deg] bg-[#d6402d] px-3 py-2 text-[0.62rem] font-black uppercase tracking-[0.2em] text-[#080807]">
+            studio mirror / placeholder
+          </div>
+          <div className="relative border border-[#eee6d8]/18 bg-[#11100e] p-3 shadow-[18px_18px_0_rgba(0,0,0,0.35)]">
             <img
-              // Replace with a warm portrait or studio process image of the artist.
-              src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1100&q=86"
-              alt="Artist studio portrait placeholder"
-              className="h-[560px] w-full rounded-[1.45rem] object-cover grayscale-[25%] saturate-[0.72]"
+              src={images.artistNote}
+              alt="Candid studio process placeholder"
+              className="aspect-[4/5] w-full object-cover grayscale contrast-125 saturate-[0.75]"
             />
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.1}>
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.42em] text-[#d8b78f]">
-            Meet the Artist
-          </p>
-          <h2 className="font-editorial text-5xl font-semibold leading-[0.95] tracking-[-0.045em] text-[#fff8ef] sm:text-6xl md:text-7xl">
-            Tattoos that feel personal before they feel decorative.
+        <FadeIn className="order-1 lg:order-2">
+          <SectionKicker label="artist note" number="not a bio" />
+          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl">
+            Artist note
           </h2>
-          <p className="mt-8 max-w-2xl text-lg leading-9 text-[#d8d0c5]/76">
-            I design tattoos that feel personal before they feel decorative. Every piece
-            starts with a conversation, your references, your story, and the feeling you
-            want to carry with you.
+          <p className="mt-8 max-w-2xl text-2xl leading-10 text-[#eee6d8]/86">
+            I care about tattoos that feel quiet, strange, personal, and properly placed.
+            The goal is not to decorate skin. The goal is to make something that feels like
+            it already belonged there.
           </p>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            {values.map((value) => (
-              <ValueCard key={value.title} {...value} />
+          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+            {["No copy paste work", "Placement matters", "Small details age loudly"].map((principle) => (
+              <div
+                key={principle}
+                className="min-h-32 border border-[#eee6d8]/18 bg-[#eee6d8]/5 p-4 text-[0.78rem] font-black uppercase leading-6 tracking-[0.2em] text-[#eee6d8]/72"
+              >
+                <span className="mb-5 block h-px w-12 bg-[#d6402d]" />
+                {principle}
+              </div>
             ))}
           </div>
         </FadeIn>
       </div>
-    </Section>
+    </section>
   );
 }
 
-function SignatureStyles() {
+function BookingRitual() {
   return (
-    <Section className="py-20">
-      <SectionHeader eyebrow="Approach" title="Signature Styles">
-        <p className="max-w-xl text-sm leading-7 text-[#d8d0c5]/68">
-          Refined tattoo work with enough restraint to age beautifully and enough edge to
-          feel unmistakably yours.
-        </p>
-      </SectionHeader>
-
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {styles.map((style, index) => (
-          <StyleCard key={style.title} index={index} {...style} />
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function Process() {
-  return (
-    <Section id="process" className="py-20">
-      <SectionHeader eyebrow="Process" title="How it works" align="between">
-        <p className="max-w-lg text-sm leading-7 text-[#d8d0c5]/68">
-          A clear path from first idea to healed piece, with thoughtful communication at
-          every step.
-        </p>
-      </SectionHeader>
-
-      <div className="relative">
-        <div className="absolute left-4 top-8 hidden h-[calc(100%-4rem)] w-px bg-gradient-to-b from-[#d8b78f]/0 via-[#d8b78f]/45 to-[#d8b78f]/0 md:block" />
-        <div className="grid gap-4">
-          {processSteps.map((step, index) => (
-            <ProcessStep key={step.number} step={step} index={index} />
-          ))}
+    <section className="px-4 py-20 sm:px-6 lg:px-10">
+      <div className="mx-auto max-w-5xl">
+        <SectionKicker label="process" number="printed instruction sheet" />
+        <div className="paper-edge relative rotate-[-0.5deg] border border-[#080807] bg-[#d8c7aa] p-5 text-[#15110f] shadow-[16px_16px_0_rgba(0,0,0,0.42)] sm:p-8">
+          <Tape className="right-12 top-[-14px] rotate-[4deg]" />
+          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] sm:text-8xl">
+            The ritual
+          </h2>
+          <div className="mt-10 divide-y divide-[#15110f]/22 border-y border-[#15110f]/30">
+            {ritual.map((step) => (
+              <div key={step.number} className="grid gap-5 py-6 sm:grid-cols-[6rem_1fr]">
+                <p className="font-editorial text-5xl font-black text-[#d6402d]">{step.number}</p>
+                <div>
+                  <h3 className="font-editorial text-3xl font-black uppercase leading-none">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-base leading-7 text-[#15110f]/75">{step.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
-function Booking({ onSubmit, submitted }) {
+function BookingForm({ onSubmit, submitted }) {
   return (
-    <section
-      id="booking"
-      className="relative mx-3 my-20 overflow-hidden rounded-[2rem] border border-[#d8b78f]/18 bg-[#120f0d] px-5 py-16 shadow-[0_35px_120px_rgba(0,0,0,0.42)] sm:mx-6 sm:px-8 lg:mx-10"
-    >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(216,183,143,0.18),transparent_28%),radial-gradient(circle_at_90%_18%,rgba(112,36,32,0.34),transparent_25%)]" />
-      <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr]">
+    <section id="request" className="px-4 py-24 sm:px-6 lg:px-10">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr]">
         <FadeIn>
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.42em] text-[#d8b78f]">
-            Booking
-          </p>
-          <h2 className="font-editorial text-5xl font-semibold leading-[0.95] tracking-[-0.045em] text-[#fff8ef] sm:text-6xl md:text-7xl">
-            Start your tattoo request
+          <SectionKicker label="intake card" number="booking" />
+          <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl">
+            Request a piece
           </h2>
-          <p className="mt-7 max-w-md text-base leading-8 text-[#d8d0c5]/72">
-            Share the shape of the idea. The goal is not to have everything solved - just
-            enough detail to begin designing with care.
+          <p className="mt-7 max-w-md text-lg leading-8 text-[#cfc4b4]/78">
+            Send the messy version. The idea does not need to be perfect yet.
           </p>
-          <div className="mt-10 rounded-[1.5rem] border border-[#f4eee5]/10 bg-black/20 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#f4eee5]/44">
-              Response note
-            </p>
-            <p className="mt-3 text-sm leading-7 text-[#f4eee5]/72">
-              Custom tattoo work by appointment only. For urgent scheduling, email{" "}
-              <a className="text-[#d8b78f] underline-offset-4 hover:underline" href={`mailto:${artist.email}`}>
-                {artist.email}
-              </a>
-              .
-            </p>
-          </div>
+          <p className="mt-8 rotate-[-2deg] border border-[#eee6d8]/20 bg-[#eee6d8]/7 p-4 font-mono text-xs uppercase leading-6 tracking-[0.18em] text-[#eee6d8]/58">
+            Requests are reviewed for fit, placement, scale, and timing. Custom tattoo
+            work by appointment only.
+          </p>
         </FadeIn>
 
-        <FadeIn delay={0.12}>
+        <FadeIn delay={0.08}>
           <form
             onSubmit={onSubmit}
-            className="rounded-[1.7rem] border border-[#f4eee5]/12 bg-[#080706]/76 p-4 shadow-2xl backdrop-blur md:p-7"
+            className="paper-edge border border-[#eee6d8]/18 bg-[#11100e] p-4 shadow-[18px_18px_0_rgba(0,0,0,0.36)] sm:p-6"
           >
-            <div className="grid gap-4 md:grid-cols-2">
-              <Input label="Name" name="name" placeholder="Your name" required />
-              <Input label="Email" name="email" type="email" placeholder="you@email.com" required />
-              <Input label="Phone optional" name="phone" placeholder="+1 555 000 0000" />
-              <Input label="Placement" name="placement" placeholder="Inner arm, ribs, ankle..." />
-              <Input label="Approximate size" name="size" placeholder="2 inches, palm size..." />
-              <Select
-                label="Preferred style"
+            <div className="grid gap-x-5 gap-y-6 md:grid-cols-2">
+              <RawInput label="Name" name="name" required />
+              <RawInput label="Email" name="email" type="email" required />
+              <RawInput label="Instagram" name="instagram" placeholder="@handle" />
+              <RawInput label="Placement" name="placement" placeholder="ribs / forearm / ankle" />
+              <RawInput label="Approximate size" name="size" placeholder="2 inches / palm size" />
+              <RawSelect
+                label="Style"
                 name="style"
-                options={["Fine Line", "Floral", "Script", "Illustrative", "Blackwork", "Not sure yet"]}
+                options={["Fine line", "Floral", "Blackwork", "Script", "Symbols", "Not sure"]}
               />
-              <Select
+              <RawSelect
                 label="Budget range"
                 name="budget"
                 options={["$150 - $300", "$300 - $600", "$600 - $1,000", "$1,000+", "Need guidance"]}
               />
-              <Input label="Preferred dates" name="dates" placeholder="Weekends, late June..." />
-              <Textarea
-                label="Tattoo idea"
+              <RawInput label="Preferred dates" name="dates" placeholder="weekdays / late June" />
+              <RawTextarea
+                label="Idea"
                 name="idea"
-                placeholder="Tell me what you want to carry, where it should live, and what it should feel like."
+                placeholder="Tell me the references, the feeling, what it should not be, and where it should live."
               />
               <div className="md:col-span-2">
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between rounded-2xl border border-dashed border-[#f4eee5]/18 bg-[#f4eee5]/5 px-4 py-4 text-left text-sm text-[#f4eee5]/66 transition hover:border-[#d8b78f]/60 hover:bg-[#d8b78f]/8"
+                  className="w-full border border-dashed border-[#eee6d8]/28 bg-transparent px-3 py-4 text-left font-mono text-xs uppercase tracking-[0.18em] text-[#eee6d8]/60 transition hover:border-[#d6402d] hover:text-[#d6402d]"
                 >
-                  <span>Upload references placeholder</span>
-                  <span className="text-xs uppercase tracking-[0.2em] text-[#d8b78f]">Browse</span>
+                  Reference upload placeholder / attach images later
                 </button>
               </div>
             </div>
-
             <button
               type="submit"
-              className="mt-6 w-full rounded-full bg-[#f4eee5] px-7 py-4 text-sm font-bold uppercase tracking-[0.22em] text-[#100d0b] shadow-[0_18px_60px_rgba(216,183,143,0.22)] transition hover:bg-[#d8b78f]"
+              className="mt-7 w-full border border-[#d6402d] bg-[#d6402d] px-5 py-4 text-sm font-black uppercase tracking-[0.24em] text-[#080807] shadow-[8px_8px_0_rgba(0,0,0,0.42)] transition hover:bg-[#eee6d8]"
             >
-              Send request
+              Send the request
             </button>
-
             <AnimatePresence>
               {submitted && (
-                <motion.div
+                <motion.p
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 12 }}
-                  className="mt-5 rounded-2xl border border-[#d8b78f]/35 bg-[#d8b78f]/12 px-4 py-4 text-sm leading-6 text-[#f7efe5]"
+                  className="mt-5 border border-[#d6402d]/70 bg-[#d6402d]/10 p-4 text-sm leading-7 text-[#eee6d8]"
                 >
-                  Request received. The artist will review your idea and follow up soon.
-                </motion.div>
+                  Received. I'll review the idea and respond if it feels aligned.
+                </motion.p>
               )}
             </AnimatePresence>
           </form>
@@ -617,77 +710,54 @@ function Booking({ onSubmit, submitted }) {
   );
 }
 
-function Testimonials() {
+function StudioRules() {
   return (
-    <Section className="py-20">
-      <SectionHeader eyebrow="Client words" title="Words from clients" />
-      <div className="grid gap-4 md:grid-cols-3">
-        {testimonials.map((testimonial, index) => (
-          <FadeIn key={testimonial.name} delay={index * 0.08}>
-            <article className="h-full rounded-[1.5rem] border border-[#f4eee5]/10 bg-[#f4eee5]/[0.035] p-7">
-              <p className="font-editorial text-3xl leading-tight text-[#fff8ef]">"</p>
-              <p className="mt-1 text-base leading-8 text-[#d8d0c5]/78">{testimonial.quote}</p>
-              <p className="mt-8 text-xs font-semibold uppercase tracking-[0.24em] text-[#d8b78f]">
-                {testimonial.name}
-              </p>
-            </article>
+    <section className="px-4 py-20 sm:px-6 lg:px-10">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+          <FadeIn className="border border-[#eee6d8]/18 bg-[#eee6d8]/5 p-5 sm:p-8">
+            <SectionKicker label="studio wall" number="read first" />
+            <h2 className="font-editorial text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl">
+              Before you write
+            </h2>
           </FadeIn>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function FAQ({ openFaq, setOpenFaq }) {
-  return (
-    <Section className="py-20">
-      <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
-        <FadeIn>
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.42em] text-[#d8b78f]">
-            Before you book
-          </p>
-          <h2 className="font-editorial text-5xl font-semibold leading-[0.95] tracking-[-0.045em] text-[#fff8ef] sm:text-6xl">
-            Clear answers for the first step.
-          </h2>
-        </FadeIn>
-
-        <div className="space-y-3">
-          {faqs.map((faq, index) => (
-            <FAQItem
-              key={faq.question}
-              faq={faq}
-              isOpen={openFaq === index}
-              onClick={() => setOpenFaq(openFaq === index ? null : index)}
-            />
-          ))}
+          <FadeIn delay={0.08} className="paper-edge border border-[#080807] bg-[#d8c7aa] p-5 text-[#15110f] shadow-[12px_12px_0_rgba(0,0,0,0.38)]">
+            <ul className="divide-y divide-[#15110f]/22">
+              {rules.map((rule, index) => (
+                <li key={rule} className="flex gap-4 py-4">
+                  <span className="font-mono text-xs font-black text-[#d6402d]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-lg font-black uppercase leading-6 tracking-[-0.02em]">
+                    {rule}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
         </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
-function FinalCTA() {
+function FinalPoster() {
   return (
-    <section className="px-3 pb-8 sm:px-6 lg:px-10">
-      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.4rem] border border-[#f4eee5]/12 bg-[#11100e] px-6 py-24 text-center shadow-[0_35px_120px_rgba(0,0,0,0.45)] sm:px-10">
-        <img
-          // Replace with a moody healed-tattoo or studio-light background image.
-          src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=1800&q=88"
-          alt="Abstract tattoo studio background placeholder"
-          className="absolute inset-0 h-full w-full object-cover opacity-[0.22] grayscale"
-        />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(216,183,143,0.16),transparent_30%),linear-gradient(180deg,rgba(7,6,5,0.62),rgba(7,6,5,0.92))]" />
-        <FadeIn className="relative mx-auto max-w-4xl">
-          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.42em] text-[#d8b78f]">
-            The next mark
-          </p>
-          <h2 className="font-editorial text-5xl font-semibold leading-[0.95] tracking-[-0.045em] text-[#fff8ef] sm:text-6xl md:text-7xl">
-            Ready to turn your idea into something permanent?
-          </h2>
-          <div className="mt-10 flex justify-center">
-            <PrimaryButton href="#booking">Book a consultation</PrimaryButton>
+    <section className="px-4 py-24 sm:px-6 lg:px-10">
+      <div className="relative mx-auto min-h-[520px] max-w-7xl overflow-hidden border border-[#eee6d8]/18 bg-[#0d0c0b] p-6 shadow-[0_40px_140px_rgba(0,0,0,0.45)] sm:p-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_22%,rgba(214,64,45,0.26),transparent_22%),linear-gradient(120deg,rgba(238,230,216,0.06)_0_1px,transparent_1px_20px)]" />
+        <InkLine className="absolute bottom-10 right-8 h-56 w-56 text-[#d6402d]/55" />
+        <div className="relative z-10 flex min-h-[440px] flex-col justify-between">
+          <span className="stamp w-fit rotate-[-3deg]">final note</span>
+          <div>
+            <h2 className="font-editorial max-w-5xl text-6xl font-black uppercase leading-[0.78] tracking-[-0.075em] text-[#eee6d8] sm:text-8xl lg:text-[9rem]">
+              Bring the idea. I'll shape the mark.
+            </h2>
+            <a className="raw-button mt-10 inline-flex bg-[#d6402d] text-[#080807]" href="#request">
+              Start a request
+            </a>
           </div>
-        </FadeIn>
+        </div>
       </div>
     </section>
   );
@@ -695,72 +765,54 @@ function FinalCTA() {
 
 function Footer() {
   return (
-    <footer className="px-5 py-10 sm:px-8 lg:px-10">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 border-t border-[#f4eee5]/10 pt-8 md:flex-row md:items-end md:justify-between">
+    <footer className="px-4 pb-10 sm:px-6 lg:px-10">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 border-t border-[#eee6d8]/16 pt-8 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="font-editorial text-4xl font-semibold text-[#fff8ef]">{artist.name}</p>
-          <p className="mt-3 text-sm text-[#f4eee5]/54">Custom tattoo work by appointment only.</p>
-          <p className="mt-2 text-sm text-[#f4eee5]/44">Studio location: {artist.city}</p>
-        </div>
-        <div className="flex flex-col gap-3 text-sm text-[#f4eee5]/58 md:items-end">
-          <div className="flex flex-wrap gap-4">
-            <a href="https://instagram.com" className="transition hover:text-[#d8b78f]">
-              Instagram {artist.instagram}
-            </a>
-            <a href="https://tiktok.com" className="transition hover:text-[#d8b78f]">
-              TikTok {artist.tiktok}
-            </a>
-            <a href={`mailto:${artist.email}`} className="transition hover:text-[#d8b78f]">
-              {artist.email}
-            </a>
-          </div>
-          <p className="text-xs uppercase tracking-[0.22em] text-[#f4eee5]/34">
-            Copyright {new Date().getFullYear()} {artist.name}
+          <p className="font-editorial text-4xl font-black uppercase text-[#eee6d8]">{artist.name}</p>
+          <p className="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-[#eee6d8]/46">
+            {artist.city} / custom tattoo work
           </p>
         </div>
+        <div className="flex flex-col gap-3 font-mono text-xs uppercase tracking-[0.18em] text-[#eee6d8]/56 md:items-end">
+          <div className="flex flex-wrap gap-4">
+            <a className="hover:text-[#d6402d]" href="https://instagram.com">
+              Instagram {artist.instagram}
+            </a>
+            <a className="hover:text-[#d6402d]" href={`mailto:${artist.email}`}>
+              {artist.email}
+            </a>
+            <a className="hover:text-[#d6402d]" href="#request">
+              Booking
+            </a>
+          </div>
+          <p>Copyright {new Date().getFullYear()} / custom tattoo work</p>
+        </div>
+        <p className="vertical-label hidden text-[0.62rem] font-black uppercase tracking-[0.28em] text-[#eee6d8]/35 lg:block">
+          custom tattoo work
+        </p>
       </div>
     </footer>
   );
 }
 
-function Section({ id, className = "", children }) {
+function SectionKicker({ label, number }) {
   return (
-    <section id={id} className={`px-5 sm:px-8 lg:px-10 ${className}`}>
-      <div className="mx-auto max-w-7xl">{children}</div>
-    </section>
-  );
-}
-
-function SectionHeader({ eyebrow, title, children, align = "start" }) {
-  return (
-    <FadeIn
-      className={`mb-10 ${
-        align === "between"
-          ? "flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
-          : ""
-      }`}
-    >
-      <div>
-        <p className="mb-5 text-xs font-semibold uppercase tracking-[0.42em] text-[#d8b78f]">
-          {eyebrow}
-        </p>
-        <h2 className="font-editorial text-5xl font-semibold leading-[0.95] tracking-[-0.045em] text-[#fff8ef] sm:text-6xl md:text-7xl">
-          {title}
-        </h2>
-      </div>
-      {children}
-    </FadeIn>
+    <div className="mb-5 flex flex-wrap items-center gap-3 font-mono text-[0.62rem] font-black uppercase tracking-[0.24em] text-[#eee6d8]/48">
+      <span className="text-[#d6402d]">{label}</span>
+      <span className="h-px w-10 bg-[#eee6d8]/24" />
+      <span>{number}</span>
+    </div>
   );
 }
 
 function FadeIn({ children, className = "", delay = 0 }) {
   return (
     <motion.div
-      variants={fadeUp}
+      variants={fade}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.65, delay, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.18 }}
+      transition={{ duration: 0.55, delay, ease: "easeOut" }}
       className={className}
     >
       {children}
@@ -768,99 +820,26 @@ function FadeIn({ children, className = "", delay = 0 }) {
   );
 }
 
-function PrimaryButton({ href, children }) {
-  return (
-    <a
-      href={href}
-      className="inline-flex items-center justify-center rounded-full bg-[#f4eee5] px-7 py-4 text-sm font-bold uppercase tracking-[0.22em] text-[#100d0b] shadow-[0_18px_60px_rgba(216,183,143,0.2)] transition hover:-translate-y-0.5 hover:bg-[#d8b78f] hover:shadow-[0_24px_70px_rgba(216,183,143,0.28)]"
-    >
-      {children}
-    </a>
-  );
-}
-
-function SecondaryButton({ href, children }) {
-  return (
-    <a
-      href={href}
-      className="inline-flex items-center justify-center rounded-full border border-[#f4eee5]/16 bg-[#f4eee5]/5 px-7 py-4 text-sm font-bold uppercase tracking-[0.22em] text-[#f4eee5] transition hover:-translate-y-0.5 hover:border-[#d8b78f]/70 hover:bg-[#d8b78f]/10"
-    >
-      {children}
-    </a>
-  );
-}
-
-function ValueCard({ title, text }) {
-  return (
-    <article className="rounded-[1.25rem] border border-[#f4eee5]/10 bg-[#f4eee5]/[0.035] p-5">
-      <div className="mb-5 h-px w-14 bg-[#d8b78f]/60" />
-      <h3 className="font-editorial text-2xl font-semibold text-[#fff8ef]">{title}</h3>
-      <p className="mt-3 text-sm leading-6 text-[#d8d0c5]/66">{text}</p>
-    </article>
-  );
-}
-
-function StyleCard({ title, text, index }) {
-  return (
-    <FadeIn delay={index * 0.06}>
-      <article className="group relative h-full overflow-hidden rounded-[1.55rem] border border-[#f4eee5]/10 bg-[#f4eee5]/[0.035] p-7 transition duration-500 hover:-translate-y-1 hover:border-[#d8b78f]/30 hover:bg-[#f4eee5]/[0.055]">
-        <div className="absolute right-5 top-5 h-20 w-20 rounded-full border border-[#d8b78f]/15 transition group-hover:scale-110" />
-        <div className="relative mb-12 h-12 w-20">
-          <span className="absolute left-0 top-5 h-px w-20 rotate-[-12deg] bg-[#d8b78f]/70" />
-          <span className="absolute left-3 top-7 h-px w-14 rotate-[16deg] bg-[#f4eee5]/24" />
-        </div>
-        <h3 className="font-editorial text-3xl font-semibold leading-tight text-[#fff8ef]">{title}</h3>
-        <p className="mt-5 text-sm leading-7 text-[#d8d0c5]/68">{text}</p>
-      </article>
-    </FadeIn>
-  );
-}
-
-function ProcessStep({ step, index }) {
-  return (
-    <FadeIn delay={index * 0.06}>
-      <article className="relative grid gap-5 rounded-[1.45rem] border border-[#f4eee5]/10 bg-[#f4eee5]/[0.035] p-5 transition hover:border-[#d8b78f]/28 md:grid-cols-[6rem_1fr] md:p-7 md:pl-14">
-        <div className="absolute left-3 top-8 hidden h-3 w-3 rounded-full bg-[#d8b78f] shadow-[0_0_0_8px_rgba(216,183,143,0.08)] md:block" />
-        <p className="font-editorial text-5xl font-semibold leading-none text-[#d8b78f]/80">
-          {step.number}
-        </p>
-        <div>
-          <h3 className="font-editorial text-3xl font-semibold text-[#fff8ef]">{step.title}</h3>
-          <p className="mt-3 max-w-3xl text-sm leading-7 text-[#d8d0c5]/68">{step.text}</p>
-        </div>
-      </article>
-    </FadeIn>
-  );
-}
-
-function Input({ label, name, type = "text", placeholder, required = false }) {
+function RawInput({ label, name, type = "text", placeholder = "", required = false }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#f4eee5]/44">
-        {label}
-      </span>
+      <span className="form-label">{label}</span>
       <input
         name={name}
         type={type}
         placeholder={placeholder}
         required={required}
-        className="w-full rounded-2xl border border-[#f4eee5]/10 bg-[#f4eee5]/[0.045] px-4 py-3.5 text-sm text-[#fff8ef] outline-none transition placeholder:text-[#f4eee5]/28 focus:border-[#d8b78f]/65 focus:bg-[#f4eee5]/[0.07]"
+        className="raw-field"
       />
     </label>
   );
 }
 
-function Select({ label, name, options }) {
+function RawSelect({ label, name, options }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#f4eee5]/44">
-        {label}
-      </span>
-      <select
-        name={name}
-        defaultValue=""
-        className="w-full rounded-2xl border border-[#f4eee5]/10 bg-[#15110f] px-4 py-3.5 text-sm text-[#fff8ef] outline-none transition focus:border-[#d8b78f]/65"
-      >
+      <span className="form-label">{label}</span>
+      <select name={name} defaultValue="" className="raw-field bg-[#11100e]">
         <option value="" disabled>
           Select one
         </option>
@@ -874,51 +853,89 @@ function Select({ label, name, options }) {
   );
 }
 
-function Textarea({ label, name, placeholder }) {
+function RawTextarea({ label, name, placeholder }) {
   return (
     <label className="block md:col-span-2">
-      <span className="mb-2 block text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[#f4eee5]/44">
-        {label}
-      </span>
-      <textarea
-        name={name}
-        placeholder={placeholder}
-        rows="5"
-        className="w-full resize-none rounded-2xl border border-[#f4eee5]/10 bg-[#f4eee5]/[0.045] px-4 py-3.5 text-sm leading-7 text-[#fff8ef] outline-none transition placeholder:text-[#f4eee5]/28 focus:border-[#d8b78f]/65 focus:bg-[#f4eee5]/[0.07]"
-      />
+      <span className="form-label">{label}</span>
+      <textarea name={name} placeholder={placeholder} rows="6" className="raw-field resize-none leading-7" />
     </label>
   );
 }
 
-function FAQItem({ faq, isOpen, onClick }) {
+function Tape({ className = "" }) {
+  return <span className={`absolute z-20 h-7 w-24 bg-[#eee6d8]/55 opacity-70 mix-blend-screen ${className}`} />;
+}
+
+function InkLine({ className = "" }) {
   return (
-    <FadeIn>
-      <article className="overflow-hidden rounded-[1.3rem] border border-[#f4eee5]/10 bg-[#f4eee5]/[0.035]">
-        <button
-          type="button"
-          onClick={onClick}
-          className="flex w-full items-center justify-between gap-6 px-5 py-5 text-left"
-          aria-expanded={isOpen}
-        >
-          <span className="font-editorial text-2xl font-semibold text-[#fff8ef]">{faq.question}</span>
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#f4eee5]/12 text-[#d8b78f]">
-            {isOpen ? "-" : "+"}
-          </span>
-        </button>
-        <AnimatePresence initial={false}>
-          {isOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-            >
-              <p className="px-5 pb-5 text-sm leading-7 text-[#d8d0c5]/68">{faq.answer}</p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </article>
-    </FadeIn>
+    <svg className={className} viewBox="0 0 200 200" fill="none" aria-hidden="true">
+      <motion.path
+        d="M23 136C49 69 86 150 109 80C127 26 169 41 176 93C184 154 111 180 69 145C39 119 73 92 101 115"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeDasharray="9 12"
+        initial={{ pathLength: 0, opacity: 0.25 }}
+        whileInView={{ pathLength: 1, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.4, ease: "easeInOut" }}
+      />
+      <path d="M51 44L57 58L72 61L59 69L61 84L50 74L36 81L43 66L32 55L47 57L51 44Z" stroke="currentColor" />
+      <circle cx="148" cy="142" r="18" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  );
+}
+
+function FlashDrawing({ shape, className = "" }) {
+  const common = "currentColor";
+
+  return (
+    <svg className={className} viewBox="0 0 160 160" fill="none" aria-hidden="true">
+      {shape === "flower" && (
+        <>
+          <path d="M79 139C82 107 82 79 80 54" stroke={common} strokeWidth="3" strokeLinecap="round" />
+          <path d="M80 58C52 45 49 18 76 25C84 27 84 46 80 58Z" stroke={common} strokeWidth="3" />
+          <path d="M83 58C112 43 116 18 89 25C80 27 79 46 83 58Z" stroke={common} strokeWidth="3" />
+          <path d="M80 76C53 76 44 101 65 107C78 111 83 89 80 76Z" stroke={common} strokeWidth="3" />
+          <path d="M83 78C111 78 119 103 98 109C85 113 80 91 83 78Z" stroke={common} strokeWidth="3" />
+        </>
+      )}
+      {shape === "eye" && (
+        <>
+          <path d="M22 82C49 43 111 43 138 82C111 118 49 118 22 82Z" stroke={common} strokeWidth="3" />
+          <circle cx="80" cy="82" r="21" stroke={common} strokeWidth="3" />
+          <circle cx="80" cy="82" r="7" fill={common} />
+          <path d="M78 18V38M78 126V146M34 34L48 50M126 34L112 50" stroke={common} strokeWidth="3" strokeLinecap="round" />
+        </>
+      )}
+      {shape === "snake" && (
+        <>
+          <path d="M82 20C116 34 54 59 88 81C126 106 45 119 77 143" stroke={common} strokeWidth="4" strokeLinecap="round" />
+          <path d="M86 20L103 25L91 36" stroke={common} strokeWidth="3" strokeLinecap="round" />
+          <circle cx="91" cy="27" r="2" fill={common} />
+        </>
+      )}
+      {shape === "star" && (
+        <>
+          <path d="M80 16L91 65L140 80L91 95L80 144L69 95L20 80L69 65L80 16Z" stroke={common} strokeWidth="3" />
+          <path d="M80 45V115M45 80H115" stroke={common} strokeWidth="2" />
+        </>
+      )}
+      {shape === "hand" && (
+        <>
+          <path d="M48 80V45C48 36 61 36 61 45V73V34C61 24 75 24 75 34V72V29C75 19 90 20 90 30V74V42C90 33 104 34 104 43V91L111 78C116 69 129 76 124 87L108 123C102 137 91 144 76 144C59 144 48 132 48 113V80Z" stroke={common} strokeWidth="3" />
+          <path d="M63 106C74 103 87 104 99 111" stroke={common} strokeWidth="3" strokeLinecap="round" />
+        </>
+      )}
+      {shape === "symbol" && (
+        <>
+          <path d="M28 101C52 45 110 45 132 101" stroke={common} strokeWidth="3" strokeLinecap="round" />
+          <path d="M50 101C63 75 97 75 110 101" stroke={common} strokeWidth="3" strokeLinecap="round" />
+          <path d="M80 25V135M53 52L107 108M107 52L53 108" stroke={common} strokeWidth="3" strokeLinecap="round" />
+          <circle cx="80" cy="80" r="11" stroke={common} strokeWidth="3" />
+        </>
+      )}
+    </svg>
   );
 }
 
