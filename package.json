@@ -1,0 +1,34 @@
+{
+  "name": "tattoo-artist-website",
+  "version": "1.0.0",
+  "description": "Premium cinematic landing page draft for an independent tattoo artist.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayansadri/personal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rayansadri/personal/issues"
+  },
+  "homepage": "https://github.com/rayansadri/personal#readme",
+  "dependencies": {
+    "framer-motion": "^12.38.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "@vitejs/plugin-react": "^6.0.2",
+    "tailwindcss": "^4.3.0",
+    "vite": "^8.0.13"
+  }
+}
