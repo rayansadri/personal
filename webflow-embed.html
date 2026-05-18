@@ -286,38 +286,55 @@
       line-height: 1.45;
     }
 
+    .rs-signal-marquee {
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background: rgba(255,255,255,0.42);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.035);
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    }
+
+    .rs-signal-marquee:hover .rs-proof-wall {
+      animation-play-state: paused;
+    }
+
     .rs-proof-wall {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 12px;
+      display: flex;
+      width: max-content;
+      gap: 0;
+      animation: rs-signal-scroll 34s linear infinite;
     }
 
     .rs-proof-card {
-      min-height: 128px;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      background: var(--surface);
-      backdrop-filter: blur(24px);
-      box-shadow: 0 22px 70px rgba(0,0,0,0.035);
-      padding: 18px;
+      width: 216px;
+      min-height: 124px;
+      border-right: 1px solid var(--line);
+      background: rgba(255,255,255,0.22);
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 180ms ease, background 180ms ease, opacity 180ms ease;
     }
 
     .rs-proof-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--line-strong);
-      background: rgba(255,255,255,0.88);
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.78);
+      opacity: 1;
     }
 
     .rs-proof-card span {
       color: var(--ink);
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1.05;
       letter-spacing: -0.055em;
-      font-weight: 700;
+      font-weight: 620;
+      opacity: 0.68;
+      filter: grayscale(1);
     }
 
     .rs-proof-card small {
@@ -639,6 +656,14 @@
       box-shadow: 0 32px 90px rgba(0,0,0,0.13);
     }
 
+    .rs-project-lab:hover .rs-window {
+      transform: translateY(-4px) scale(1.012);
+    }
+
+    .rs-project-lab:hover .rs-demo-cursor {
+      animation-duration: 4.2s;
+    }
+
     .rs-lab-copy {
       display: flex;
       flex-direction: column;
@@ -700,6 +725,7 @@
       justify-content: center;
       padding: 44px;
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
+      perspective: 1100px;
     }
 
     .rs-window {
@@ -711,6 +737,22 @@
       overflow: hidden;
       box-shadow: 0 28px 90px rgba(0,0,0,0.28);
       backdrop-filter: blur(28px);
+      transform: translateY(0);
+      transition: transform 280ms ease, box-shadow 280ms ease;
+      position: relative;
+    }
+
+    .rs-window::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at var(--rs-glow-x, 20%) var(--rs-glow-y, 24%), rgba(47,128,255,0.16), transparent 28%),
+        linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.055) 38%, transparent 52%);
+      mix-blend-mode: screen;
+      animation: rs-window-sheen 7s ease-in-out infinite;
+      opacity: 0.9;
     }
 
     .rs-window-top {
@@ -757,12 +799,22 @@
       font-size: 13px;
     }
 
+    .rs-steps span {
+      position: relative;
+      padding: 6px 9px;
+      border-radius: 999px;
+      transition: color 180ms ease, background 180ms ease;
+    }
+
     .rs-steps .active {
       color: rgba(255,255,255,0.92);
+      background: rgba(47,128,255,0.12);
+      animation: rs-step-pulse 4.8s ease-in-out infinite;
     }
 
     .rs-window-body {
       padding: 24px;
+      position: relative;
     }
 
     .rs-window-body h4 {
@@ -782,6 +834,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
+      position: relative;
     }
 
     .rs-agent {
@@ -792,11 +845,20 @@
       border-radius: 13px;
       border: 1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.035);
+      transform: translateY(0);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
     .rs-agent.active {
       border-color: rgba(37,196,138,0.64);
       background: rgba(37,196,138,0.13);
+      animation: rs-card-glow 4.8s ease-in-out infinite;
+    }
+
+    .rs-agent:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.06);
     }
 
     .rs-agent-badge {
@@ -844,6 +906,23 @@
       border-radius: 11px;
       font-weight: 700;
       font-size: 13px;
+      box-shadow: 0 14px 34px rgba(47,128,255,0.28);
+      animation: rs-button-breathe 4.8s ease-in-out infinite;
+    }
+
+    .rs-demo-cursor {
+      position: absolute;
+      left: 48%;
+      top: 54%;
+      width: 0;
+      height: 0;
+      border-top: 13px solid transparent;
+      border-bottom: 13px solid transparent;
+      border-left: 20px solid #ffffff;
+      filter: drop-shadow(0 7px 10px rgba(0,0,0,0.4));
+      transform: rotate(-6deg);
+      animation: rs-cursor-flight 6.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+      z-index: 4;
     }
 
     .rs-project-grid {
@@ -1022,6 +1101,103 @@
 
     .rs-links a:hover {
       color: var(--ink);
+    }
+
+    @keyframes rs-signal-scroll {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+      to {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+    @keyframes rs-window-sheen {
+      0% {
+        --rs-glow-x: 18%;
+        --rs-glow-y: 24%;
+        opacity: 0.72;
+      }
+      50% {
+        --rs-glow-x: 76%;
+        --rs-glow-y: 38%;
+        opacity: 1;
+      }
+      100% {
+        --rs-glow-x: 18%;
+        --rs-glow-y: 24%;
+        opacity: 0.72;
+      }
+    }
+
+    @keyframes rs-step-pulse {
+      0%, 100% {
+        background: rgba(47,128,255,0.10);
+      }
+      50% {
+        background: rgba(47,128,255,0.22);
+      }
+    }
+
+    @keyframes rs-card-glow {
+      0%, 100% {
+        box-shadow: 0 0 0 rgba(37,196,138,0);
+      }
+      50% {
+        box-shadow: 0 0 0 1px rgba(37,196,138,0.28), 0 18px 38px rgba(37,196,138,0.10);
+      }
+    }
+
+    @keyframes rs-button-breathe {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-1px);
+      }
+    }
+
+    @keyframes rs-cursor-flight {
+      0% {
+        left: 50%;
+        top: 56%;
+        opacity: 0;
+      }
+      12% {
+        opacity: 1;
+      }
+      34% {
+        left: 79%;
+        top: 35%;
+      }
+      56% {
+        left: 42%;
+        top: 69%;
+      }
+      78% {
+        left: 82%;
+        top: 82%;
+      }
+      100% {
+        left: 50%;
+        top: 56%;
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rs-proof-wall,
+      .rs-window::before,
+      .rs-steps .active,
+      .rs-agent.active,
+      .rs-window-bottom button,
+      .rs-demo-cursor {
+        animation: none;
+      }
+
+      .rs-demo-cursor {
+        display: none;
+      }
     }
 
     @media (max-width: 1100px) {
@@ -1206,70 +1382,37 @@
 
     <section class="rs-section" id="proof">
       <div class="rs-section-head">
-        <div class="rs-label">Proof from the real world</div>
-        <div class="rs-section-note">Research, founder backing, enterprise conversations, startup mentorship, distribution, and public credibility.</div>
+        <div class="rs-label">Selected signals</div>
+        <div class="rs-section-note">Research, founder backing, startup mentorship, enterprise conversations, press, and distribution.</div>
       </div>
 
-      <div class="rs-proof-wall">
-        <a class="rs-proof-card" href="https://www.mcgill.ca/engine/node/826">
-          <span>McGill Engine</span>
-          <small>TechAccel startup mentor</small>
-        </a>
-
-        <div class="rs-proof-card">
-          <span>McGill University</span>
-          <small>MSc AI research</small>
+      <div class="rs-signal-marquee" aria-label="Selected signals">
+        <div class="rs-proof-wall">
+          <div class="rs-proof-card"><span>McGill University</span><small>MSc AI research</small></div>
+          <a class="rs-proof-card" href="https://www.mcgill.ca/engine/node/826"><span>McGill Engine</span><small>TechAccel startup mentor</small></a>
+          <a class="rs-proof-card" href="https://www.youtube.com/watch?v=KUCRkVYFK1s"><span>ERA NYC</span><small>Backed founder</small></a>
+          <div class="rs-proof-card"><span>Creative Destruction Lab</span><small>AI stream</small></div>
+          <div class="rs-proof-card"><span>NEXT36</span><small>Selected founder</small></div>
+          <div class="rs-proof-card"><span>Carez AI</span><small>Co-founder</small></div>
+          <a class="rs-proof-card" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html"><span>New York Times</span><small>Featured</small></a>
+          <a class="rs-proof-card" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016"><span>United Nations / WIPO</span><small>Speaker</small></a>
+          <div class="rs-proof-card"><span>Bayer</span><small>Enterprise conversation</small></div>
+          <div class="rs-proof-card"><span>FDA</span><small>Enterprise conversation</small></div>
+          <div class="rs-proof-card"><span>NHS</span><small>Enterprise conversation</small></div>
+          <div class="rs-proof-card"><span>9M+ X views</span><small>Organic distribution</small></div>
+          <div class="rs-proof-card" aria-hidden="true"><span>McGill University</span><small>MSc AI research</small></div>
+          <a class="rs-proof-card" href="https://www.mcgill.ca/engine/node/826" aria-hidden="true" tabindex="-1"><span>McGill Engine</span><small>TechAccel startup mentor</small></a>
+          <a class="rs-proof-card" href="https://www.youtube.com/watch?v=KUCRkVYFK1s" aria-hidden="true" tabindex="-1"><span>ERA NYC</span><small>Backed founder</small></a>
+          <div class="rs-proof-card" aria-hidden="true"><span>Creative Destruction Lab</span><small>AI stream</small></div>
+          <div class="rs-proof-card" aria-hidden="true"><span>NEXT36</span><small>Selected founder</small></div>
+          <div class="rs-proof-card" aria-hidden="true"><span>Carez AI</span><small>Co-founder</small></div>
+          <a class="rs-proof-card" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html" aria-hidden="true" tabindex="-1"><span>New York Times</span><small>Featured</small></a>
+          <a class="rs-proof-card" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016" aria-hidden="true" tabindex="-1"><span>United Nations / WIPO</span><small>Speaker</small></a>
+          <div class="rs-proof-card" aria-hidden="true"><span>Bayer</span><small>Enterprise conversation</small></div>
+          <div class="rs-proof-card" aria-hidden="true"><span>FDA</span><small>Enterprise conversation</small></div>
+          <div class="rs-proof-card" aria-hidden="true"><span>NHS</span><small>Enterprise conversation</small></div>
+          <div class="rs-proof-card" aria-hidden="true"><span>9M+ X views</span><small>Organic distribution</small></div>
         </div>
-
-        <a class="rs-proof-card" href="https://delve.mcgill.ca/listen/inside-a-startup-thats-using-ai-to-revolutionise-medical-imaging/">
-          <span>McGill Delve</span>
-          <small>Founder feature</small>
-        </a>
-
-        <a class="rs-proof-card" href="https://www.youtube.com/watch?v=KUCRkVYFK1s">
-          <span>ERA NYC</span>
-          <small>Backed founder</small>
-        </a>
-
-        <div class="rs-proof-card">
-          <span>Creative Destruction Lab</span>
-          <small>AI stream</small>
-        </div>
-
-        <div class="rs-proof-card">
-          <span>NEXT36</span>
-          <small>Selected founder</small>
-        </div>
-
-        <div class="rs-proof-card">
-          <span>Carez AI</span>
-          <small>Co-founder</small>
-        </div>
-
-        <div class="rs-proof-card">
-          <span>FDA</span>
-          <small>Enterprise conversation</small>
-        </div>
-
-        <div class="rs-proof-card">
-          <span>Bayer</span>
-          <small>Enterprise conversation</small>
-        </div>
-
-        <div class="rs-proof-card">
-          <span>NHS</span>
-          <small>Enterprise conversation</small>
-        </div>
-
-        <a class="rs-proof-card" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html">
-          <span>New York Times</span>
-          <small>Featured</small>
-        </a>
-
-        <a class="rs-proof-card" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016">
-          <span>United Nations / WIPO</span>
-          <small>Speaker</small>
-        </a>
       </div>
     </section>
 
@@ -1587,6 +1730,8 @@
                   </div>
                 </div>
               </div>
+
+              <span class="rs-demo-cursor" aria-hidden="true"></span>
 
               <div class="rs-window-bottom">
                 <span>Workflow ready for deployment review</span>
