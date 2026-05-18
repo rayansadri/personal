@@ -377,7 +377,18 @@
       justify-content: space-between;
       position: relative;
       overflow: hidden;
-      transition: transform 180ms ease, background 180ms ease;
+      transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .rs-logo-tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.34) 45%, transparent 58%);
+      opacity: 0;
+      transform: translateX(-40%);
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 360ms ease;
     }
 
     .rs-logo-tile:nth-child(3n) {
@@ -391,6 +402,13 @@
     .rs-logo-tile:hover {
       background: rgba(255,255,255,0.76);
       transform: translateY(-2px);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.07);
+      z-index: 2;
+    }
+
+    .rs-logo-tile:hover::after {
+      opacity: 1;
+      transform: translateX(42%);
     }
 
     .rs-logo-art {
@@ -403,6 +421,38 @@
       filter: grayscale(1) contrast(1.04);
       opacity: 0.58;
       transition: filter 180ms ease, opacity 180ms ease, transform 180ms ease;
+      animation: rs-logo-autofocus 18s ease-in-out infinite;
+    }
+
+    .rs-logo-tile:nth-child(2) .rs-logo-art { animation-delay: 1.5s; }
+    .rs-logo-tile:nth-child(3) .rs-logo-art { animation-delay: 3s; }
+    .rs-logo-tile:nth-child(4) .rs-logo-art { animation-delay: 4.5s; }
+    .rs-logo-tile:nth-child(5) .rs-logo-art { animation-delay: 6s; }
+    .rs-logo-tile:nth-child(6) .rs-logo-art { animation-delay: 7.5s; }
+    .rs-logo-tile:nth-child(7) .rs-logo-art { animation-delay: 9s; }
+    .rs-logo-tile:nth-child(8) .rs-logo-art { animation-delay: 10.5s; }
+    .rs-logo-tile:nth-child(9) .rs-logo-art { animation-delay: 12s; }
+    .rs-logo-tile:nth-child(10) .rs-logo-art { animation-delay: 13.5s; }
+    .rs-logo-tile:nth-child(11) .rs-logo-art { animation-delay: 15s; }
+    .rs-logo-tile:nth-child(12) .rs-logo-art { animation-delay: 16.5s; }
+
+    .rs-logo-detail {
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(6px);
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.35;
+      margin-top: 0;
+      overflow: hidden;
+      transition: max-height 200ms ease, opacity 200ms ease, transform 200ms ease, margin-top 200ms ease;
+    }
+
+    .rs-logo-tile:hover .rs-logo-detail {
+      max-height: 54px;
+      opacity: 1;
+      transform: translateY(0);
+      margin-top: 8px;
     }
 
     .rs-logo-tile:hover .rs-logo-art {
@@ -430,6 +480,61 @@
       color: var(--muted);
       font-size: 12.5px;
       line-height: 1.25;
+    }
+
+    .rs-activity-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .rs-activity-card {
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--surface);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.035);
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 18px;
+      align-items: center;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .rs-activity-card:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.82);
+    }
+
+    .rs-activity-logo {
+      height: 54px;
+      background-image: var(--logo);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: left center;
+      filter: grayscale(1);
+      opacity: 0.7;
+    }
+
+    .rs-activity-card:hover .rs-activity-logo {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+
+    .rs-activity-card h3 {
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+      font-weight: 620;
+      margin-bottom: 7px;
+    }
+
+    .rs-activity-card p {
+      color: var(--soft);
+      font-size: 14px;
+      line-height: 1.45;
     }
 
     .rs-positioning {
@@ -728,341 +833,6 @@
       line-height: 1;
     }
 
-    .rs-project-lab {
-      display: grid;
-      grid-template-columns: 0.86fr 1.14fr;
-      gap: 34px;
-      align-items: stretch;
-      background:
-        radial-gradient(circle at 18% 18%, rgba(255,143,88,0.20), transparent 31%),
-        radial-gradient(circle at 92% 8%, rgba(139,165,255,0.18), transparent 30%),
-        #101014;
-      color: var(--cream);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 36px;
-      padding: 34px;
-      overflow: hidden;
-      box-shadow: 0 32px 90px rgba(0,0,0,0.13);
-    }
-
-    .rs-project-lab:hover .rs-window {
-      transform: translateY(-4px) scale(1.012);
-    }
-
-    .rs-project-lab:hover .rs-demo-cursor {
-      animation-duration: 4.2s;
-    }
-
-    .rs-lab-copy {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 490px;
-    }
-
-    .rs-orb {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 36% 28%, #fff0c7, #ff7f50 32%, #7f5cff 58%, #111 78%);
-      box-shadow: 0 0 70px rgba(255,127,80,0.34);
-      margin-bottom: 18px;
-    }
-
-    .rs-lab-copy h3 {
-      color: #ff9a5f;
-      font-size: 29px;
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: -0.05em;
-      margin-bottom: 58px;
-    }
-
-    .rs-lab-lead {
-      color: #ffffff;
-      font-size: clamp(28px, 3.4vw, 42px);
-      line-height: 1.05;
-      letter-spacing: -0.07em;
-      font-weight: 650;
-      max-width: 480px;
-      margin-bottom: 18px;
-    }
-
-    .rs-lab-copy p {
-      color: rgba(255,255,255,0.68);
-      font-size: 16px;
-      line-height: 1.57;
-      max-width: 460px;
-    }
-
-    .rs-lab-proof {
-      margin-top: 34px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.9);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .rs-terminal-frame {
-      min-height: 500px;
-      border-radius: 26px;
-      background: linear-gradient(135deg, rgba(232,255,247,0.94), #ffffff 62%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 44px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
-      perspective: 1100px;
-    }
-
-    .rs-window {
-      width: min(100%, 590px);
-      color: var(--cream);
-      background: rgba(15,16,20,0.94);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 28px 90px rgba(0,0,0,0.28);
-      backdrop-filter: blur(28px);
-      transform: translateY(0);
-      transition: transform 280ms ease, box-shadow 280ms ease;
-      position: relative;
-    }
-
-    .rs-window::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at var(--rs-glow-x, 20%) var(--rs-glow-y, 24%), rgba(47,128,255,0.16), transparent 28%),
-        linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.055) 38%, transparent 52%);
-      mix-blend-mode: screen;
-      animation: rs-window-sheen 7s ease-in-out infinite;
-      opacity: 0.9;
-    }
-
-    .rs-window-top {
-      height: 56px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      position: relative;
-    }
-
-    .rs-dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: #ff5f57;
-    }
-
-    .rs-dot:nth-child(2) {
-      background: #ffbd2e;
-    }
-
-    .rs-dot:nth-child(3) {
-      background: #28c840;
-    }
-
-    .rs-window-top strong {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 14px;
-      font-weight: 650;
-      letter-spacing: -0.025em;
-    }
-
-    .rs-steps {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      padding: 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.35);
-      font-size: 13px;
-    }
-
-    .rs-steps span {
-      position: relative;
-      padding: 6px 9px;
-      border-radius: 999px;
-      transition: color 180ms ease, background 180ms ease;
-    }
-
-    .rs-steps .active {
-      color: rgba(255,255,255,0.92);
-      background: rgba(47,128,255,0.12);
-      animation: rs-step-pulse 4.8s ease-in-out infinite;
-    }
-
-    .rs-window-body {
-      padding: 24px;
-      position: relative;
-    }
-
-    .rs-window-body h4 {
-      font-size: 19px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      margin-bottom: 4px;
-    }
-
-    .rs-window-body p {
-      color: rgba(255,255,255,0.44);
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .rs-agent-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      position: relative;
-    }
-
-    .rs-agent {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      border-radius: 13px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.035);
-      transform: translateY(0);
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-    }
-
-    .rs-agent.active {
-      border-color: rgba(37,196,138,0.64);
-      background: rgba(37,196,138,0.13);
-      animation: rs-card-glow 4.8s ease-in-out infinite;
-    }
-
-    .rs-agent:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.06);
-    }
-
-    .rs-agent-badge {
-      width: 31px;
-      height: 31px;
-      border-radius: 9px;
-      background: rgba(255,255,255,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.72);
-      font-weight: 760;
-      font-size: 13px;
-    }
-
-    .rs-agent strong {
-      display: block;
-      color: rgba(255,255,255,0.92);
-      font-size: 13.5px;
-      font-weight: 650;
-      letter-spacing: -0.018em;
-    }
-
-    .rs-agent em {
-      display: block;
-      color: rgba(255,255,255,0.38);
-      font-size: 11px;
-      font-style: normal;
-    }
-
-    .rs-window-bottom {
-      margin-top: 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: rgba(255,255,255,0.40);
-      font-size: 13px;
-    }
-
-    .rs-window-bottom button {
-      border: 0;
-      background: #2f80ff;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 11px;
-      font-weight: 700;
-      font-size: 13px;
-      box-shadow: 0 14px 34px rgba(47,128,255,0.28);
-      animation: rs-button-breathe 4.8s ease-in-out infinite;
-    }
-
-    .rs-demo-cursor {
-      position: absolute;
-      left: 48%;
-      top: 54%;
-      width: 0;
-      height: 0;
-      border-top: 13px solid transparent;
-      border-bottom: 13px solid transparent;
-      border-left: 20px solid #ffffff;
-      filter: drop-shadow(0 7px 10px rgba(0,0,0,0.4));
-      transform: rotate(-6deg);
-      animation: rs-cursor-flight 6.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-      z-index: 4;
-    }
-
-    .rs-project-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .rs-project-card {
-      min-height: 250px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 23px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      background: var(--surface);
-      backdrop-filter: blur(24px);
-      box-shadow: 0 22px 70px rgba(0,0,0,0.035);
-    }
-
-    .rs-project-card h3 {
-      font-size: 23px;
-      line-height: 1.08;
-      letter-spacing: -0.055em;
-      font-weight: 690;
-      margin-bottom: 11px;
-    }
-
-    .rs-project-card p {
-      color: var(--soft);
-      font-size: 15.5px;
-      line-height: 1.5;
-    }
-
-    .rs-project-status {
-      display: inline-flex;
-      align-self: flex-start;
-      margin-bottom: 22px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.60);
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      padding: 7px 10px;
-    }
-
     .rs-research-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1201,21 +971,18 @@
       }
     }
 
-    @keyframes rs-window-sheen {
-      0% {
-        --rs-glow-x: 18%;
-        --rs-glow-y: 24%;
-        opacity: 0.72;
+    @keyframes rs-logo-autofocus {
+      0%, 100% {
+        opacity: 0.52;
+        transform: translateY(0);
       }
-      50% {
-        --rs-glow-x: 76%;
-        --rs-glow-y: 38%;
-        opacity: 1;
+      6%, 14% {
+        opacity: 0.92;
+        transform: translateY(-2px);
       }
-      100% {
-        --rs-glow-x: 18%;
-        --rs-glow-y: 24%;
-        opacity: 0.72;
+      20% {
+        opacity: 0.58;
+        transform: translateY(0);
       }
     }
 
@@ -1275,16 +1042,8 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .rs-window::before,
-      .rs-steps .active,
-      .rs-agent.active,
-      .rs-window-bottom button,
-      .rs-demo-cursor {
+      .rs-logo-art {
         animation: none;
-      }
-
-      .rs-demo-cursor {
-        display: none;
       }
     }
 
@@ -1307,7 +1066,6 @@
     @media (max-width: 980px) {
       .rs-command-strip,
       .rs-positioning,
-      .rs-project-lab,
       .rs-fomo {
         grid-template-columns: 1fr;
       }
@@ -1338,17 +1096,6 @@
         border-bottom: 0;
       }
 
-      .rs-lab-copy {
-        min-height: auto;
-      }
-
-      .rs-lab-copy h3 {
-        margin-bottom: 40px;
-      }
-
-      .rs-terminal-frame {
-        padding: 26px;
-      }
     }
 
     @media (max-width: 720px) {
@@ -1426,25 +1173,6 @@
         border-radius: 28px;
       }
 
-      .rs-project-lab {
-        padding: 22px;
-        border-radius: 28px;
-      }
-
-      .rs-terminal-frame {
-        padding: 16px;
-      }
-
-      .rs-steps {
-        gap: 8px;
-        font-size: 11px;
-      }
-
-      .rs-window-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-      }
     }
   </style>
 
@@ -1523,64 +1251,84 @@
         </a>
 
         <div class="rs-logo-mosaic">
-          <div class="rs-logo-tile" style="--logo: url('PASTE_MCGILL_UNIVERSITY_LOGO_URL_HERE');">
+          <div class="rs-logo-tile" style="--logo: url('https://logo.clearbit.com/mcgill.ca');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>McGill University</span><small>MSc AI research</small></div>
+            <div class="rs-logo-meta"><span>McGill University</span><small>MSc AI research</small><div class="rs-logo-detail">Bias, transparency, NLP classification, and model behavior under dataset shifts.</div></div>
           </div>
 
-          <a class="rs-logo-tile" href="https://www.mcgill.ca/engine/node/826" style="--logo: url('PASTE_MCGILL_ENGINE_LOGO_URL_HERE');">
+          <a class="rs-logo-tile" href="https://www.mcgill.ca/engine/node/826" style="--logo: url('https://logo.clearbit.com/mcgill.ca');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>McGill Engine</span><small>TechAccel startup mentor</small></div>
+            <div class="rs-logo-meta"><span>McGill Engine</span><small>TechAccel startup mentor</small><div class="rs-logo-detail">Mentoring technical founders on customer discovery, positioning, and startup execution.</div></div>
           </a>
 
-          <a class="rs-logo-tile" href="https://delve.mcgill.ca/listen/inside-a-startup-thats-using-ai-to-revolutionise-medical-imaging/" style="--logo: url('PASTE_MCGILL_DELVE_LOGO_URL_HERE');">
+          <a class="rs-logo-tile" href="https://delve.mcgill.ca/listen/inside-a-startup-thats-using-ai-to-revolutionise-medical-imaging/" style="--logo: url('https://logo.clearbit.com/mcgill.ca');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>McGill Delve</span><small>Founder feature</small></div>
+            <div class="rs-logo-meta"><span>McGill Delve</span><small>Founder feature</small><div class="rs-logo-detail">Featured for building Carez AI and synthetic medical imaging infrastructure.</div></div>
           </a>
 
-          <a class="rs-logo-tile" href="https://www.youtube.com/watch?v=KUCRkVYFK1s" style="--logo: url('PASTE_ERA_LOGO_URL_HERE');">
+          <a class="rs-logo-tile" href="https://www.youtube.com/watch?v=KUCRkVYFK1s" style="--logo: url('https://logo.clearbit.com/eranyc.com');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>ERA NYC</span><small>Backed founder</small></div>
+            <div class="rs-logo-meta"><span>ERA NYC</span><small>Backed founder</small><div class="rs-logo-detail">Venture-backed founder signal from building and pitching in enterprise healthcare AI.</div></div>
           </a>
 
-          <div class="rs-logo-tile" style="--logo: url('PASTE_CDL_LOGO_URL_HERE');">
+          <div class="rs-logo-tile" style="--logo: url('https://logo.clearbit.com/creativedestructionlab.com');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>Creative Destruction Lab</span><small>AI stream</small></div>
+            <div class="rs-logo-meta"><span>Creative Destruction Lab</span><small>AI stream</small><div class="rs-logo-detail">Selected into a technical AI venture environment with deep diligence.</div></div>
           </div>
 
-          <div class="rs-logo-tile" style="--logo: url('PASTE_CAREZ_AI_LOGO_URL_HERE');">
+          <div class="rs-logo-tile" style="--logo: url('https://logo.clearbit.com/carez.ai');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>Carez AI</span><small>Co-founder</small></div>
+            <div class="rs-logo-meta"><span>Carez AI</span><small>Co-founder</small><div class="rs-logo-detail">Co-founded and led product/GTM for synthetic CT and MRI data infrastructure.</div></div>
           </div>
 
-          <div class="rs-logo-tile" style="--logo: url('PASTE_NEXT36_LOGO_URL_HERE');">
+          <div class="rs-logo-tile" style="--logo: url('https://logo.clearbit.com/nextcanada.com');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>NEXT36</span><small>Selected founder</small></div>
+            <div class="rs-logo-meta"><span>NEXT36</span><small>Selected founder</small><div class="rs-logo-detail">Selected founder signal through Canada's elite entrepreneurship network.</div></div>
           </div>
 
-          <a class="rs-logo-tile" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html" style="--logo: url('PASTE_NEW_YORK_TIMES_LOGO_URL_HERE');">
+          <a class="rs-logo-tile" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html" style="--logo: url('https://logo.clearbit.com/nytimes.com');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>New York Times</span><small>Featured</small></div>
+            <div class="rs-logo-meta"><span>New York Times</span><small>Featured</small><div class="rs-logo-detail">Public credibility signal beyond startup and research circles.</div></div>
           </a>
 
-          <a class="rs-logo-tile" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016" style="--logo: url('PASTE_UN_WIPO_LOGO_URL_HERE');">
+          <a class="rs-logo-tile" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016" style="--logo: url('https://logo.clearbit.com/wipo.int');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>United Nations / WIPO</span><small>Speaker</small></div>
+            <div class="rs-logo-meta"><span>United Nations / WIPO</span><small>Speaker</small><div class="rs-logo-detail">Spoke on IP, synthetic media, AI systems, and institutional adaptation.</div></div>
           </a>
 
-          <div class="rs-logo-tile" style="--logo: url('PASTE_NHS_LOGO_URL_HERE');">
+          <div class="rs-logo-tile" style="--logo: url('https://logo.clearbit.com/nhs.uk');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>NHS</span><small>Enterprise conversation</small></div>
+            <div class="rs-logo-meta"><span>NHS</span><small>Enterprise conversation</small><div class="rs-logo-detail">Healthcare buyer and deployment conversations around AI imaging workflows.</div></div>
           </div>
 
-          <div class="rs-logo-tile" style="--logo: url('PASTE_BAYER_LOGO_URL_HERE');">
+          <div class="rs-logo-tile" style="--logo: url('https://logo.clearbit.com/bayer.com');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>Bayer</span><small>Enterprise conversation</small></div>
+            <div class="rs-logo-meta"><span>Bayer</span><small>Enterprise conversation</small><div class="rs-logo-detail">Enterprise discovery and buyer conversations for medical AI use cases.</div></div>
           </div>
 
-          <div class="rs-logo-tile" style="--logo: url('PASTE_FDA_LOGO_URL_HERE');">
+          <div class="rs-logo-tile" style="--logo: url('https://logo.clearbit.com/fda.gov');">
             <div class="rs-logo-art" aria-hidden="true"></div>
-            <div class="rs-logo-meta"><span>FDA</span><small>Enterprise conversation</small></div>
+            <div class="rs-logo-meta"><span>FDA</span><small>Enterprise conversation</small><div class="rs-logo-detail">Regulated-market signal: trust, validation, and deployment constraints matter.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rs-activity-strip">
+        <a class="rs-activity-card" href="https://www.mcgill.ca/engine/node/826" style="--logo: url('https://logo.clearbit.com/mcgill.ca');">
+          <div class="rs-activity-logo" aria-hidden="true"></div>
+          <div>
+            <div class="rs-mini-title">Other activity</div>
+            <h3>McGill Engine startup mentor</h3>
+            <p>I mentor early-stage technical founders on customer discovery, GTM, product clarity, and getting from idea to venture.</p>
+          </div>
+        </a>
+
+        <div class="rs-activity-card" style="--logo: url('PASTE_PHOTOGRAPHY_MARK_OR_IMAGE_URL_HERE');">
+          <div class="rs-activity-logo" aria-hidden="true"></div>
+          <div>
+            <div class="rs-mini-title">Creative practice</div>
+            <h3>Photography and visual storytelling</h3>
+            <p>Creative work that sharpens the same muscle I use in GTM: taste, framing, attention, and narrative compression.</p>
           </div>
         </div>
       </div>
@@ -1822,149 +1570,6 @@
               <span class="rs-tag">Market education</span>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="rs-section" id="projects">
-      <div class="rs-section-head">
-        <div class="rs-label">Personal project lab</div>
-        <div class="rs-section-note">Small, sharp builds that show how I think: messy inputs, AI assistance, workflow design, usable output.</div>
-      </div>
-
-      <div class="rs-project-lab">
-        <div class="rs-lab-copy">
-          <div class="rs-orb"></div>
-          <h3>Shipped with Cursor + Claude</h3>
-          <div class="rs-lab-lead">
-            I use AI coding tools like a deployment multiplier.
-          </div>
-          <p>
-            The goal is not to cosplay as a full engineering team. The goal is to compress the distance between
-            customer pain and a working artifact: prototype, workflow, demo, dashboard, intake engine, or decision packet.
-          </p>
-          <div class="rs-lab-proof">
-            Idea -> prompt stack -> prototype -> critique -> demo artifact -> customer or team conversation
-          </div>
-        </div>
-
-        <div class="rs-terminal-frame">
-          <div class="rs-window">
-            <div class="rs-window-top">
-              <span class="rs-dot"></span>
-              <span class="rs-dot"></span>
-              <span class="rs-dot"></span>
-              <strong>Passage Platform</strong>
-            </div>
-
-            <div class="rs-steps">
-              <span class="active">1 Create Agents</span>
-              <span class="active">2 Connect</span>
-              <span>3 Deploy</span>
-            </div>
-
-            <div class="rs-window-body">
-              <h4>Connect school systems</h4>
-              <p>Configure AI agents across admissions, funding, and student operations.</p>
-
-              <div class="rs-agent-grid">
-                <div class="rs-agent active">
-                  <span class="rs-agent-badge">E</span>
-                  <div>
-                    <strong>Ellucian Banner</strong>
-                    <em>SIS connected</em>
-                  </div>
-                </div>
-
-                <div class="rs-agent">
-                  <span class="rs-agent-badge">E</span>
-                  <div>
-                    <strong>Ellucian Colleague</strong>
-                    <em>SIS candidate</em>
-                  </div>
-                </div>
-
-                <div class="rs-agent">
-                  <span class="rs-agent-badge">O</span>
-                  <div>
-                    <strong>Oracle PeopleSoft</strong>
-                    <em>ERP candidate</em>
-                  </div>
-                </div>
-
-                <div class="rs-agent">
-                  <span class="rs-agent-badge">S</span>
-                  <div>
-                    <strong>Salesforce</strong>
-                    <em>CRM candidate</em>
-                  </div>
-                </div>
-              </div>
-
-              <span class="rs-demo-cursor" aria-hidden="true"></span>
-
-              <div class="rs-window-bottom">
-                <span>Workflow ready for deployment review</span>
-                <button>Deploy Agents</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="rs-project-grid">
-        <div class="rs-project-card">
-          <div>
-            <span class="rs-project-status">Prototype</span>
-            <h3>Passage AI workforce layer</h3>
-            <p>Concept-to-demo platform showing how schools could configure agents, connect systems, apply policies, and deploy operational workflows.</p>
-          </div>
-          <div class="rs-proofline">AI agents | systems integration | policy logic | admissions ops</div>
-        </div>
-
-        <div class="rs-project-card">
-          <div>
-            <span class="rs-project-status">Workflow</span>
-            <h3>Customer scoping engine</h3>
-            <p>Turns synthetic imaging requests into modality, anatomy, pathology, labels, volume, validation needs, and open questions.</p>
-          </div>
-          <div class="rs-proofline">Customer chaos -> technical spec -> build path</div>
-        </div>
-
-        <div class="rs-project-card">
-          <div>
-            <span class="rs-project-status">Agent idea</span>
-            <h3>Refund recovery agent</h3>
-            <p>Scans transactions for duplicate charges, unused subscriptions, and refund opportunities, then drafts recovery actions.</p>
-          </div>
-          <div class="rs-proofline">Financial noise -> recovery queue -> drafted action</div>
-        </div>
-
-        <div class="rs-project-card">
-          <div>
-            <span class="rs-project-status">Ops system</span>
-            <h3>Decision packet builder</h3>
-            <p>Converts forms, calls, policy notes, and student data into structured risks, recommendations, and next actions.</p>
-          </div>
-          <div class="rs-proofline">Messy input -> structured packet -> action</div>
-        </div>
-
-        <div class="rs-project-card">
-          <div>
-            <span class="rs-project-status">GTM asset</span>
-            <h3>Enterprise trust packet</h3>
-            <p>Packages security, compliance, data flow, implementation steps, and buyer objections into a cleaner review motion.</p>
-          </div>
-          <div class="rs-proofline">Risk questions -> trust packet -> approval path</div>
-        </div>
-
-        <div class="rs-project-card">
-          <div>
-            <span class="rs-project-status">Narrative</span>
-            <h3>Technical founder content engine</h3>
-            <p>Turns technical lessons, customer conversations, and founder scars into distribution-ready ideas people remember.</p>
-          </div>
-          <div class="rs-proofline">Complex thought -> sharp post -> market signal</div>
         </div>
       </div>
     </section>
