@@ -44,7 +44,7 @@
       transition: color 160ms ease, background 160ms ease, text-decoration-color 160ms ease;
     }
 
-    .rs-site a:hover {
+    .rs-site a:not(.rs-signal):hover {
       color: #235f69;
       background: var(--link-soft);
       text-decoration-color: transparent;
@@ -103,12 +103,13 @@
     }
 
     .rs-signal {
-      min-height: 142px;
+      min-height: 158px;
       position: relative;
       padding: 16px;
       border: 1px solid var(--line);
       border-radius: 16px;
       background: rgba(255,255,255,0.26);
+      text-decoration: none;
       transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
     }
 
@@ -171,21 +172,70 @@
     }
 
     .rs-signal-detail {
-      max-height: 0;
+      min-height: 36px;
       opacity: 0;
-      overflow: hidden;
       transform: translateY(5px);
       color: var(--soft);
       font-size: 13px;
       line-height: 1.38;
-      transition: max-height 160ms ease, opacity 160ms ease, transform 160ms ease, margin-top 160ms ease;
+      margin-top: 9px;
+      transition: opacity 160ms ease, transform 160ms ease;
     }
 
     .rs-signal:hover .rs-signal-detail {
-      max-height: 54px;
       opacity: 1;
       transform: translateY(0);
-      margin-top: 9px;
+    }
+
+    .rs-activity-graph {
+      margin-top: 28px;
+      display: grid;
+      gap: 10px;
+      max-width: 850px;
+    }
+
+    .rs-activity-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      align-items: center;
+      min-height: 32px;
+    }
+
+    .rs-activity-label {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .rs-activity-cells {
+      display: grid;
+      grid-template-columns: repeat(11, 1fr);
+      gap: 5px;
+    }
+
+    .rs-cell {
+      height: 18px;
+      border-radius: 5px;
+      border: 1px solid rgba(17,17,17,0.08);
+      background: rgba(17,17,17,0.035);
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .rs-cell.on {
+      background: rgba(63,127,138,0.26);
+      border-color: rgba(63,127,138,0.16);
+    }
+
+    .rs-cell.strong {
+      background: rgba(63,127,138,0.52);
+      border-color: rgba(63,127,138,0.24);
+    }
+
+    .rs-activity-row:hover .rs-cell.on,
+    .rs-activity-row:hover .rs-cell.strong {
+      transform: translateY(-2px);
+      background: rgba(63,127,138,0.68);
     }
 
     .rs-leverage-list {
@@ -285,6 +335,11 @@
         opacity: 1;
         transform: none;
       }
+
+      .rs-activity-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
     }
 
     @media (max-width: 560px) {
@@ -336,6 +391,15 @@
       <div class="rs-label">Selected signals</div>
 
       <div class="rs-signal-grid">
+        <a class="rs-signal" href="https://carezai.com">
+          <div class="rs-logo-wrap">
+            <img src="" alt="Carez AI logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">Carez AI</span>
+          </div>
+          <div class="rs-signal-caption">Co founder</div>
+          <div class="rs-signal-detail">Synthetic medical imaging infrastructure.</div>
+        </a>
+
         <div class="rs-signal">
           <div class="rs-logo-wrap">
             <img src="" alt="McGill University logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
@@ -352,15 +416,6 @@
           </div>
           <div class="rs-signal-caption">TechAccel startup mentor</div>
           <div class="rs-signal-detail">Mentor early-stage technical founders.</div>
-        </a>
-
-        <a class="rs-signal" href="https://carezai.com">
-          <div class="rs-logo-wrap">
-            <img src="" alt="Carez AI logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-            <span class="rs-logo-fallback">Carez AI</span>
-          </div>
-          <div class="rs-signal-caption">Co founder</div>
-          <div class="rs-signal-detail">Synthetic medical imaging infrastructure.</div>
         </a>
 
         <a class="rs-signal" href="https://www.youtube.com/watch?v=KUCRkVYFK1s">
@@ -434,6 +489,39 @@
           <div class="rs-signal-caption">Organic distribution</div>
           <div class="rs-signal-detail">Technical founder narrative that spread organically.</div>
         </a>
+      </div>
+
+      <div class="rs-activity-graph" aria-label="Proof timeline">
+        <div class="rs-activity-row">
+          <div class="rs-activity-label">Research</div>
+          <div class="rs-activity-cells">
+            <span class="rs-cell on"></span><span class="rs-cell strong"></span><span class="rs-cell on"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span>
+          </div>
+        </div>
+        <div class="rs-activity-row">
+          <div class="rs-activity-label">Carez AI</div>
+          <div class="rs-activity-cells">
+            <span class="rs-cell"></span><span class="rs-cell on"></span><span class="rs-cell strong"></span><span class="rs-cell strong"></span><span class="rs-cell on"></span><span class="rs-cell on"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span>
+          </div>
+        </div>
+        <div class="rs-activity-row">
+          <div class="rs-activity-label">Accelerators</div>
+          <div class="rs-activity-cells">
+            <span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell on"></span><span class="rs-cell strong"></span><span class="rs-cell strong"></span><span class="rs-cell on"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span>
+          </div>
+        </div>
+        <div class="rs-activity-row">
+          <div class="rs-activity-label">Mentorship</div>
+          <div class="rs-activity-cells">
+            <span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell on"></span><span class="rs-cell on"></span><span class="rs-cell strong"></span><span class="rs-cell strong"></span><span class="rs-cell on"></span><span class="rs-cell on"></span><span class="rs-cell"></span>
+          </div>
+        </div>
+        <div class="rs-activity-row">
+          <div class="rs-activity-label">Distribution</div>
+          <div class="rs-activity-cells">
+            <span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell on"></span><span class="rs-cell on"></span><span class="rs-cell strong"></span><span class="rs-cell strong"></span><span class="rs-cell strong"></span><span class="rs-cell on"></span><span class="rs-cell on"></span><span class="rs-cell strong"></span>
+          </div>
+        </div>
       </div>
     </section>
 
