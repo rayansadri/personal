@@ -1,0 +1,615 @@
+<div class="rs-site">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;560&display=swap");
+
+    .rs-site,
+    .rs-site *,
+    .rs-site *::before,
+    .rs-site *::after {
+      box-sizing: border-box;
+    }
+
+    .rs-site {
+      --bg: #fbfaf6;
+      --ink: #171717;
+      --soft: #55554f;
+      --muted: #8f8d86;
+      --line: rgba(17,17,17,0.11);
+      --link: #3f7f8a;
+      --link-soft: rgba(63,127,138,0.10);
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(circle at 82% 0%, rgba(255,122,61,0.035), transparent 28%),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      line-height: 1.5;
+      letter-spacing: -0.012em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    .rs-site * {
+      margin: 0;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    .rs-site a {
+      color: var(--link);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: color 160ms ease, background 160ms ease, text-decoration-color 160ms ease;
+    }
+
+    .rs-site a:not(.rs-signal):hover {
+      color: #235f69;
+      background: var(--link-soft);
+      text-decoration-color: transparent;
+    }
+
+    .rs-wrap {
+      width: min(100%, 920px);
+      margin: 0 auto;
+      padding: 52px 24px 70px;
+    }
+
+    .rs-intro {
+      max-width: 900px;
+      padding-top: 4px;
+    }
+
+    .rs-intro p {
+      color: var(--ink);
+      font-size: clamp(20px, 2.55vw, 27px);
+      line-height: 1.42;
+      letter-spacing: -0.035em;
+      font-weight: 400;
+      margin-bottom: 22px;
+    }
+
+    .rs-intro strong {
+      font-weight: 500;
+    }
+
+    .rs-proof-sentence {
+      color: var(--soft);
+      font-size: clamp(18px, 2.1vw, 22px);
+      line-height: 1.45;
+      letter-spacing: -0.026em;
+      margin-top: 28px;
+    }
+
+    .rs-section {
+      margin-top: 78px;
+    }
+
+    .rs-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .rs-signal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px 22px;
+      padding-top: 2px;
+    }
+
+    .rs-signal {
+      min-height: 128px;
+      position: relative;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.26);
+      text-decoration: none;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .rs-signal:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.82);
+      border-color: rgba(17,17,17,0.16);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.055);
+    }
+
+    .rs-logo-wrap {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+    }
+
+    .rs-logo-wrap img {
+      display: block;
+      max-width: 100%;
+      max-height: 34px;
+      object-fit: contain;
+      filter: grayscale(1);
+      opacity: 0.68;
+      transition: filter 160ms ease, opacity 160ms ease;
+    }
+
+    .rs-logo-wrap img[src=""],
+    .rs-logo-wrap img:not([src]) {
+      display: none;
+    }
+
+    .rs-logo-wrap img[src]:not([src=""]) + .rs-logo-fallback {
+      display: none;
+    }
+
+    .rs-logo-fallback {
+      display: block;
+      color: rgba(17,17,17,0.62);
+      font-size: 19px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-weight: 500;
+      transition: color 160ms ease;
+    }
+
+    .rs-signal:hover .rs-logo-wrap img {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+
+    .rs-signal:hover .rs-logo-fallback {
+      color: var(--ink);
+    }
+
+    .rs-signal-caption {
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.3;
+      margin-top: 12px;
+    }
+
+    .rs-signal-detail {
+      min-height: 0;
+      opacity: 1;
+      transform: none;
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.38;
+      margin-top: 8px;
+      transition: color 160ms ease;
+    }
+
+    .rs-signal:hover .rs-signal-detail {
+      color: var(--ink);
+    }
+
+    .rs-activity-graph {
+      margin-top: 28px;
+      display: grid;
+      gap: 10px;
+      max-width: 850px;
+    }
+
+    .rs-activity-head {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 2px;
+    }
+
+    .rs-activity-title {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .rs-activity-stages {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    .rs-activity-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      align-items: center;
+      min-height: 32px;
+    }
+
+    .rs-activity-label {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .rs-activity-cells {
+      display: grid;
+      grid-template-columns: repeat(11, 1fr);
+      gap: 5px;
+    }
+
+    .rs-cell {
+      height: 18px;
+      border-radius: 5px;
+      border: 1px solid rgba(17,17,17,0.08);
+      background: rgba(17,17,17,0.035);
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .rs-cell.on {
+      background: rgba(63,127,138,0.26);
+      border-color: rgba(63,127,138,0.16);
+    }
+
+    .rs-cell.strong {
+      background: rgba(63,127,138,0.52);
+      border-color: rgba(63,127,138,0.24);
+    }
+
+    .rs-activity-row:hover .rs-cell.on,
+    .rs-activity-row:hover .rs-cell.strong {
+      transform: translateY(-2px);
+      background: rgba(63,127,138,0.68);
+    }
+
+    .rs-leverage-list {
+      display: grid;
+      gap: 0;
+      max-width: 850px;
+      border-top: 1px solid var(--line);
+    }
+
+    .rs-leverage-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      align-items: center;
+      gap: 26px;
+      min-height: 66px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .rs-leverage-row:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.42);
+    }
+
+    .rs-leverage-input {
+      color: var(--ink);
+      font-size: 19px;
+      line-height: 1.2;
+      letter-spacing: -0.035em;
+      font-weight: 500;
+    }
+
+    .rs-leverage-output {
+      color: var(--soft);
+      font-size: 16px;
+      line-height: 1.45;
+      letter-spacing: -0.018em;
+      opacity: 1;
+      transform: none;
+      transition: color 160ms ease, transform 160ms ease;
+    }
+
+    .rs-leverage-row:hover .rs-leverage-output {
+      color: var(--ink);
+    }
+
+    .rs-leverage-output::before {
+      content: "-> ";
+      color: var(--link);
+      display: inline-block;
+      transition: transform 160ms ease;
+    }
+
+    .rs-leverage-row:hover .rs-leverage-output::before {
+      transform: translateX(4px);
+    }
+
+    .rs-final-line {
+      max-width: 820px;
+      color: var(--ink);
+      font-size: clamp(19px, 2.2vw, 22px);
+      line-height: 1.45;
+      letter-spacing: -0.026em;
+      font-weight: 400;
+    }
+
+    .rs-footer {
+      margin-top: 92px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .rs-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 26px;
+      font-size: 16px;
+    }
+
+    @media (max-width: 860px) {
+      .rs-wrap {
+        padding: 42px 20px 62px;
+      }
+
+      .rs-signal-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .rs-leverage-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .rs-leverage-output {
+        opacity: 1;
+        transform: none;
+      }
+
+      .rs-activity-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .rs-activity-head {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .rs-intro p {
+        font-size: 22px;
+      }
+
+      .rs-proof-sentence {
+        font-size: 20px;
+      }
+
+      .rs-signal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rs-section {
+        margin-top: 62px;
+      }
+
+      .rs-leverage-input {
+        font-size: 18px;
+      }
+    }
+  </style>
+
+  <main class="rs-wrap">
+    <section class="rs-intro">
+      <p>
+        Hi, I&rsquo;m Rayan. I&rsquo;m an <strong>AI researcher turned founder/operator.</strong>
+      </p>
+
+      <p>
+        I co-founded <a href="https://carezai.com">Carez AI</a>, a synthetic medical imaging company backed by
+        <a href="https://www.youtube.com/watch?v=KUCRkVYFK1s">ERA NYC</a>, <a href="https://www.creativedestructionlab.com/">CDL AI</a>, and
+        <a href="https://www.nextcanada.com/next-36/">NEXT36</a>. Before that, I researched bias and transparency in AI systems at
+        <a href="https://www.mcgill.ca/">McGill</a>. I now work in the messy middle of technical products: deployment, GTM,
+        customer discovery, workflow automation, and narrative.
+      </p>
+
+      <p>
+        I&rsquo;ve sold into enterprise healthcare, mentored founders at <a href="https://www.mcgill.ca/engine/node/826">McGill Engine</a>,
+        built AI workflow prototypes, and grew technical founder content to <a href="https://twitter.com/rayansadri">9M+ organic views</a>.
+      </p>
+
+      <div class="rs-proof-sentence">The work below is the proof.</div>
+    </section>
+
+    <section class="rs-section" id="proof">
+      <div class="rs-label">Selected signals</div>
+
+      <div class="rs-signal-grid">
+        <a class="rs-signal" href="https://carezai.com">
+          <div class="rs-logo-wrap">
+            <img src="" alt="Carez AI logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">Carez AI</span>
+          </div>
+          <div class="rs-signal-caption">Co founder</div>
+          <div class="rs-signal-detail">Synthetic medical imaging infrastructure.</div>
+        </a>
+
+        <div class="rs-signal">
+          <div class="rs-logo-wrap">
+            <img src="" alt="McGill University logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">McGill University</span>
+          </div>
+          <div class="rs-signal-caption">MSc AI research</div>
+          <div class="rs-signal-detail">Bias and transparency in AI systems.</div>
+        </div>
+
+        <a class="rs-signal" href="https://www.mcgill.ca/engine/node/826">
+          <div class="rs-logo-wrap">
+            <img src="" alt="McGill Engine logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">McGill Engine</span>
+          </div>
+          <div class="rs-signal-caption">TechAccel startup mentor</div>
+          <div class="rs-signal-detail">Mentor early-stage technical founders.</div>
+        </a>
+
+        <a class="rs-signal" href="https://www.youtube.com/watch?v=KUCRkVYFK1s">
+          <div class="rs-logo-wrap">
+            <img src="" alt="ERA NYC logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">ERA NYC</span>
+          </div>
+          <div class="rs-signal-caption">Backed founder</div>
+          <div class="rs-signal-detail">Raised pre-seed through NYC accelerator.</div>
+        </a>
+
+        <div class="rs-signal">
+          <div class="rs-logo-wrap">
+            <img src="" alt="Creative Destruction Lab logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">CDL AI</span>
+          </div>
+          <div class="rs-signal-caption">AI stream</div>
+          <div class="rs-signal-detail">Creative Destruction Lab AI program.</div>
+        </div>
+
+        <div class="rs-signal">
+          <div class="rs-logo-wrap">
+            <img src="" alt="NEXT36 logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">NEXT36</span>
+          </div>
+          <div class="rs-signal-caption">Selected founder</div>
+          <div class="rs-signal-detail">Canadian founder fellowship.</div>
+        </div>
+
+        <a class="rs-signal" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html">
+          <div class="rs-logo-wrap">
+            <img src="" alt="New York Times logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">New York Times</span>
+          </div>
+          <div class="rs-signal-caption">Featured</div>
+          <div class="rs-signal-detail">Public credibility beyond startup circles.</div>
+        </a>
+
+        <div class="rs-signal">
+          <div class="rs-logo-wrap">
+            <img src="" alt="Seattle Times logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">Seattle Times</span>
+          </div>
+          <div class="rs-signal-caption">Featured</div>
+          <div class="rs-signal-detail">Public press signal.</div>
+        </div>
+
+        <a class="rs-signal" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016">
+          <div class="rs-logo-wrap">
+            <img src="" alt="United Nations WIPO logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">United Nations / WIPO</span>
+          </div>
+          <div class="rs-signal-caption">Speaker</div>
+          <div class="rs-signal-detail">IP and synthetic media conversation.</div>
+        </a>
+
+        <a class="rs-signal" href="https://delve.mcgill.ca/listen/inside-a-startup-thats-using-ai-to-revolutionise-medical-imaging/">
+          <div class="rs-logo-wrap">
+            <img src="" alt="McGill Delve logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">McGill Delve</span>
+          </div>
+          <div class="rs-signal-caption">Founder feature</div>
+          <div class="rs-signal-detail">Carez AI founder story.</div>
+        </a>
+
+        <a class="rs-signal" href="https://twitter.com/rayansadri">
+          <div class="rs-logo-wrap">
+            <img src="" alt="X logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <span class="rs-logo-fallback">9M+ X views</span>
+          </div>
+          <div class="rs-signal-caption">Organic distribution</div>
+          <div class="rs-signal-detail">Technical founder narrative that spread organically.</div>
+        </a>
+      </div>
+
+      <div class="rs-activity-graph" aria-label="Proof timeline">
+        <div class="rs-activity-head">
+          <div class="rs-activity-title">Proof graph</div>
+          <div class="rs-activity-stages">
+            <span>research</span>
+            <span>founder</span>
+            <span>GTM</span>
+            <span>mentor</span>
+            <span>distribution</span>
+          </div>
+        </div>
+
+        <div class="rs-activity-row">
+          <div class="rs-activity-label">Research</div>
+          <div class="rs-activity-cells">
+            <span class="rs-cell on"></span><span class="rs-cell strong"></span><span class="rs-cell on"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span>
+          </div>
+        </div>
+        <div class="rs-activity-row">
+          <div class="rs-activity-label">Carez AI</div>
+          <div class="rs-activity-cells">
+            <span class="rs-cell"></span><span class="rs-cell on"></span><span class="rs-cell strong"></span><span class="rs-cell strong"></span><span class="rs-cell on"></span><span class="rs-cell on"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span>
+          </div>
+        </div>
+        <div class="rs-activity-row">
+          <div class="rs-activity-label">Accelerators</div>
+          <div class="rs-activity-cells">
+            <span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell on"></span><span class="rs-cell strong"></span><span class="rs-cell strong"></span><span class="rs-cell on"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span>
+          </div>
+        </div>
+        <div class="rs-activity-row">
+          <div class="rs-activity-label">Mentorship</div>
+          <div class="rs-activity-cells">
+            <span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell on"></span><span class="rs-cell on"></span><span class="rs-cell strong"></span><span class="rs-cell strong"></span><span class="rs-cell on"></span><span class="rs-cell on"></span><span class="rs-cell"></span>
+          </div>
+        </div>
+        <div class="rs-activity-row">
+          <div class="rs-activity-label">Distribution</div>
+          <div class="rs-activity-cells">
+            <span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell"></span><span class="rs-cell on"></span><span class="rs-cell on"></span><span class="rs-cell strong"></span><span class="rs-cell strong"></span><span class="rs-cell strong"></span><span class="rs-cell on"></span><span class="rs-cell on"></span><span class="rs-cell strong"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rs-section">
+      <div class="rs-label">What I turn into leverage</div>
+
+      <div class="rs-leverage-list">
+        <div class="rs-leverage-row">
+          <div class="rs-leverage-input">Messy customer calls</div>
+          <div class="rs-leverage-output">buyer map, objections, urgency, next step</div>
+        </div>
+        <div class="rs-leverage-row">
+          <div class="rs-leverage-input">Vague AI product ideas</div>
+          <div class="rs-leverage-output">prototype, workflow, demo, implementation path</div>
+        </div>
+        <div class="rs-leverage-row">
+          <div class="rs-leverage-input">Enterprise buyer confusion</div>
+          <div class="rs-leverage-output">narrative, trust packet, decision criteria</div>
+        </div>
+        <div class="rs-leverage-row">
+          <div class="rs-leverage-input">Security review friction</div>
+          <div class="rs-leverage-output">answers, docs, approval motion</div>
+        </div>
+        <div class="rs-leverage-row">
+          <div class="rs-leverage-input">Founder-led GTM chaos</div>
+          <div class="rs-leverage-output">outbound system, CRM flow, repeatable pipeline</div>
+        </div>
+        <div class="rs-leverage-row">
+          <div class="rs-leverage-input">Technical credibility</div>
+          <div class="rs-leverage-output">simple story buyers, users, and investors understand</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rs-section">
+      <div class="rs-final-line">I have built the product, sold the product, explained the product, deployed the workflow, and made people care.</div>
+    </section>
+
+    <footer class="rs-footer">
+      <nav class="rs-links">
+        <a href="mailto:rynsdri@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/ray-sadri/">LinkedIn</a>
+        <a href="https://twitter.com/rayansadri">X</a>
+        <a href="https://github.com/rayansadri">GitHub</a>
+        <a href="https://carezai.com">Carez AI</a>
+        <a href="https://www.mcgill.ca/engine/node/826">McGill Engine</a>
+        <a href="https://www.youtube.com/watch?v=KUCRkVYFK1s">Demo Day</a>
+        <a href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016">UN / WIPO</a>
+        <a href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html">NYT</a>
+      </nav>
+    </footer>
+  </main>
+</div>
