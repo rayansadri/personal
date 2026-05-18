@@ -103,9 +103,9 @@
     }
 
     .rs-signal {
-      min-height: 158px;
+      min-height: 128px;
       position: relative;
-      padding: 16px;
+      padding: 14px;
       border: 1px solid var(--line);
       border-radius: 16px;
       background: rgba(255,255,255,0.26);
@@ -121,7 +121,7 @@
     }
 
     .rs-logo-wrap {
-      min-height: 42px;
+      min-height: 34px;
       display: flex;
       align-items: center;
     }
@@ -172,19 +172,18 @@
     }
 
     .rs-signal-detail {
-      min-height: 36px;
-      opacity: 0;
-      transform: translateY(5px);
+      min-height: 0;
+      opacity: 1;
+      transform: none;
       color: var(--soft);
       font-size: 13px;
       line-height: 1.38;
-      margin-top: 9px;
-      transition: opacity 160ms ease, transform 160ms ease;
+      margin-top: 8px;
+      transition: color 160ms ease;
     }
 
     .rs-signal:hover .rs-signal-detail {
-      opacity: 1;
-      transform: translateY(0);
+      color: var(--ink);
     }
 
     .rs-activity-graph {
@@ -192,6 +191,29 @@
       display: grid;
       gap: 10px;
       max-width: 850px;
+    }
+
+    .rs-activity-head {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 2px;
+    }
+
+    .rs-activity-title {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .rs-activity-stages {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.04em;
     }
 
     .rs-activity-row {
@@ -337,6 +359,11 @@
       }
 
       .rs-activity-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .rs-activity-head {
         grid-template-columns: 1fr;
         gap: 6px;
       }
@@ -492,6 +519,17 @@
       </div>
 
       <div class="rs-activity-graph" aria-label="Proof timeline">
+        <div class="rs-activity-head">
+          <div class="rs-activity-title">Proof graph</div>
+          <div class="rs-activity-stages">
+            <span>research</span>
+            <span>founder</span>
+            <span>GTM</span>
+            <span>mentor</span>
+            <span>distribution</span>
+          </div>
+        </div>
+
         <div class="rs-activity-row">
           <div class="rs-activity-label">Research</div>
           <div class="rs-activity-cells">
