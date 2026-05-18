@@ -1,0 +1,1731 @@
+<div class="rs-site">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;560;600;650;700;760;800&display=swap");
+
+    .rs-site,
+    .rs-site *,
+    .rs-site *::before,
+    .rs-site *::after {
+      box-sizing: border-box;
+    }
+
+    .rs-site {
+      --bg: #f6f4ee;
+      --surface: rgba(255,255,255,0.70);
+      --surface-strong: #ffffff;
+      --ink: #101010;
+      --soft: #4f4f4b;
+      --muted: #85847b;
+      --line: rgba(16,16,16,0.10);
+      --line-strong: rgba(16,16,16,0.20);
+      --dark: #0f1014;
+      --cream: #f7f4ea;
+      --accent: #ff743d;
+      --blue: #465dff;
+      --green: #25c48a;
+      --purple: #8b5cff;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 82% 3%, rgba(255,116,61,0.18), transparent 27%),
+        radial-gradient(circle at 6% 8%, rgba(70,93,255,0.13), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0) 34%),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      line-height: 1.5;
+      letter-spacing: -0.014em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    .rs-site * {
+      margin: 0;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    .rs-site a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .rs-page {
+      width: min(100%, 1180px);
+      margin: 0 auto;
+      padding: 34px 28px 88px;
+    }
+
+    .rs-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .rs-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+    }
+
+    .rs-brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 11px;
+      background:
+        radial-gradient(circle at 28% 24%, #fff4cc, transparent 28%),
+        linear-gradient(135deg, var(--ink), #30303a);
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      box-shadow: 0 12px 34px rgba(16,16,16,0.13);
+    }
+
+    .rs-nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .rs-nav-links a {
+      color: var(--muted);
+      transition: color 160ms ease;
+    }
+
+    .rs-nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .rs-nav-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(20px);
+    }
+
+    .rs-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(37,196,138,0.14);
+    }
+
+    .rs-hero {
+      padding: 104px 0 62px;
+      max-width: 1080px;
+    }
+
+    .rs-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.62);
+      color: var(--soft);
+      font-size: 13px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 18px 56px rgba(16,16,16,0.04);
+    }
+
+    .rs-kicker-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255,116,61,0.13);
+    }
+
+    .rs-hero h1 {
+      max-width: 1080px;
+      font-size: clamp(56px, 8vw, 108px);
+      line-height: 0.96;
+      letter-spacing: -0.082em;
+      font-weight: 690;
+      color: var(--ink);
+    }
+
+    .rs-hero h1 span {
+      color: var(--soft);
+      font-weight: 560;
+    }
+
+    .rs-hero p {
+      max-width: 830px;
+      margin-top: 30px;
+      color: var(--soft);
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.58;
+      letter-spacing: -0.032em;
+    }
+
+    .rs-hero p strong {
+      color: var(--ink);
+      font-weight: 620;
+    }
+
+    .rs-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .rs-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 650;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .rs-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .rs-button.primary {
+      background: var(--ink);
+      color: var(--cream);
+      border: 1px solid var(--ink);
+      box-shadow: 0 16px 46px rgba(16,16,16,0.16);
+    }
+
+    .rs-button.secondary {
+      background: rgba(255,255,255,0.62);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(20px);
+    }
+
+    .rs-command-strip {
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr 0.94fr;
+      gap: 12px;
+      margin-top: 42px;
+      max-width: 1020px;
+    }
+
+    .rs-command-card {
+      min-height: 128px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--surface);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.04);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .rs-command-card small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .rs-command-card strong {
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.15;
+      letter-spacing: -0.05em;
+      font-weight: 690;
+      margin-top: 16px;
+    }
+
+    .rs-section {
+      margin-top: 78px;
+    }
+
+    .rs-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 18px;
+    }
+
+    .rs-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .rs-section-note {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 450px;
+      text-align: right;
+      line-height: 1.45;
+    }
+
+    .rs-proof-wall {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+
+    .rs-proof-card {
+      min-height: 128px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--surface);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.035);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .rs-proof-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--line-strong);
+      background: rgba(255,255,255,0.88);
+    }
+
+    .rs-proof-card span {
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+      font-weight: 700;
+    }
+
+    .rs-proof-card small {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    .rs-positioning {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 14px;
+    }
+
+    .rs-positioning-main,
+    .rs-positioning-side {
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background: var(--surface);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.035);
+      padding: 31px;
+    }
+
+    .rs-positioning-main h2 {
+      max-width: 720px;
+      font-size: clamp(35px, 4.8vw, 62px);
+      line-height: 1;
+      letter-spacing: -0.074em;
+      font-weight: 680;
+      margin-bottom: 22px;
+    }
+
+    .rs-positioning-main p,
+    .rs-positioning-side p {
+      color: var(--soft);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .rs-positioning-main strong,
+    .rs-positioning-side strong {
+      color: var(--ink);
+      font-weight: 620;
+    }
+
+    .rs-positioning-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 34px;
+    }
+
+    .rs-mini-title {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .rs-fit-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .rs-fit-list div {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--soft);
+      font-size: 15px;
+    }
+
+    .rs-fit-list strong {
+      color: var(--ink);
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .rs-metrics {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .rs-metric {
+      min-height: 158px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--surface);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.035);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .rs-number {
+      color: var(--ink);
+      font-size: clamp(31px, 3.4vw, 44px);
+      line-height: 1;
+      font-weight: 720;
+      letter-spacing: -0.06em;
+      white-space: nowrap;
+    }
+
+    .rs-caption {
+      color: var(--soft);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .rs-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .rs-pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.54);
+      color: var(--soft);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 13px;
+      backdrop-filter: blur(20px);
+    }
+
+    .rs-os {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .rs-os-card {
+      min-height: 252px;
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--surface);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.035);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .rs-os-card::before {
+      content: "";
+      position: absolute;
+      inset: -70px -70px auto auto;
+      width: 155px;
+      height: 155px;
+      border-radius: 50%;
+      background: rgba(255,116,61,0.12);
+      pointer-events: none;
+    }
+
+    .rs-os-index {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: var(--ink);
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 760;
+      margin-bottom: 20px;
+    }
+
+    .rs-os-card h3 {
+      font-size: 24px;
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+      font-weight: 690;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .rs-os-card p {
+      color: var(--soft);
+      font-size: 15.5px;
+      line-height: 1.52;
+      position: relative;
+    }
+
+    .rs-os-flow {
+      margin-top: 26px;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 650;
+      position: relative;
+    }
+
+    .rs-timeline {
+      position: relative;
+      display: grid;
+      gap: 14px;
+    }
+
+    .rs-timeline::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      bottom: 18px;
+      left: 154px;
+      width: 1px;
+      background: var(--line-strong);
+    }
+
+    .rs-timeline-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 48px;
+      align-items: start;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: var(--surface);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.035);
+      position: relative;
+    }
+
+    .rs-timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 148px;
+      top: 34px;
+      width: 13px;
+      height: 13px;
+      border-radius: 999px;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 6px rgba(255,116,61,0.12);
+      z-index: 1;
+    }
+
+    .rs-time {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
+
+    .rs-role h3 {
+      font-size: clamp(30px, 3.6vw, 44px);
+      line-height: 1;
+      letter-spacing: -0.07em;
+      font-weight: 690;
+      margin-bottom: 10px;
+    }
+
+    .rs-role p {
+      color: var(--soft);
+      font-size: 16.5px;
+      line-height: 1.58;
+      max-width: 820px;
+    }
+
+    .rs-role p strong {
+      color: var(--ink);
+      font-weight: 620;
+    }
+
+    .rs-proofline {
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .rs-tag-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 17px;
+    }
+
+    .rs-tag {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.55);
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: var(--soft);
+      font-size: 12.5px;
+      line-height: 1;
+    }
+
+    .rs-project-lab {
+      display: grid;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 34px;
+      align-items: stretch;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255,143,88,0.20), transparent 31%),
+        radial-gradient(circle at 92% 8%, rgba(139,165,255,0.18), transparent 30%),
+        #101014;
+      color: var(--cream);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 36px;
+      padding: 34px;
+      overflow: hidden;
+      box-shadow: 0 32px 90px rgba(0,0,0,0.13);
+    }
+
+    .rs-lab-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 490px;
+    }
+
+    .rs-orb {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 36% 28%, #fff0c7, #ff7f50 32%, #7f5cff 58%, #111 78%);
+      box-shadow: 0 0 70px rgba(255,127,80,0.34);
+      margin-bottom: 18px;
+    }
+
+    .rs-lab-copy h3 {
+      color: #ff9a5f;
+      font-size: 29px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      margin-bottom: 58px;
+    }
+
+    .rs-lab-lead {
+      color: #ffffff;
+      font-size: clamp(28px, 3.4vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.07em;
+      font-weight: 650;
+      max-width: 480px;
+      margin-bottom: 18px;
+    }
+
+    .rs-lab-copy p {
+      color: rgba(255,255,255,0.68);
+      font-size: 16px;
+      line-height: 1.57;
+      max-width: 460px;
+    }
+
+    .rs-lab-proof {
+      margin-top: 34px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .rs-terminal-frame {
+      min-height: 500px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, rgba(232,255,247,0.94), #ffffff 62%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 44px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
+    }
+
+    .rs-window {
+      width: min(100%, 590px);
+      color: var(--cream);
+      background: rgba(15,16,20,0.94);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 28px 90px rgba(0,0,0,0.28);
+      backdrop-filter: blur(28px);
+    }
+
+    .rs-window-top {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+    }
+
+    .rs-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #ff5f57;
+    }
+
+    .rs-dot:nth-child(2) {
+      background: #ffbd2e;
+    }
+
+    .rs-dot:nth-child(3) {
+      background: #28c840;
+    }
+
+    .rs-window-top strong {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      font-weight: 650;
+      letter-spacing: -0.025em;
+    }
+
+    .rs-steps {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      padding: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.35);
+      font-size: 13px;
+    }
+
+    .rs-steps .active {
+      color: rgba(255,255,255,0.92);
+    }
+
+    .rs-window-body {
+      padding: 24px;
+    }
+
+    .rs-window-body h4 {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 4px;
+    }
+
+    .rs-window-body p {
+      color: rgba(255,255,255,0.44);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .rs-agent-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .rs-agent {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.035);
+    }
+
+    .rs-agent.active {
+      border-color: rgba(37,196,138,0.64);
+      background: rgba(37,196,138,0.13);
+    }
+
+    .rs-agent-badge {
+      width: 31px;
+      height: 31px;
+      border-radius: 9px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.72);
+      font-weight: 760;
+      font-size: 13px;
+    }
+
+    .rs-agent strong {
+      display: block;
+      color: rgba(255,255,255,0.92);
+      font-size: 13.5px;
+      font-weight: 650;
+      letter-spacing: -0.018em;
+    }
+
+    .rs-agent em {
+      display: block;
+      color: rgba(255,255,255,0.38);
+      font-size: 11px;
+      font-style: normal;
+    }
+
+    .rs-window-bottom {
+      margin-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255,255,255,0.40);
+      font-size: 13px;
+    }
+
+    .rs-window-bottom button {
+      border: 0;
+      background: #2f80ff;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 11px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .rs-project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .rs-project-card {
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: var(--surface);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.035);
+    }
+
+    .rs-project-card h3 {
+      font-size: 23px;
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+      font-weight: 690;
+      margin-bottom: 11px;
+    }
+
+    .rs-project-card p {
+      color: var(--soft);
+      font-size: 15.5px;
+      line-height: 1.5;
+    }
+
+    .rs-project-status {
+      display: inline-flex;
+      align-self: flex-start;
+      margin-bottom: 22px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.60);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 7px 10px;
+    }
+
+    .rs-research-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .rs-research-card {
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: var(--surface);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.035);
+      padding: 28px;
+      min-height: 258px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .rs-research-card h3 {
+      font-size: 29px;
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+      font-weight: 690;
+      margin-bottom: 14px;
+    }
+
+    .rs-research-card p {
+      color: var(--soft);
+      font-size: 16px;
+      line-height: 1.56;
+    }
+
+    .rs-research-card strong {
+      color: var(--ink);
+      font-weight: 620;
+    }
+
+    .rs-stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .rs-stat {
+      padding: 9px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.62);
+      border: 1px solid var(--line);
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    .rs-fomo {
+      border-radius: 36px;
+      background:
+        radial-gradient(circle at 92% 16%, rgba(255,116,61,0.24), transparent 26%),
+        var(--dark);
+      color: var(--cream);
+      padding: 38px;
+      display: grid;
+      grid-template-columns: 1fr 0.82fr;
+      gap: 34px;
+      box-shadow: 0 32px 90px rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+
+    .rs-fomo h2 {
+      font-size: clamp(36px, 5vw, 70px);
+      line-height: 0.98;
+      letter-spacing: -0.078em;
+      font-weight: 690;
+      margin-bottom: 22px;
+    }
+
+    .rs-fomo p {
+      color: rgba(255,255,255,0.70);
+      font-size: 17px;
+      line-height: 1.58;
+      max-width: 710px;
+    }
+
+    .rs-fomo strong {
+      color: #ffffff;
+      font-weight: 620;
+    }
+
+    .rs-fomo-list {
+      display: grid;
+      gap: 10px;
+      align-content: center;
+    }
+
+    .rs-fomo-list div {
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 16px;
+      color: rgba(255,255,255,0.80);
+      font-size: 15px;
+      background: rgba(255,255,255,0.035);
+    }
+
+    .rs-footer {
+      margin-top: 104px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .rs-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .rs-links a {
+      color: var(--soft);
+    }
+
+    .rs-links a:hover {
+      color: var(--ink);
+    }
+
+    @media (max-width: 1100px) {
+      .rs-proof-wall {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .rs-os {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .rs-command-strip,
+      .rs-positioning,
+      .rs-project-lab,
+      .rs-fomo {
+        grid-template-columns: 1fr;
+      }
+
+      .rs-proof-wall,
+      .rs-metrics,
+      .rs-project-grid,
+      .rs-research-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .rs-lab-copy {
+        min-height: auto;
+      }
+
+      .rs-lab-copy h3 {
+        margin-bottom: 40px;
+      }
+
+      .rs-terminal-frame {
+        padding: 26px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .rs-page {
+        padding: 28px 20px 68px;
+      }
+
+      .rs-nav-links {
+        display: none;
+      }
+
+      .rs-hero {
+        padding: 76px 0 60px;
+      }
+
+      .rs-section-head {
+        display: block;
+      }
+
+      .rs-section-note {
+        text-align: left;
+        margin-top: 8px;
+      }
+
+      .rs-proof-wall,
+      .rs-metrics,
+      .rs-os,
+      .rs-project-grid,
+      .rs-research-grid,
+      .rs-agent-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rs-timeline::before,
+      .rs-timeline-item::before {
+        display: none;
+      }
+
+      .rs-timeline-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .rs-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .rs-hero h1 {
+        font-size: 52px;
+      }
+
+      .rs-positioning-main,
+      .rs-positioning-side,
+      .rs-timeline-item,
+      .rs-research-card,
+      .rs-fomo {
+        padding: 24px;
+        border-radius: 28px;
+      }
+
+      .rs-project-lab {
+        padding: 22px;
+        border-radius: 28px;
+      }
+
+      .rs-terminal-frame {
+        padding: 16px;
+      }
+
+      .rs-steps {
+        gap: 8px;
+        font-size: 11px;
+      }
+
+      .rs-window-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+    }
+  </style>
+
+  <main class="rs-page">
+    <header class="rs-nav">
+      <a class="rs-brand" href="mailto:rynsdri@gmail.com" aria-label="Email Rayan Sadri">
+        <span class="rs-brand-mark">RS</span>
+        <span>Rayan Sadri</span>
+      </a>
+
+      <div class="rs-nav-links">
+        <a href="#proof">Proof</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#projects">Projects</a>
+        <a href="https://www.linkedin.com/in/ray-sadri/">LinkedIn</a>
+        <a href="https://github.com/rayansadri">GitHub</a>
+      </div>
+
+      <div class="rs-nav-status">
+        <span class="rs-live-dot"></span>
+        <span>Open to AI GTM / deployment roles</span>
+      </div>
+    </header>
+
+    <section class="rs-hero">
+      <div class="rs-kicker">
+        <span class="rs-kicker-dot"></span>
+        GTM engineering · forward deployed AI · founder operator · research depth
+      </div>
+
+      <h1>
+        Hire the person who can sell the AI vision, <span>then ship the workflow.</span>
+      </h1>
+
+      <p>
+        I sit in the messy middle between customer pain, technical products, AI workflows, and revenue.
+        I have done the founder version of the job: <strong>raised pre-seed, sold into enterprise healthcare, scoped deployments,
+        built demos, translated research into product, and grew technical founder narrative to 9M+ organic views.</strong>
+      </p>
+
+      <div class="rs-hero-actions">
+        <a class="rs-button primary" href="mailto:rynsdri@gmail.com">Talk to me</a>
+        <a class="rs-button secondary" href="https://www.linkedin.com/in/ray-sadri/">See LinkedIn</a>
+        <a class="rs-button secondary" href="#timeline">View timeline</a>
+      </div>
+
+      <div class="rs-command-strip">
+        <div class="rs-command-card">
+          <small>Customer-facing</small>
+          <strong>Turns buyer confusion into scope, trust, urgency, and a next step.</strong>
+        </div>
+        <div class="rs-command-card">
+          <small>Builder-minded</small>
+          <strong>Prototypes the workflow, maps the data, and finds the deployment path.</strong>
+        </div>
+        <div class="rs-command-card">
+          <small>Narrative-driven</small>
+          <strong>Makes technical products feel obvious, sharp, and hard to ignore.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="rs-section" id="proof">
+      <div class="rs-section-head">
+        <div class="rs-label">Proof from the real world</div>
+        <div class="rs-section-note">Research, founder backing, enterprise conversations, startup mentorship, distribution, and public credibility.</div>
+      </div>
+
+      <div class="rs-proof-wall">
+        <a class="rs-proof-card" href="https://www.mcgill.ca/engine/node/826">
+          <span>McGill Engine</span>
+          <small>TechAccel startup mentor</small>
+        </a>
+
+        <div class="rs-proof-card">
+          <span>McGill University</span>
+          <small>MSc AI research</small>
+        </div>
+
+        <a class="rs-proof-card" href="https://delve.mcgill.ca/listen/inside-a-startup-thats-using-ai-to-revolutionise-medical-imaging/">
+          <span>McGill Delve</span>
+          <small>Founder feature</small>
+        </a>
+
+        <a class="rs-proof-card" href="https://www.youtube.com/watch?v=KUCRkVYFK1s">
+          <span>ERA NYC</span>
+          <small>Backed founder</small>
+        </a>
+
+        <div class="rs-proof-card">
+          <span>Creative Destruction Lab</span>
+          <small>AI stream</small>
+        </div>
+
+        <div class="rs-proof-card">
+          <span>NEXT36</span>
+          <small>Selected founder</small>
+        </div>
+
+        <div class="rs-proof-card">
+          <span>Carez AI</span>
+          <small>Co-founder</small>
+        </div>
+
+        <div class="rs-proof-card">
+          <span>FDA</span>
+          <small>Enterprise conversation</small>
+        </div>
+
+        <div class="rs-proof-card">
+          <span>Bayer</span>
+          <small>Enterprise conversation</small>
+        </div>
+
+        <div class="rs-proof-card">
+          <span>NHS</span>
+          <small>Enterprise conversation</small>
+        </div>
+
+        <a class="rs-proof-card" href="https://www.nytimes.com/2025/12/28/business/us-immigration-trump-1920s.html">
+          <span>New York Times</span>
+          <small>Featured</small>
+        </a>
+
+        <a class="rs-proof-card" href="https://webcast.wipo.int/video/WIPO_IP_CONV_GE_2_2025-10-28_AM_126016">
+          <span>United Nations / WIPO</span>
+          <small>Speaker</small>
+        </a>
+      </div>
+    </section>
+
+    <section class="rs-section">
+      <div class="rs-positioning">
+        <div class="rs-positioning-main">
+          <h2>I am the GTM engineer you call before the product gets lost in translation.</h2>
+          <p>
+            Some people can sell. Some people can build. Some people can sit in the customer meeting and actually understand
+            the data model, workflow, objection, compliance anxiety, and buying politics underneath the words.
+            My edge is connecting those dots fast and turning them into <strong>demo, deployment plan, buyer narrative, and product signal.</strong>
+          </p>
+        </div>
+
+        <div class="rs-positioning-side">
+          <div>
+            <div class="rs-mini-title">Best-fit roles</div>
+            <p>
+              Forward deployed AI, GTM engineering, solutions, technical product, founder office, deployment strategist,
+              AI workflow automation, and customer-facing product roles.
+            </p>
+          </div>
+
+          <div class="rs-fit-list">
+            <div><span>Research depth</span><strong>McGill AI</strong></div>
+            <div><span>Founder proof</span><strong>Carez AI</strong></div>
+            <div><span>Enterprise motion</span><strong>FDA, Bayer, NHS</strong></div>
+            <div><span>Market signal</span><strong>9M+ views</strong></div>
+            <div><span>Builder mode</span><strong>AI prototypes</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rs-section">
+      <div class="rs-section-head">
+        <div class="rs-label">Signal stack</div>
+        <div class="rs-section-note">Numbers across research, enterprise GTM, deployment scoping, and technical narrative.</div>
+      </div>
+
+      <div class="rs-metrics">
+        <div class="rs-metric">
+          <div class="rs-number">9M+</div>
+          <div class="rs-caption">organic X views from technical founder narrative</div>
+        </div>
+        <div class="rs-metric">
+          <div class="rs-number">35+</div>
+          <div class="rs-caption">enterprise teams engaged through founder-led GTM</div>
+        </div>
+        <div class="rs-metric">
+          <div class="rs-number">$500K+</div>
+          <div class="rs-caption">pipeline built from technical buyer conversations</div>
+        </div>
+        <div class="rs-metric">
+          <div class="rs-number">4.2M+</div>
+          <div class="rs-caption">brain CT and MRI slice equivalents harmonized</div>
+        </div>
+        <div class="rs-metric">
+          <div class="rs-number">135K+</div>
+          <div class="rs-caption">annotated rows used in MSc AI research</div>
+        </div>
+      </div>
+
+      <div class="rs-pill-row">
+        <span class="rs-pill">AI research</span>
+        <span class="rs-pill">Forward deployment</span>
+        <span class="rs-pill">GTM engineering</span>
+        <span class="rs-pill">Enterprise discovery</span>
+        <span class="rs-pill">Workflow automation</span>
+        <span class="rs-pill">Security review support</span>
+        <span class="rs-pill">Technical narrative</span>
+        <span class="rs-pill">Startup mentorship</span>
+      </div>
+    </section>
+
+    <section class="rs-section">
+      <div class="rs-section-head">
+        <div class="rs-label">Operating system</div>
+        <div class="rs-section-note">The repeatable motion I bring into technical teams that need adoption, not just a better deck.</div>
+      </div>
+
+      <div class="rs-os">
+        <div class="rs-os-card">
+          <div>
+            <span class="rs-os-index">01</span>
+            <h3>Find the real buyer pain</h3>
+            <p>Extract the workflow, objection, decision criteria, budget logic, compliance risk, and urgency hiding inside messy calls.</p>
+          </div>
+          <div class="rs-os-flow">calls -> signal -> buying map</div>
+        </div>
+
+        <div class="rs-os-card">
+          <div>
+            <span class="rs-os-index">02</span>
+            <h3>Translate it into product scope</h3>
+            <p>Turn vague requests into data requirements, integration needs, success metrics, proof points, and buildable next steps.</p>
+          </div>
+          <div class="rs-os-flow">pain -> spec -> deployment path</div>
+        </div>
+
+        <div class="rs-os-card">
+          <div>
+            <span class="rs-os-index">03</span>
+            <h3>Ship the demo or workflow</h3>
+            <p>Use AI tooling, product taste, and technical fluency to create the artifact that makes the future feel concrete.</p>
+          </div>
+          <div class="rs-os-flow">idea -> prototype -> customer proof</div>
+        </div>
+
+        <div class="rs-os-card">
+          <div>
+            <span class="rs-os-index">04</span>
+            <h3>Make the story spread</h3>
+            <p>Package the product so buyers, users, investors, and internal teams can understand it without needing a translator.</p>
+          </div>
+          <div class="rs-os-flow">complex tech -> simple narrative -> momentum</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rs-section" id="timeline">
+      <div class="rs-section-head">
+        <div class="rs-label">CV-style timeline</div>
+        <div class="rs-section-note">A career built around the same pattern: learn the system, find the leverage point, ship the thing.</div>
+      </div>
+
+      <div class="rs-timeline">
+        <div class="rs-timeline-item">
+          <div class="rs-time">Now</div>
+          <div class="rs-role">
+            <h3>Forward deployed AI / GTM operator</h3>
+            <p>
+              Focused on roles where <strong>customer-facing strategy, technical product, deployment workflows, and AI prototyping</strong>
+              meet. Useful when the team needs someone who can sit with customers, understand the technical mess, and make the next action obvious.
+            </p>
+            <div class="rs-proofline">Target lanes: GTM engineer · forward deployed AI · solutions · technical product · founder office</div>
+            <div class="rs-tag-grid">
+              <span class="rs-tag">Customer discovery</span>
+              <span class="rs-tag">AI workflows</span>
+              <span class="rs-tag">Demo creation</span>
+              <span class="rs-tag">Deployment strategy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rs-timeline-item">
+          <div class="rs-time">Founder</div>
+          <div class="rs-role">
+            <h3>Carez AI — Co-founder, product and GTM</h3>
+            <p>
+              Co-founded a synthetic medical imaging company and led product plus GTM across discovery, demos, scoping,
+              buyer conversations, security reviews, and deployment workflows for AI teams working with brain CT and MRI data.
+            </p>
+            <div class="rs-proofline">
+              ERA NYC backed · CDL AI · NEXT36 · 35+ enterprise teams · $500K+ pipeline · 4.2M+ slice equivalents · FDA, Bayer, NHS, imaging AI conversations
+            </div>
+            <div class="rs-tag-grid">
+              <span class="rs-tag">Enterprise sales</span>
+              <span class="rs-tag">Synthetic medical imaging</span>
+              <span class="rs-tag">Buyer scoping</span>
+              <span class="rs-tag">Security review</span>
+              <span class="rs-tag">Founder-led GTM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rs-timeline-item">
+          <div class="rs-time">Deploy</div>
+          <div class="rs-role">
+            <h3>Passage — AI workflows and product narrative</h3>
+            <p>
+              Worked across AI assessment, intake workflows, enterprise website narrative, and internal workflow design.
+              The job was translating messy internal knowledge, student data, policy rules, and buyer confusion into cleaner systems.
+            </p>
+            <div class="rs-proofline">
+              Enterprise website · AI intake workflows · assessment automation · decision packets · buyer narrative · internal workflow design
+            </div>
+            <div class="rs-tag-grid">
+              <span class="rs-tag">Workflow automation</span>
+              <span class="rs-tag">Admissions ops</span>
+              <span class="rs-tag">AI assessment</span>
+              <span class="rs-tag">Enterprise positioning</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rs-timeline-item">
+          <div class="rs-time">Research</div>
+          <div class="rs-role">
+            <h3>McGill AI research — bias and transparency</h3>
+            <p>
+              MSc thesis on <strong>bias and transparency in automated hate speech detection systems.</strong>
+              Replicated a widely cited classifier, rebuilt an outdated Python codebase into a flexible experimental framework,
+              introduced a larger Berkeley dataset, and tested how target-group distribution changed model behavior.
+            </p>
+            <div class="rs-proofline">
+              NLP · model bias · dataset distribution · SVM and logistic regression · TF-IDF · k-fold validation · precision, recall, F1 · 135,556 annotated rows
+            </div>
+            <div class="rs-tag-grid">
+              <span class="rs-tag">Python</span>
+              <span class="rs-tag">NLP</span>
+              <span class="rs-tag">Classification</span>
+              <span class="rs-tag">Bias analysis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rs-timeline-item">
+          <div class="rs-time">Mentor</div>
+          <div class="rs-role">
+            <h3>McGill Engine — TechAccel startup mentor</h3>
+            <p>
+              Mentor early-stage founders through McGill Engine's TechAccel program, helping technical teams think through product,
+              customer discovery, GTM, positioning, and how to move from idea to real venture.
+            </p>
+            <div class="rs-proofline">Startup coaching · product strategy · founder-led GTM · technical venture building · customer discovery</div>
+            <div class="rs-tag-grid">
+              <span class="rs-tag">Startup mentorship</span>
+              <span class="rs-tag">Positioning</span>
+              <span class="rs-tag">Product strategy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rs-timeline-item">
+          <div class="rs-time">Distribution</div>
+          <div class="rs-role">
+            <h3>Technical narrative — 9M+ organic views</h3>
+            <p>
+              Built an audience by making complex founder and technical ideas simple enough to spread.
+              I understand distribution because I have done it in public, under feedback, with no paid shortcut.
+            </p>
+            <div class="rs-proofline">9M+ organic X views · founder narrative · technical storytelling · audience growth · market education</div>
+            <div class="rs-tag-grid">
+              <span class="rs-tag">Narrative</span>
+              <span class="rs-tag">Audience growth</span>
+              <span class="rs-tag">Market education</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rs-section" id="projects">
+      <div class="rs-section-head">
+        <div class="rs-label">Personal project lab</div>
+        <div class="rs-section-note">Small, sharp builds that show how I think: messy inputs, AI assistance, workflow design, usable output.</div>
+      </div>
+
+      <div class="rs-project-lab">
+        <div class="rs-lab-copy">
+          <div class="rs-orb"></div>
+          <h3>Shipped with Cursor + Claude</h3>
+          <div class="rs-lab-lead">
+            I use AI coding tools like a deployment multiplier.
+          </div>
+          <p>
+            The goal is not to cosplay as a full engineering team. The goal is to compress the distance between
+            customer pain and a working artifact: prototype, workflow, demo, dashboard, intake engine, or decision packet.
+          </p>
+          <div class="rs-lab-proof">
+            Idea -> prompt stack -> prototype -> critique -> demo artifact -> customer or team conversation
+          </div>
+        </div>
+
+        <div class="rs-terminal-frame">
+          <div class="rs-window">
+            <div class="rs-window-top">
+              <span class="rs-dot"></span>
+              <span class="rs-dot"></span>
+              <span class="rs-dot"></span>
+              <strong>Passage Platform</strong>
+            </div>
+
+            <div class="rs-steps">
+              <span class="active">1 Create Agents</span>
+              <span class="active">2 Connect</span>
+              <span>3 Deploy</span>
+            </div>
+
+            <div class="rs-window-body">
+              <h4>Connect school systems</h4>
+              <p>Configure AI agents across admissions, funding, and student operations.</p>
+
+              <div class="rs-agent-grid">
+                <div class="rs-agent active">
+                  <span class="rs-agent-badge">E</span>
+                  <div>
+                    <strong>Ellucian Banner</strong>
+                    <em>SIS connected</em>
+                  </div>
+                </div>
+
+                <div class="rs-agent">
+                  <span class="rs-agent-badge">E</span>
+                  <div>
+                    <strong>Ellucian Colleague</strong>
+                    <em>SIS candidate</em>
+                  </div>
+                </div>
+
+                <div class="rs-agent">
+                  <span class="rs-agent-badge">O</span>
+                  <div>
+                    <strong>Oracle PeopleSoft</strong>
+                    <em>ERP candidate</em>
+                  </div>
+                </div>
+
+                <div class="rs-agent">
+                  <span class="rs-agent-badge">S</span>
+                  <div>
+                    <strong>Salesforce</strong>
+                    <em>CRM candidate</em>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rs-window-bottom">
+                <span>Workflow ready for deployment review</span>
+                <button>Deploy Agents</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rs-project-grid">
+        <div class="rs-project-card">
+          <div>
+            <span class="rs-project-status">Prototype</span>
+            <h3>Passage AI workforce layer</h3>
+            <p>Concept-to-demo platform showing how schools could configure agents, connect systems, apply policies, and deploy operational workflows.</p>
+          </div>
+          <div class="rs-proofline">AI agents · systems integration · policy logic · admissions ops</div>
+        </div>
+
+        <div class="rs-project-card">
+          <div>
+            <span class="rs-project-status">Workflow</span>
+            <h3>Customer scoping engine</h3>
+            <p>Turns synthetic imaging requests into modality, anatomy, pathology, labels, volume, validation needs, and open questions.</p>
+          </div>
+          <div class="rs-proofline">Customer chaos -> technical spec -> build path</div>
+        </div>
+
+        <div class="rs-project-card">
+          <div>
+            <span class="rs-project-status">Agent idea</span>
+            <h3>Refund recovery agent</h3>
+            <p>Scans transactions for duplicate charges, unused subscriptions, and refund opportunities, then drafts recovery actions.</p>
+          </div>
+          <div class="rs-proofline">Financial noise -> recovery queue -> drafted action</div>
+        </div>
+
+        <div class="rs-project-card">
+          <div>
+            <span class="rs-project-status">Ops system</span>
+            <h3>Decision packet builder</h3>
+            <p>Converts forms, calls, policy notes, and student data into structured risks, recommendations, and next actions.</p>
+          </div>
+          <div class="rs-proofline">Messy input -> structured packet -> action</div>
+        </div>
+
+        <div class="rs-project-card">
+          <div>
+            <span class="rs-project-status">GTM asset</span>
+            <h3>Enterprise trust packet</h3>
+            <p>Packages security, compliance, data flow, implementation steps, and buyer objections into a cleaner review motion.</p>
+          </div>
+          <div class="rs-proofline">Risk questions -> trust packet -> approval path</div>
+        </div>
+
+        <div class="rs-project-card">
+          <div>
+            <span class="rs-project-status">Narrative</span>
+            <h3>Technical founder content engine</h3>
+            <p>Turns technical lessons, customer conversations, and founder scars into distribution-ready ideas people remember.</p>
+          </div>
+          <div class="rs-proofline">Complex thought -> sharp post -> market signal</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rs-section">
+      <div class="rs-section-head">
+        <div class="rs-label">AI research foundation</div>
+        <div class="rs-section-note">Before building AI products, I studied how AI systems fail, shift, and encode hidden assumptions.</div>
+      </div>
+
+      <div class="rs-research-grid">
+        <div class="rs-research-card">
+          <div>
+            <h3>Bias and transparency in hate speech detection</h3>
+            <p>
+              Replicated Davidson et al.'s automated hate speech detection work, addressed compatibility issues,
+              rebuilt the classifier workflow, and turned an old repository into a more flexible framework for experimentation.
+            </p>
+          </div>
+          <div class="rs-stat-row">
+            <span class="rs-stat">Python</span>
+            <span class="rs-stat">NLP</span>
+            <span class="rs-stat">Classification</span>
+            <span class="rs-stat">Bias analysis</span>
+          </div>
+        </div>
+
+        <div class="rs-research-card">
+          <div>
+            <h3>Dataset distribution changed model behavior</h3>
+            <p>
+              Tested Black-focused, Women-focused, LGBT-focused, and balanced training distributions.
+              The work showed how training data composition changes precision, recall, and F1 across target groups.
+            </p>
+          </div>
+          <div class="rs-stat-row">
+            <span class="rs-stat">39,565 comments</span>
+            <span class="rs-stat">7,912 annotators</span>
+            <span class="rs-stat">135,556 rows</span>
+            <span class="rs-stat">F1 up to 93%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rs-section">
+      <div class="rs-fomo">
+        <div>
+          <h2>Bring me into the messy middle.</h2>
+          <p>
+            I am useful when a technical team has a strong product, but the market, buyer workflow, onboarding, story,
+            demo, or deployment motion is still messy. I can sit with customers, extract the real problem, shape the narrative,
+            prototype the workflow, and help turn the motion into a system. <strong>The risk is not that I need too much structure.
+            The risk is that another team gets me first.</strong>
+          </p>
+        </div>
+
+        <div class="rs-fomo-list">
+          <div>Technical product unclear to buyers</div>
+          <div>Customer discovery not turning into product signal</div>
+          <div>GTM motion too founder-dependent</div>
+          <div>AI workflows stuck at demo stage</div>
+          <div>Enterprise trust, security, or onboarding friction</div>
+          <div>Internal teams need someone who can translate and ship</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="rs-footer">
+      <nav class="rs-links">
+        <a href="mailto:rynsdri@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/ray-sadri/">LinkedIn</a>
+        <a href="https://twitter.com/rayansadri">X</a>
+        <a href="https://github.com/rayansadri">GitHub</a>
+      </nav>
+      <span>AI research · GTM engineering · forward deployment · startup mentorship · technical narrative</span>
+    </footer>
+  </main>
+</div>
